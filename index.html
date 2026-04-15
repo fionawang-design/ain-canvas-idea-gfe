@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIN Canvas Ideas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AIN Canvas Ideas</h1>
+            <p>A space to brainstorm and explore GFE dashboard concepts.</p>
+            <button id="addIdeaBtn" class="btn-primary">+ New Idea</button>
+        </header>
+
+        <main class="ideas-grid" id="ideasGrid">
+            <!-- Idea cards will appear here -->
+            <div class="idea-card">
+                <div class="card-header">
+                    <span class="tag">Layout</span>
+                    <h3>Dynamic Grid Layout</h3>
+                </div>
+                <p>Explore a card-based layout that adapts to different screen sizes and priorities.</p>
+                <div class="card-footer">
+                    <span class="date">Today</span>
+                    <button class="btn-text">View Details</button>
+                </div>
+            </div>
+
+            <div class="idea-card">
+                <div class="card-header">
+                    <span class="tag">Visualization</span>
+                    <h3>3D Event Timeline</h3>
+                </div>
+                <p>Using WebGL or Canvas to render a 3D timeline of events for deeper analysis.</p>
+                <div class="card-footer">
+                    <span class="date">Yesterday</span>
+                    <button class="btn-text">View Details</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
