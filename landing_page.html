@@ -377,7 +377,7 @@
           
           <!-- Right Icons -->
           <div class="flex items-center gap-4 text-gray-400">
-            <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+            <span id="mic-icon" class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
             <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
           </div>
         </div>
@@ -1204,6 +1204,23 @@
             floatingBar.classList.add('hidden');
           }
           geminiInput.value = '';
+          
+          // Reset icon back to mic after submit
+          const micIcon = document.getElementById('mic-icon');
+          if (micIcon) {
+            micIcon.textContent = 'mic';
+          }
+        }
+      });
+
+      geminiInput.addEventListener('input', () => {
+        const micIcon = document.getElementById('mic-icon');
+        if (micIcon) {
+          if (geminiInput.value.trim() !== '') {
+            micIcon.textContent = 'send';
+          } else {
+            micIcon.textContent = 'mic';
+          }
         }
       });
 
