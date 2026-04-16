@@ -728,6 +728,103 @@
                 </ul>
               </div>
               
+              <!-- Recommended Configuration Box -->
+              <div class="bg-[#252A31] p-4 rounded-lg mb-6 border border-gray-700 mt-6">
+                <h4 class="text-gcp-blue text-sm font-bold uppercase mb-4">Recommended GFE Solution Configuration for your case</h4>
+                
+                <!-- Basic & origin server -->
+                <div class="mb-4">
+                  <h5 class="text-white font-bold mb-2 text-sm">Basic & origin server</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Domain name:</div>
+                    <div class="text-white">my-ecommerce-site.com</div>
+                    <div>Global front end name:</div>
+                    <div class="text-white">my-gfe-instance</div>
+                    <div>Billing tier:</div>
+                    <div class="text-white">GFE enterprise</div>
+                    <div>Origin location:</div>
+                    <div class="text-white">In GCP</div>
+                    <div>Origin type:</div>
+                    <div class="text-white">Instance groups</div>
+                    <div>Instance group:</div>
+                    <div class="text-white">us-central1-a-ig</div>
+                  </div>
+                </div>
+
+                <!-- Traffic Management -->
+                <div class="mb-4">
+                  <h5 class="text-white font-bold mb-2 text-sm">Traffic Management</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Traffic management policy name:</div>
+                    <div class="text-white">demo-acme-com-lb-1</div>
+                    <div>Protocol:</div>
+                    <div class="text-white">HTTPS</div>
+                  </div>
+                </div>
+
+                <!-- Certificate -->
+                <div class="mb-4">
+                  <h5 class="text-white font-bold mb-2 text-sm">Certificate</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Certificate name:</div>
+                    <div class="text-white">demo-acme-com-cert</div>
+                    <div>Certificate type:</div>
+                    <div class="text-white">Google-managed certificate</div>
+                    <div>Certificate authority type:</div>
+                    <div class="text-white">Public</div>
+                    <div>Authorization type:</div>
+                    <div class="text-white">Load balancer authorization</div>
+                  </div>
+                </div>
+
+                <!-- Health check -->
+                <div class="mb-4">
+                  <h5 class="text-white font-bold mb-2 text-sm">Health check</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Protocol:</div>
+                    <div class="text-white">HTTP</div>
+                    <div>Port:</div>
+                    <div class="text-white">80</div>
+                    <div>Request path:</div>
+                    <div class="text-white">/</div>
+                  </div>
+                </div>
+
+                <!-- Caching -->
+                <div class="mb-4">
+                  <h5 class="text-white font-bold mb-2 text-sm">Caching</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Caching policy name:</div>
+                    <div class="text-white">demo-acme-com-default-caching-001</div>
+                    <div>CDN enforcement:</div>
+                    <div class="text-white">On</div>
+                    <div>Cache mode:</div>
+                    <div class="text-white">Cache static content</div>
+                    <div>Client TTL:</div>
+                    <div class="text-white">1 day</div>
+                    <div>Default TTL:</div>
+                    <div class="text-white">30 days</div>
+                    <div>MAX TTL:</div>
+                    <div class="text-white">1 year</div>
+                    <div>Cache key:</div>
+                    <div class="text-white">Default</div>
+                  </div>
+                </div>
+
+                <!-- Security -->
+                <div>
+                  <h5 class="text-white font-bold mb-2 text-sm">Security</h5>
+                  <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
+                    <div>Security policy name:</div>
+                    <div class="text-white">demo-acme-com-default-security-policy-001</div>
+                    <div>Cloud Armor Service Tier:</div>
+                    <div class="text-white">Standard</div>
+                    <div>Rate limiting:</div>
+                    <div class="text-white">100 requests per 1 minute (Enforce on Source IP)</div>
+                  </div>
+                </div>
+              </div>
+              
               <!-- Button INSIDE the box -->
               <div class="flex justify-start mt-4">
                 <button id="go-to-canvas-btn" class="bg-gcp-blue text-dark-bg px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition-colors flex items-center gap-2">
