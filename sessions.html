@@ -217,7 +217,7 @@
               <!-- New Row (GFE Deployed) -->
               <tr id="deployed-row" class="border-b border-gray-700 bg-[#2D3238]/50 hover:bg-[#353B43] transition hidden">
                 <td class="px-6 py-4">
-                  <div class="font-medium text-gcp-green mb-0.5 flex items-center gap-2">
+                  <div class="font-medium text-[#8AB4F8] mb-0.5 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">check_circle</span>
                     <span>GFE Solution (my-gfe-instance) deployed</span>
                   </div>
@@ -238,7 +238,7 @@
               <!-- New Row (Migrating SKUs) -->
               <tr class="border-b border-gray-700 bg-[#2D3238]/50 hover:bg-[#353B43] transition">
                 <td class="px-6 py-4">
-                  <div class="font-medium text-[#8AB4F8] mb-0.5 flex items-center gap-2">
+                  <div id="migrating-title" class="font-medium text-white mb-0.5 flex items-center gap-2">
                     <span id="migrating-icon" class="material-symbols-outlined text-sm animate-spin">sync</span>
                     <span>Migrate your billings to Global Front End Enterprise</span>
                   </div>
@@ -454,6 +454,7 @@
     setTimeout(() => {
       const icon = document.getElementById('migrating-icon');
       const state = document.getElementById('migrating-state');
+      const title = document.getElementById('migrating-title');
       
       if (icon) {
         icon.classList.remove('animate-spin');
@@ -464,6 +465,11 @@
         state.textContent = 'Completed';
         state.classList.remove('bg-gcp-green', 'text-gcp-green');
         state.classList.add('bg-[#8AB4F8]', 'bg-opacity-20', 'text-[#8AB4F8]');
+      }
+
+      if (title) {
+        title.classList.remove('text-white');
+        title.classList.add('text-[#8AB4F8]');
       }
     }, 6000);
   </script>
