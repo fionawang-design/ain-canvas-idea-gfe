@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud | Artifacts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#353B43',
+              sidebar: '#282C32',
+              header: '#282C32',
+              card: '#3C444E',
+              'card-bg': '#3C444E',
+              active: '#383661',
+              purple: '#3D3A68',
+              nav: '#282C32',
+              'nav-selected': '#383661',
+              'nav-text-selected': '#D3DBFF',
+            },
+            gcp: {
+              blue: '#95ADE2',
+              'blue-hover': '#7090c8',
+              'blue-light': '#95ADE220',
+              red: '#EA4335',
+              yellow: '#FBBC04',
+              green: '#34A853',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background-color: #353B43;
+      color: #FFFFFF;
+    }
+    .glow-border {
+      position: relative;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, #34A853 0%, #8AB4F8 50%, #EA4335 100%);
+      padding: 1px;
+    }
+    .glow-border-inner {
+      background-color: #3C444E;
+      border-radius: 0.75rem;
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+  <!-- Top Bar -->
+  <header class="h-14 bg-dark-header flex items-center justify-between px-4 border-b border-gray-800 flex-shrink-0">
+    <div class="flex items-center gap-4">
+      <button class="text-gray-400 hover:text-white">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="text-lg font-medium text-white">Google Cloud</span>
+      <div class="ml-4 flex items-center bg-[#2D3139] px-3 py-1.5 rounded-lg border border-gray-700 cursor-pointer">
+        <span class="text-sm text-gray-300">Acme Corp / Production / Payments Platform</span>
+        <span class="material-symbols-outlined text-gray-400 text-sm ml-2">expand_more</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 bg-[#8AB4F8] rounded-full flex items-center justify-center text-dark-bg font-bold text-sm">
+        TK
+      </div>
+    </div>
+  </header>
+
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-dark-sidebar flex flex-col border-r border-gray-800 flex-shrink-0">
+      <div class="p-4">
+        <div class="flex items-center gap-2 text-white mb-6">
+          <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-1)"/>
+          </svg>
+          <span class="font-bold text-lg">My Cloud</span>
+        </div>
+        
+        <nav class="space-y-1">
+          <a href="landing_page.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">cloud</span>
+            <span>Home</span>
+          </a>
+          <a href="inbox.html?v=1" class="flex items-center justify-between px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined">inbox</span>
+              <span>Inbox</span>
+            </div>
+            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">3</span>
+          </a>
+          <a href="sessions.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">chat</span>
+            <span>Sessions</span>
+          </a>
+
+          <a href="artifacts.html" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-blue-300">article</span>
+              <span class="font-bold">Artifacts</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Recent & Pinned Sessions -->
+      <div class="mt-4 flex-1 overflow-y-auto px-4">
+        <h3 class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Recent & Pinned Sessions</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
+          <li class="hover:text-white cursor-pointer truncate">Security Boundary Enforcement</li>
+          <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-12">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-white mb-8">System Artifacts</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Scorecard Widget -->
+          <div class="bg-[#3C444E]/30 rounded-xl p-6 border border-white/10 backdrop-blur-sm">
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h3 class="text-lg font-bold text-white">SOC 2 Compliance</h3>
+                <p class="text-sm text-white/60">Compliance & Audit Readiness</p>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-bold text-gcp-green">94%</div>
+                <div class="text-xs text-white/50">On Track</div>
+              </div>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-2 mb-6">
+              <div class="bg-gcp-green h-2 rounded-full" style="width: 94%"></div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-white/80">Data Encryption at Rest</span>
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-gcp-green"></span>
+                  <span class="font-medium text-gcp-green">Compliant</span>
+                </div>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-white/80">IAM Least Privilege Access</span>
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+                  <span class="font-medium text-amber-400">Review Required</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-white/10">
+              <h4 class="text-sm font-bold text-white mb-2">Evidence Log</h4>
+              <div class="space-y-2 text-xs text-white/50">
+                <div class="flex justify-between">
+                  <span>iam_policy_audit.log</span>
+                  <span>2026-04-15</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Latency Dashboard Widget -->
+          <div class="bg-[#3C444E]/30 rounded-xl p-6 border border-white/10">
+            <h3 class="text-lg font-bold text-white mb-4">Edge Performance</h3>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="bg-[#2D3139] rounded-xl p-4 border border-white/5">
+                <div class="text-xs text-white/60 mb-1">p99 Latency</div>
+                <div class="text-2xl font-bold text-white">142ms</div>
+                <div class="text-xs text-gcp-red flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">trending_up</span> Above SLO
+                </div>
+              </div>
+              <div class="bg-[#2D3139] rounded-xl p-4 border border-white/5">
+                <div class="text-xs text-white/60 mb-1">Throughput</div>
+                <div class="text-2xl font-bold text-white">8.5k rps</div>
+                <div class="text-xs text-gcp-green flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">trending_up</span> Normal
+                </div>
+              </div>
+              <div class="bg-[#2D3139] rounded-xl p-4 border border-white/5">
+                <div class="text-xs text-white/60 mb-1">Error Rate</div>
+                <div class="text-2xl font-bold text-white">0.02%</div>
+                <div class="text-xs text-gcp-green flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">trending_down</span> Within SLO
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diff Widget -->
+          <div class="bg-[#3C444E]/30 rounded-xl p-6 border border-white/10">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-white font-mono">stripe_v3_migration.sql</h3>
+              <span class="text-xs text-white/40 font-mono">@@ -12,4 +12,9 @@</span>
+            </div>
+            <div class="font-mono text-xs space-y-1 bg-[#0A0F23]/50 p-4 rounded-lg border border-white/5 text-white/80">
+              <div class="text-white/50">  CREATE TABLE payment_intents (</div>
+              <div className="text-white/50">      id VARCHAR(255) PRIMARY KEY,</div>
+              <div class="text-gcp-red bg-red-500/10 px-1">-     amount INTEGER NOT NULL,</div>
+              <div class="text-gcp-green bg-green-500/10 px-1">+     amount_cents INTEGER NOT NULL,</div>
+              <div class="text-gcp-green bg-green-500/10 px-1">+     currency VARCHAR(3) NOT NULL,</div>
+              <div className="text-white/50">      status VARCHAR(50),</div>
+              <div class="text-gcp-green bg-green-500/10 px-1">+     metadata JSONB,</div>
+              <div class="text-gcp-green bg-green-500/10 px-1">+     stripe_account_id VARCHAR(255)</div>
+              <div class="text-white/50">  );</div>
+            </div>
+          </div>
+
+          <!-- Cost Plan Widget -->
+          <div class="bg-[#3C444E]/30 rounded-xl p-6 border border-white/10">
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">Q1 Cost Optimization Plan</h3>
+                <p class="text-sm text-white/60">Target: £2,500/mo savings</p>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-bold text-[#81C995]">£3.2k</div>
+                <div class="text-xs text-white/50">Projected Savings</div>
+              </div>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-2 mb-6">
+              <div class="bg-[#81C995] h-2 rounded-full" style="width: 100%"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-[#2D3139] p-4 rounded-lg border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-sm font-bold text-white">Compute</h4>
+                  <span class="text-xs bg-gcp-green/10 text-gcp-green px-1.5 py-0.5 rounded font-medium">Auto-pilot</span>
+                </div>
+                <p class="text-xs text-white/70">Terminate 14 idle instances and right-size 8 others.</p>
+                <div class="text-sm font-bold text-[#81C995] mt-2">£1,800/mo saved</div>
+              </div>
+              <div class="bg-[#2D3139] p-4 rounded-lg border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-sm font-bold text-white">Storage</h4>
+                  <span class="text-xs bg-amber-400/10 text-amber-400 px-1.5 py-0.5 rounded font-medium">Veto Window</span>
+                </div>
+                <p class="text-xs text-white/70">Delete 45 detached PDs and clean up old snapshots.</p>
+                <div class="text-sm font-bold text-[#81C995] mt-2">£1,400/mo saved</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Health Check Widget -->
+          <div class="bg-[#3C444E]/30 rounded-xl p-6 border border-white/10 lg:col-span-2">
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">Payments Platform Health Check</h3>
+                <p class="text-sm text-white/60">Last scan: 5 mins ago</p>
+              </div>
+              <span class="text-sm bg-gcp-green/20 text-gcp-green px-3 py-1 rounded-full font-bold">HEALTHY</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mt-6 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white">99.98%</div>
+                <div class="text-xs text-white/50">Uptime (24h)</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white">45ms</div>
+                <div class="text-xs text-white/50">Avg Latency</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white">1,250</div>
+                <div class="text-xs text-white/50">TPS Peak</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-[#2D3139] p-4 rounded-lg border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-sm font-bold text-white">API Gateway</h4>
+                  <span class="text-xs text-gcp-green font-bold">OK</span>
+                </div>
+                <p class="text-xs text-white/70">Latency within SLO. Error rate < 0.01%.</p>
+              </div>
+              <div class="bg-[#2D3139] p-4 rounded-lg border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-sm font-bold text-white">Database</h4>
+                  <span class="text-xs text-amber-400 font-bold">WARN</span>
+                </div>
+                <p class="text-xs text-white/70">CPU usage at 75%. Connection pool nearing limit.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating Gemini Bar (Fixed at bottom) -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
+    <!-- Colored Sparkle Icon -->
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4B4B"/>
+          <stop offset="30%" stop-color="#FFD54F"/>
+          <stop offset="60%" stop-color="#4285F4"/>
+          <stop offset="100%" stop-color="#1A73E8"/>
+        </linearGradient>
+      </defs>
+      <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
+    </svg>
+    
+    <!-- Focus/Scan Icon -->
+    <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
+    
+    <!-- Input -->
+    <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
+    
+    <!-- Right Icons -->
+    <div class="flex items-center gap-4 text-gray-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud | Inbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#353B43',
+              sidebar: '#282C32',
+              header: '#282C32',
+              card: '#3C444E',
+              'card-bg': '#3C444E',
+              active: '#383661',
+              purple: '#3D3A68',
+              nav: '#282C32',
+              'nav-selected': '#383661',
+              'nav-text-selected': '#D3DBFF',
+            },
+            gcp: {
+              blue: '#95ADE2',
+              'blue-hover': '#7090c8',
+              'blue-light': '#95ADE220',
+              red: '#ea4335',
+              yellow: '#fbbc04',
+              green: '#34a853',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background-color: #353B43;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+  <!-- Top Bar -->
+  <header class="h-14 bg-dark-header flex items-center justify-between px-4 border-b border-gray-800 flex-shrink-0">
+    <div class="flex items-center gap-4">
+      <button class="text-gray-400 hover:text-white">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="text-lg font-medium text-white">Google Cloud</span>
+      <div class="ml-4 flex items-center bg-[#2D3139] px-3 py-1.5 rounded-lg border border-gray-700 cursor-pointer">
+        <span class="text-sm text-gray-300">Acme Corp / Production / Payments Platform</span>
+        <span class="material-symbols-outlined text-gray-400 text-sm ml-2">expand_more</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 bg-[#8AB4F8] rounded-full flex items-center justify-center text-dark-bg font-bold text-sm">
+        TK
+      </div>
+    </div>
+  </header>
+
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-dark-sidebar flex flex-col border-r border-gray-800 flex-shrink-0">
+      <div class="p-4">
+        <div class="flex items-center gap-2 text-white mb-6">
+          <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-1)"/>
+          </svg>
+          <span class="font-bold text-lg">My Cloud</span>
+        </div>
+        
+        <nav class="space-y-1">
+          <a href="landing_page.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">cloud</span>
+            <span>Home</span>
+          </a>
+          <a href="inbox_static.html" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-blue-300">inbox</span>
+              <span class="font-bold">Inbox</span>
+            </div>
+            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">3</span>
+          </a>
+          <a href="sessions.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">chat</span>
+            <span>Sessions</span>
+          </a>
+          <a href="agents.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">smart_toy</span>
+            <span>Agents</span>
+          </a>
+          <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">article</span>
+            <span>Artifacts</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Recent & Pinned Sessions -->
+      <div class="mt-4 flex-1 overflow-y-auto px-4">
+        <h3 class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Recent & Pinned Sessions</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
+          <li class="hover:text-white cursor-pointer truncate">Security Boundary Enforcement</li>
+          <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-12">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-3xl font-bold text-white">Inbox</h1>
+          <span class="text-sm text-white/60">3 items require attention</span>
+        </div>
+        
+        <div class="space-y-4">
+          
+          <!-- Session Card 1 -->
+          <div class="bg-dark-card rounded-xl p-5 flex flex-col gap-4 cursor-pointer transition relative border border-white/5 hover:border-white/20">
+            <div class="flex items-center justify-between flex-wrap gap-2 text-xs text-white/40">
+              <div class="flex items-center gap-4 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full font-bold bg-gcp-yellow/10 text-gcp-yellow">
+                  Need input
+                </span>
+                <span>Agent: <span class="text-white/70 font-medium">NetworkArchitect</span></span>
+                <span>Resource: <span class="text-white/70 font-medium">bgp-router-1</span></span>
+                <span>10 mins ago</span>
+              </div>
+              <span class="material-symbols-outlined text-white/40" style="font-size: 16px;">arrow_forward</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h4 class="text-xs font-bold text-white leading-snug flex-shrink-0">Authorize BGP Route Update</h4>
+              <p class="text-xs text-white/60 leading-relaxed">Request to enable fallback routing for asia-east1 in case of primary link failure.</p>
+            </div>
+          </div>
+
+          <!-- Session Card 2 -->
+          <div class="bg-dark-card rounded-xl p-5 flex flex-col gap-4 cursor-pointer transition relative border border-white/5 hover:border-white/20">
+            <div class="flex items-center justify-between flex-wrap gap-2 text-xs text-white/40">
+              <div class="flex items-center gap-4 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full font-bold bg-gcp-yellow/10 text-gcp-yellow">
+                  Need input
+                </span>
+                <span>Agent: <span class="text-white/70 font-medium">CostOptimizer</span></span>
+                <span>Resource: <span class="text-white/70 font-medium">sql-db-prod</span></span>
+                <span>1 hour ago</span>
+              </div>
+              <span class="material-symbols-outlined text-white/40" style="font-size: 16px;">arrow_forward</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h4 class="text-xs font-bold text-white leading-snug flex-shrink-0">Approve Cloud SQL Right-Sizing</h4>
+              <p class="text-xs text-white/60 leading-relaxed">Downgrade db-n1-standard-2 to db-custom-2-3750 to save £40/mo based on 30-day low utilization.</p>
+            </div>
+          </div>
+
+          <!-- Session Card 3 -->
+          <div class="bg-dark-card rounded-xl p-5 flex flex-col gap-4 cursor-pointer transition relative border border-white/5 hover:border-white/20">
+            <div class="flex items-center justify-between flex-wrap gap-2 text-xs text-white/40">
+              <div class="flex items-center gap-4 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full font-bold bg-gcp-yellow/10 text-gcp-yellow">
+                  Need input
+                </span>
+                <span>Agent: <span class="text-white/70 font-medium">SecurityAgent</span></span>
+                <span>Resource: <span class="text-white/70 font-medium">iam-policy</span></span>
+                <span>2 hours ago</span>
+              </div>
+              <span class="material-symbols-outlined text-white/40" style="font-size: 16px;">arrow_forward</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h4 class="text-xs font-bold text-white leading-snug flex-shrink-0">Veto High Risk IAM Binding</h4>
+              <p class="text-xs text-white/60 leading-relaxed">Attempt to grant owner role to a new service account in production project detected.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating Gemini Bar (Fixed at bottom) -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
+    <!-- Colored Sparkle Icon -->
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4B4B"/>
+          <stop offset="30%" stop-color="#FFD54F"/>
+          <stop offset="60%" stop-color="#4285F4"/>
+          <stop offset="100%" stop-color="#1A73E8"/>
+        </linearGradient>
+      </defs>
+      <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
+    </svg>
+    
+    <!-- Focus/Scan Icon -->
+    <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
+    
+    <!-- Input -->
+    <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
+    
+    <!-- Right Icons -->
+    <div class="flex items-center gap-4 text-gray-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
+    </div>
+  </div>
+
+</body>
+</html>

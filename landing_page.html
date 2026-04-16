@@ -13,17 +13,23 @@
         extend: {
           colors: {
             dark: {
-              bg: '#1E2127',
-              sidebar: '#16181C',
-              header: '#16181C',
-              card: '#252A31',
-              'card-bg': '#1C1F24',
-              active: '#2D333F',
+              bg: '#353B43',
+              sidebar: '#282C32',
+              header: '#282C32',
+              card: '#3C444E',
+              'card-bg': '#3C444E',
+              active: '#383661',
               purple: '#3D3A68',
+              nav: '#282C32',
+              'nav-selected': '#383661',
+              'nav-text-selected': '#D3DBFF',
             },
             gcp: {
-              blue: '#8AB4F8',
+              blue: '#95ADE2',
+              'blue-hover': '#7090c8',
+              'blue-light': '#95ADE220',
               red: '#EA4335',
+              yellow: '#FBBC04',
               green: '#34A853',
             }
           }
@@ -34,7 +40,7 @@
   <style>
     body {
       font-family: 'Google Sans', 'Roboto', sans-serif;
-      background-color: #1E2127;
+      background-color: #353B43;
       color: #FFFFFF;
     }
     .glow-border {
@@ -44,12 +50,19 @@
       padding: 1px; /* Border width */
     }
     .glow-border-inner {
-      background-color: #1C1F24;
+      background-color: #3C444E;
       border-radius: 0.75rem;
       height: 100%;
     }
     .purple-gradient-bg {
       background: linear-gradient(to right, #3D3A68 0%, #2D333F 100%);
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -83,9 +96,9 @@
             <defs>
               <linearGradient id="gemini-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#FF4B4B"/>
-                <stop offset="30%" stop-color="#FFC107"/>
-                <stop offset="70%" stop-color="#00C853"/>
-                <stop offset="100%" stop-color="#2979FF"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
               </linearGradient>
             </defs>
             <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-1)"/>
@@ -94,24 +107,25 @@
         </div>
         
         <nav class="space-y-1">
-          <a href="#" class="flex items-center justify-between -mx-4 px-4 py-2 purple-gradient-bg text-white rounded-r-full">
+          <a href="landing_page.html" id="home-link" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-blue-300" style="font-variation-settings: 'FILL' 0;">cloud</span>
               <span class="font-bold">Home</span>
             </div>
           </a>
-          <a href="#" class="flex items-center justify-between px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+          <a href="inbox.html?v=1" id="inbox-link" class="flex items-center justify-between px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined">inbox</span>
               <span>Inbox</span>
             </div>
-            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">16</span>
+            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">3</span>
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+          <a href="sessions.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <span class="material-symbols-outlined">chat</span>
             <span>Sessions</span>
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+
+          <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <span class="material-symbols-outlined">article</span>
             <span>Artifacts</span>
           </a>
@@ -128,7 +142,7 @@
           <li class="hover:text-white cursor-pointer truncate">Migrate billing pipeline to Stripe v3 - Instanc...</li>
           <li class="hover:text-white cursor-pointer truncate">Enforce SOC 2 security posture - Instance 3</li>
           <li class="hover:text-white cursor-pointer truncate">Launch EMEA compliance reporting - Instan...</li>
-          <li class="hover:text-white cursor-pointer truncate">Steer cloud spend below £12k/month - Insta...</li>
+          <li class="hover:text-white cursor-pointer truncate">Steer cloud spend below $12k/month - Insta...</li>
           <li class="hover:text-white cursor-pointer truncate">Re-train churn prediction model - Instance 6</li>
           <li class="hover:text-white cursor-pointer truncate">Scale inference infra for v2 launch - Instance 7</li>
         </ul>
@@ -137,7 +151,7 @@
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto p-12 flex flex-col items-center">
-      <div class="max-w-4xl w-full">
+      <div id="landing-content" class="max-w-4xl w-full">
         
         <!-- Greeting -->
         <h1 class="text-3xl font-bold text-white mb-4 leading-tight text-center max-w-3xl mx-auto">
@@ -145,7 +159,7 @@
         </h1>
 
         <!-- Action Pills -->
-        <div class="flex items-center justify-center gap-3 mb-12">
+        <div class="flex items-center justify-center gap-3 mb-16">
           <div class="flex items-center bg-[#2D3139] px-3 py-1.5 rounded-full border border-gray-700 text-sm text-gray-300">
             <span class="material-symbols-outlined text-sm mr-1.5">sync</span>
             <span>Updated 2m ago</span>
@@ -156,18 +170,90 @@
           </div>
         </div>
 
+        <!-- Cost Spend Chart Card -->
+        <div class="bg-[#2D3139] p-8 rounded-xl border border-gray-800 mb-16">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2 class="text-xl font-bold text-white mb-1">Steer cloud spend below $12k/month</h2>
+              <p class="text-sm text-gray-400">Drifting away from cost target</p>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-[#FF5722]">$12.4k/mo proj.</p>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="relative h-40 mb-6">
+            <!-- Threshold Line -->
+            <div class="absolute top-1/4 left-0 right-0 border-t-2 border-dashed border-red-500 opacity-50"></div>
+            <span class="absolute top-1/4 left-0 -translate-y-1/2 text-xs text-red-500 font-bold bg-[#2D3139] pr-2">Threshold: $12k</span>
+
+            <!-- SVG Chart -->
+            <svg class="w-full h-full" viewBox="0 0 800 160">
+              <defs>
+                <linearGradient id="chart-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#2979FF"/>
+                  <stop offset="70%" stop-color="#2979FF"/>
+                  <stop offset="75%" stop-color="#FF5722"/>
+                  <stop offset="100%" stop-color="#FF5722"/>
+                </linearGradient>
+                <linearGradient id="area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FF5722" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#FF5722" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Area under curve (projected part) -->
+              <path d="M 560 80 L 600 70 L 650 70 L 700 60 L 750 50 L 800 40 L 800 160 L 560 160 Z" fill="url(#area-grad)"/>
+              
+              <!-- Line -->
+              <path d="M 0 120 L 100 115 L 150 115 L 200 105 L 250 100 L 320 100 L 400 85 L 480 90 L 560 80 L 600 70 L 650 70 L 700 60 L 750 50 L 800 40" fill="none" stroke="url(#chart-grad)" stroke-width="3"/>
+            </svg>
+          </div>
+
+          <!-- X-Axis Labels -->
+          <div class="flex justify-between text-xs text-gray-500 mb-6">
+            <span>1st Apr</span>
+            <span>Today</span>
+            <span>30th Apr (Proj)</span>
+          </div>
+
+          <!-- Bottom Box -->
+          <div class="bg-[#252A31] p-4 rounded-lg flex justify-between items-center">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-gcp-blue">lightbulb</span>
+              <p class="text-sm text-gray-300">
+                Correction planned: Auto-scaling sweep and zombie instance termination will bring run-rate to <span class="font-bold text-white">$11.6k</span>.
+              </p>
+            </div>
+            <a href="#" class="text-gcp-blue hover:underline text-sm font-bold flex items-center gap-1">
+              View Session
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
         <!-- Operational Outlook -->
-        <div class="w-full">
+        <div class="w-full mb-16">
           <h2 class="text-lg font-bold text-white mb-4">Operational Outlook</h2>
           
           <!-- Glowing Card -->
           <div class="glow-border w-full">
-            <div class="glow-border-inner p-8">
+            <div class="glow-border-inner p-10">
               
               <!-- Card Header -->
               <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-2 text-gray-300 text-sm font-bold tracking-wider">
-                  <span class="material-symbols-outlined text-yellow-400 text-sm">flare</span>
+                  <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="gemini-grad-inline" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF4B4B"/>
+                        <stop offset="30%" stop-color="#FFC107"/>
+                        <stop offset="70%" stop-color="#00C853"/>
+                        <stop offset="100%" stop-color="#2979FF"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-inline)"/>
+                  </svg>
                   <span>OPERATIONAL PURVIEW</span>
                 </div>
                 <span class="text-sm text-gray-500">17:51</span>
@@ -198,54 +284,10 @@
           </div>
         </div>
 
-        <!-- Cost Card -->
-        <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700 mb-8 mt-8">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="text-lg font-bold text-white">Steer cloud spend below £12k/month</h3>
-              <p class="text-sm text-gray-400">Drifting away from cost target</p>
-            </div>
-            <div class="text-right">
-              <span class="text-2xl font-bold text-[#FF8A65]">£12.4k/mo proj.</span>
-            </div>
-          </div>
 
-          <!-- Mock Chart -->
-          <div class="h-32 relative mt-4 mb-4">
-            <!-- Threshold line -->
-            <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-red-500 opacity-70"></div>
-            <span class="absolute top-1/2 left-0 -translate-y-full text-xs text-red-500 font-bold">Threshold: £12k</span>
-            
-            <!-- SVG Chart -->
-            <svg class="w-full h-full">
-              <!-- Blue line (Actual) -->
-              <path d="M0,100 Q100,90 200,80 T400,70 T600,50 T800,40" fill="none" stroke="#8AB4F8" stroke-width="3" />
-              <!-- Red line (Projected) -->
-              <path d="M600,50 Q700,45 800,30" fill="none" stroke="#EA4335" stroke-width="3" stroke-dasharray="5,5" />
-            </svg>
-            
-            <!-- X-Axis Labels -->
-            <div class="flex justify-between text-xs text-gray-500 mt-2">
-              <span>1st Apr</span>
-              <span>Today</span>
-              <span>30th Apr (Proj)</span>
-            </div>
-          </div>
-
-          <!-- Correction Banner -->
-          <div class="bg-[#1C1F24] p-4 rounded-lg flex justify-between items-center text-sm">
-            <div class="flex items-center gap-2 text-gray-300">
-              <span class="material-symbols-outlined text-blue-400">lightbulb</span>
-              <span>Correction planned: Auto-scaling sweep and zombie instance termination will bring run-rate to £11.6k.</span>
-            </div>
-            <a href="#" class="text-blue-400 hover:underline flex items-center gap-1">
-              View Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-          </div>
-        </div>
 
         <!-- Updates Section -->
-        <div class="mb-8">
+        <div class="mb-16">
           <h2 class="text-xl font-bold text-white mb-4">Updates</h2>
 
           <!-- Gemini Brief -->
@@ -278,22 +320,22 @@
             <!-- Card 3 -->
             <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700">
               <p class="text-sm text-gray-400 font-medium mb-2">Sessions Blocked</p>
-              <h3 class="text-4xl font-bold text-orange-500 mb-2">2</h3>
+              <h3 class="text-4xl font-bold text-gcp-yellow mb-2">2</h3>
               <p class="text-xs text-gray-500">Awaiting intervention</p>
             </div>
           </div>
         </div>
 
         <!-- Floating Gemini Bar (Fixed at bottom) -->
-        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-3 rounded-full border border-[#2F3542] shadow-2xl flex items-center gap-4 w-full max-w-2xl">
+        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
           <!-- Colored Sparkle Icon -->
           <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#FF4B4B"/>
-                <stop offset="30%" stop-color="#FFC107"/>
-                <stop offset="70%" stop-color="#00C853"/>
-                <stop offset="100%" stop-color="#2979FF"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
               </linearGradient>
             </defs>
             <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
@@ -303,7 +345,7 @@
           <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
           
           <!-- Input -->
-          <input type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="flex-1 bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
+          <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
           
           <!-- Right Icons -->
           <div class="flex items-center gap-4 text-gray-400">
@@ -313,8 +355,803 @@
         </div>
 
       </div>
+      <!-- Inbox Content -->
+      <!-- Inbox Content -->
+      <div id="inbox-content" class="hidden w-full max-w-6xl">
+        <!-- Sub-header Stats Bar -->
+        <div class="bg-[#14161A] px-6 py-3 border-b border-gray-800 flex justify-between items-center text-xs text-gray-400 mb-4">
+          <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-gcp-green rounded-full"></span>
+              <span class="text-white font-medium">System Status: Healthy</span>
+            </div>
+            <div class="border-l border-gray-700 h-4"></div>
+            <div>Missions: <span class="text-white font-medium">20/36 on-track</span></div>
+            <div>Agents: <span class="text-white font-medium">14/18 active</span></div>
+            <div>Decisions: <span class="text-white font-medium">295 pending</span></div>
+          </div>
+          <div>
+            Approved today: <span class="text-white font-medium">10</span>
+          </div>
+        </div>
+
+        <!-- Header -->
+        <div class="mb-4 px-6">
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold text-white">Session Inbox</h1>
+            <div class="flex items-center gap-4 text-sm text-gray-400">
+              <span>Approved today: 10</span>
+            </div>
+          </div>
+          
+          <!-- Main Tabs -->
+          <div class="flex gap-8 text-sm border-b border-gray-800 pb-3 px-6">
+            <button id="tab-all" class="text-gray-500 hover:text-white font-medium pb-3 -mb-3 flex items-center gap-2">
+              All <span class="bg-[#FBBC04]/10 text-[#FBBC04] w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold">4</span>
+            </button>
+            <button id="tab-cost" class="text-gcp-blue font-medium border-b-2 border-gcp-blue pb-3 -mb-3 flex items-center gap-2">
+              Cost <span class="bg-[#FBBC04]/10 text-[#FBBC04] w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold">1</span>
+            </button>
+            <button class="text-gray-500 hover:text-white font-medium pb-3 -mb-3 flex items-center gap-2">
+              Reliability <span class="bg-[#FBBC04]/10 text-[#FBBC04] w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold">2</span>
+            </button>
+            <button class="text-gray-500 hover:text-white font-medium pb-3 -mb-3 flex items-center gap-2">
+              Security <span class="bg-[#FBBC04]/10 text-[#FBBC04] w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sub Tabs / Filters -->
+        <div class="flex justify-between items-center mb-6">
+          <div class="flex gap-6 text-sm">
+            <button class="text-gcp-yellow font-medium border-b-2 border-gcp-yellow pb-2 -mb-2">Need input</button>
+            <button class="text-gray-500 hover:text-white font-medium pb-2 -mb-2">In-progress</button>
+            <button class="text-gray-500 hover:text-white font-medium pb-2 -mb-2">Not started</button>
+            <button class="text-gray-500 hover:text-white font-medium pb-2 -mb-2">Terminated</button>
+            <button class="text-gcp-green font-medium pb-2 -mb-2">Completed</button>
+          </div>
+          <div class="flex items-center gap-2 text-gray-400 text-sm cursor-pointer hover:text-white">
+            <span class="material-symbols-outlined text-sm">filter_list</span>
+            <span>Filter</span>
+          </div>
+        </div>
+
+        <!-- View: All -->
+        <div id="inbox-view-all" class="space-y-6">
+          <!-- Session Trends Chart -->
+          <div class="bg-[#3C444E] p-6 rounded-xl border border-gray-800">
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">Session Trends</h3>
+                <p class="text-xs text-gray-500">Sessions by status over the last week</p>
+              </div>
+              <div class="flex items-center gap-4 text-xs">
+                <div class="flex items-center gap-1">
+                  <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  <span class="text-gray-400">Waiting</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+                  <span class="text-gray-400">In-progress</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="w-2 h-2 bg-gcp-green rounded-full"></span>
+                  <span class="text-gray-400">Completed</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Chart Mock (SVG) -->
+            <div class="h-40 w-full bg-[#252A31] rounded-lg relative overflow-hidden p-4">
+              <!-- Labels -->
+              <div class="absolute bottom-2 inset-x-4 flex justify-between text-xs text-gray-600">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              
+              <!-- Stepped Lines (SVG) -->
+              <svg viewBox="0 0 700 150" class="absolute inset-0 w-full h-full">
+                <defs>
+                  <linearGradient id="grad-yellow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#FF9800" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#FF9800" stop-opacity="0" />
+                  </linearGradient>
+                  <linearGradient id="grad-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#42A5F5" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#42A5F5" stop-opacity="0" />
+                  </linearGradient>
+                  <linearGradient id="grad-green" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#66BB6A" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#66BB6A" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                
+                <!-- Waiting (Yellow/Orange) Fill -->
+                <path d="M 0 100 L 100 100 L 100 80 L 200 80 L 200 90 L 300 90 L 300 70 L 400 70 L 500 70 L 500 60 L 600 60 L 700 60 L 700 150 L 0 150 Z" fill="url(#grad-yellow)"/>
+                <!-- Waiting Line -->
+                <path d="M 0 100 L 100 100 L 100 80 L 200 80 L 200 90 L 300 90 L 300 70 L 400 70 L 500 70 L 500 60 L 600 60 L 700 60" fill="none" stroke="#FF9800" stroke-width="2"/>
+                
+                <!-- In-progress (Blue) Fill -->
+                <path d="M 0 120 L 100 120 L 100 100 L 200 100 L 300 100 L 300 90 L 400 90 L 500 90 L 500 70 L 600 70 L 700 70 L 700 150 L 0 150 Z" fill="url(#grad-blue)"/>
+                <!-- In-progress Line -->
+                <path d="M 0 120 L 100 120 L 100 100 L 200 100 L 300 100 L 300 90 L 400 90 L 500 90 L 500 70 L 600 70 L 700 70" fill="none" stroke="#42A5F5" stroke-width="2"/>
+                
+                <!-- Completed (Green) Fill -->
+                <path d="M 0 130 L 100 130 L 100 120 L 200 120 L 300 120 L 300 110 L 400 110 L 500 100 L 500 90 L 600 90 L 700 80 L 700 150 L 0 150 Z" fill="url(#grad-green)"/>
+                <!-- Completed Line -->
+                <path d="M 0 130 L 100 130 L 100 120 L 200 120 L 300 120 L 300 110 L 400 110 L 500 100 L 500 90 L 600 90 L 700 80" fill="none" stroke="#66BB6A" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Need Input Section -->
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-bold text-white">Need input</h3>
+              <span class="text-sm text-gray-500">5 sessions</span>
+            </div>
+            
+            <!-- Session List -->
+            <div class="space-y-6">
+              <!-- Card: Cost Savings -->
+              <div id="cost-savings-card-all" class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center">
+                <div class="space-y-2">
+                  <div class="flex items-center gap-3 text-xs">
+                    <span class="bg-gcp-yellow/20 text-gcp-yellow px-2 py-0.5 rounded font-bold">Need input</span>
+                    <span class="text-gray-400">Agent: <span class="text-white">CostOptimizer</span></span>
+                    <span class="text-gray-400">Resource: <span class="text-white">application-delivery</span></span>
+                    <span class="text-gray-600">Just now</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-white">Detected 10% potential savings on application delivery SKUs</h4>
+                  <p class="text-xs text-gray-400">Project: <span class="text-white">e-commerce-prod</span></p>
+                </div>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center">
+                <div class="space-y-2">
+                  <div class="flex items-center gap-3 text-xs">
+                    <span class="bg-gcp-yellow/20 text-gcp-yellow px-2 py-0.5 rounded font-bold">Need input</span>
+                    <span class="text-gray-400">Agent: <span class="text-white">LogAnalyzer</span></span>
+                    <span class="text-gray-400">Resource: <span class="text-white">payments-service</span></span>
+                    <span class="text-gray-600">5 mins ago</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-white">Investigate Error Spike</h4>
+                  <p class="text-xs text-gray-500">Analyzing Cloud Logging for 5xx errors in payments service.</p>
+                </div>
+                <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center">
+                <div class="space-y-2">
+                  <div class="flex items-center gap-3 text-xs">
+                    <span class="bg-gcp-yellow/20 text-gcp-yellow px-2 py-0.5 rounded font-bold">Need input</span>
+                    <span class="text-gray-400">Agent: <span class="text-white">SecurityAgent</span></span>
+                    <span class="text-gray-400">Resource: <span class="text-white">prod-lb</span></span>
+                    <span class="text-gray-600">40 mins ago</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-white">Rotate SSL Certificates</h4>
+                  <p class="text-xs text-gray-500">Renewing expiring SSL certificates for load balancer.</p>
+                </div>
+                <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View: Cost -->
+        <div id="inbox-view-cost" class="hidden space-y-6">
+          <!-- Summary of Work -->
+          <div class="bg-[#3C444E] p-4 rounded-lg border border-gray-800">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-gcp-green">SUMMARY OF WORK — COST</span>
+              <span class="text-xs text-gray-600">03:59 PM</span>
+            </div>
+            <p class="text-sm text-gray-300">
+              Agents have identified **$3.4k** in potential monthly savings. 2 missions are actively rightsizing resources, and 1 session is waiting for your approval to cancel an expensive full table scan query in BigQuery.
+            </p>
+          </div>
+
+          <!-- Need Input Section -->
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-bold text-white">Need input</h3>
+              <span class="text-sm text-gray-500">2 sessions</span>
+            </div>
+            
+            <!-- Card: Cost Savings -->
+            <div id="cost-savings-card-cost" class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center mb-6">
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 text-xs">
+                  <span class="bg-gcp-yellow/20 text-gcp-yellow px-2 py-0.5 rounded font-bold">Need input</span>
+                  <span class="text-gray-400">Agent: <span class="text-white">CostOptimizer</span></span>
+                  <span class="text-gray-400">Resource: <span class="text-white">application-delivery</span></span>
+                  <span class="text-gray-600">Just now</span>
+                </div>
+                <h4 class="text-sm font-bold text-white">Detected 10% potential savings on application delivery SKUs</h4>
+                <p class="text-xs text-gray-400">Project: <span class="text-white">e-commerce-prod</span></p>
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center">
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 text-xs">
+                  <span class="bg-gcp-yellow/20 text-gcp-yellow px-2 py-0.5 rounded font-bold">Need input</span>
+                  <span class="text-gray-400">Agent: <span class="text-white">CostOptimizer</span></span>
+                  <span class="text-gray-400">Resource: <span class="text-white">bigquery-analytics</span></span>
+                  <span class="text-gray-600">5 hours ago</span>
+                </div>
+                <h4 class="text-sm font-bold text-white">Analyze BigQuery Cost Spike</h4>
+                <p class="text-xs text-gray-500">Identifying expensive queries running in project.</p>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Completed Section -->
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-bold text-white">Completed</h3>
+              <span class="text-sm text-gray-500">4 sessions</span>
+            </div>
+            
+            <!-- Card -->
+            <div class="bg-[#3C444E] p-4 rounded-lg border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors flex justify-between items-center">
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 text-xs">
+                  <span class="bg-gcp-green/20 text-gcp-green px-2 py-0.5 rounded">Completed</span>
+                  <span class="text-gray-400">Agent: <span class="text-white">CostOptimizer</span></span>
+                  <span class="text-gray-400">Resource: <span class="text-white">billing-data-bucket</span></span>
+                  <span class="text-gray-600">1 hour ago</span>
+                </div>
+                <h4 class="text-sm font-bold text-white">Optimize Cloud Storage</h4>
+                <p class="text-xs text-gray-500">Moving cold data to Archive class to reduce costs.</p>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Content -->
+      <div id="chat-content" class="hidden w-full max-w-4xl fade-in">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-white mb-2">Gemini Assistant</h1>
+          <p class="text-gray-400 text-sm">Discover and configure your cloud infrastructure.</p>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="space-y-6">
+          <!-- User Message -->
+          <div class="flex justify-end">
+            <div class="bg-[#252A31] p-4 rounded-xl max-w-[70%] text-white">
+              <p class="text-sm">I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?</p>
+            </div>
+          </div>
+
+          <!-- Gemini Response -->
+          <div class="flex justify-start">
+            <div class="bg-[#3C444E] p-6 rounded-xl max-w-[80%] border border-gray-800 glow-border">
+              <div class="flex items-center gap-2 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="gemini-grad-chat" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FF4B4B"/>
+                      <stop offset="30%" stop-color="#FFC107"/>
+                      <stop offset="70%" stop-color="#00C853"/>
+                      <stop offset="100%" stop-color="#2979FF"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-chat)"/>
+                </svg>
+                <span class="font-bold text-white">Gemini</span>
+              </div>
+              <p class="text-sm text-gray-300 mb-4">
+                The equivalent product on Google Cloud is Global Front End (GFE) solution, which simplifies billing and setup by bundling the Global External Application Load Balancer, Cloud CDN, and Cloud Armor into one managed solution.
+              </p>
+              
+              <!-- Comparison Table -->
+              <div class="mb-6 overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-300">
+                  <thead class="text-xs uppercase bg-[#252A31] text-gray-400">
+                    <tr>
+                      <th scope="col" class="px-4 py-3">Product</th>
+                      <th scope="col" class="px-4 py-3">Google Cloud</th>
+                      <th scope="col" class="px-4 py-3">AWS</th>
+                      <th scope="col" class="px-4 py-3">Azure</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-700 hover:bg-gray-700/30 bg-gcp-blue/5">
+                      <td class="px-4 py-3 font-medium text-white">Global Front End Solution</td>
+                      <td class="px-4 py-3 flex items-center gap-2">
+                        <span class="bg-gcp-blue/20 text-gcp-blue px-2 py-0.5 rounded text-xs font-bold">Recommended</span>
+                        <span>Global Front End (GFE)</span>
+                      </td>
+                      <td class="px-4 py-3">N/A</td>
+                      <td class="px-4 py-3">N/A</td>
+                    </tr>
+                    <tr class="border-b border-gray-700 hover:bg-gray-700/30">
+                      <td class="px-4 py-3 font-medium text-white">Global Application Load Balancer</td>
+                      <td class="px-4 py-3">Global External App LB</td>
+                      <td class="px-4 py-3">CloudFront + ALB</td>
+                      <td class="px-4 py-3">Front Door + App Gateway</td>
+                    </tr>
+                    <tr class="border-b border-gray-700 hover:bg-gray-700/30">
+                      <td class="px-4 py-3 font-medium text-white">Global Cloud Armor</td>
+                      <td class="px-4 py-3">Cloud Armor</td>
+                      <td class="px-4 py-3">AWS WAF</td>
+                      <td class="px-4 py-3">Azure WAF</td>
+                    </tr>
+                    <tr class="border-b border-gray-700 hover:bg-gray-700/30">
+                      <td class="px-4 py-3 font-medium text-white">CDN</td>
+                      <td class="px-4 py-3">Cloud CDN</td>
+                      <td class="px-4 py-3">CloudFront</td>
+                      <td class="px-4 py-3">Front Door</td>
+                    </tr>
+                    <tr class="hover:bg-gray-700/30">
+                      <td class="px-4 py-3 font-medium text-white">Service Extensions</td>
+                      <td class="px-4 py-3">Service Extensions</td>
+                      <td class="px-4 py-3">Lambda@Edge</td>
+                      <td class="px-4 py-3">Front Door Rules</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- Explanation -->
+              <div class="mb-6 text-sm text-white space-y-3">
+                <p class="font-bold text-white">Why GFE is the best recommendation for your use case:</p>
+                <p>• **Unified Protection & Delivery:** Instead of manually configuring a Load Balancer, CDN, and WAF (Cloud Armor) separately (as you would in AWS with CloudFront and WAF), GFE provides a single, cohesive solution that secures and accelerates your web app out-of-the-box.</p>
+                <p>• **Simplified Billing:** You get a single billing meter instead of managing costs across multiple disparate services.</p>
+                <p>• **Seamless Integration:** It automatically integrates with Google's global edge network for optimal performance.</p>
+              </div>
+              <div class="flex justify-end">
+                <button id="go-to-canvas-btn" class="bg-gcp-blue text-dark-bg px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition-colors flex items-center gap-2">
+                  Set up GFE in Canvas <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas Content -->
+      <div id="canvas-content" class="hidden w-full max-w-5xl bg-[#3C444E] rounded-2xl border border-gray-800 p-8 fade-in">
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-white mb-2">Create Global Front End</h1>
+            <p class="text-gray-400 text-sm">Generative UI Canvas</p>
+          </div>
+          <button class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <!-- Canvas Body -->
+        <div class="grid grid-cols-3 gap-8">
+          <!-- Left Column: AI Assistant -->
+          <div class="col-span-1 bg-[#252A31] p-6 rounded-xl border border-gray-700">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-gcp-blue">smart_toy</span>
+              <span class="font-bold text-white">Gemini</span>
+            </div>
+            <p class="text-sm text-gray-300 mb-6">Tell Gemini what you want to build, and it will configure your Global Front End for you.</p>
+            
+            <!-- Prompts -->
+            <div class="space-y-3 mb-6">
+              <button class="w-full text-left text-xs text-gray-400 bg-[#3C444E] p-3 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                "Create a secure GFE for my internal GKE app"
+              </button>
+              <button class="w-full text-left text-xs text-gray-400 bg-[#3C444E] p-3 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                "Configure WAF rules for my e-commerce site"
+              </button>
+            </div>
+
+            <!-- Chat Input inside Canvas -->
+            <div class="relative">
+              <input id="canvas-input" type="text" placeholder="Describe your workload..." class="w-full bg-[#3C444E] border border-gray-700 rounded-lg p-3 pr-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gcp-blue" />
+              <span id="canvas-send-btn" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer hover:text-white">send</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Configuration (Magic Moment) -->
+          <div class="col-span-2 space-y-6">
+            <!-- Configuration Card (Generated) -->
+            <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700">
+              <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-gcp-green">verified</span>
+                Generated Configuration
+              </h3>
+              
+              <div class="space-y-4 text-sm">
+                <div class="flex justify-between border-b border-gray-800 pb-2">
+                  <span class="text-gray-500">Solution</span>
+                  <span class="text-white font-medium">GFE Enterprise</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-800 pb-2">
+                  <span class="text-gray-500">Load Balancer</span>
+                  <span class="text-white font-medium">Global External App LB</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-800 pb-2">
+                  <span class="text-gray-500">CDN</span>
+                  <span class="text-gcp-green font-medium">Enabled</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-800 pb-2">
+                  <span class="text-gray-500">Security Policy (WAF)</span>
+                  <span class="text-white font-medium">Cloud Armor (E-commerce Ruleset)</span>
+                </div>
+              </div>
+
+              <div class="mt-6 flex justify-end gap-3">
+                <button class="bg-transparent border border-gray-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors">Edit</button>
+                <button class="bg-gcp-blue text-dark-bg px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition-colors">Deploy</button>
+              </div>
+            </div>
+
+            <!-- Success Banner (Hidden by default) -->
+            <div class="hidden bg-gcp-green/10 p-4 rounded-lg border border-gcp-green/30 flex items-center gap-3">
+              <span class="material-symbols-outlined text-gcp-green">check_circle</span>
+              <div>
+                <p class="text-sm text-white font-medium">Configuration generated successfully.</p>
+                <p class="text-xs text-gray-400">Optimized for e-commerce workloads based on Google best practices.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cost Optimization Canvas -->
+      <div id="cost-canvas-content" class="hidden w-full max-w-5xl bg-[#3C444E] rounded-2xl border border-gray-800 p-8 fade-in">
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-white mb-2">Cost Optimization Canvas</h1>
+            <p class="text-gray-400 text-sm">Consolidate SKUs and reduce TCO</p>
+          </div>
+          <button id="close-cost-canvas-btn" class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <!-- Canvas Body -->
+        <div class="grid grid-cols-3 gap-8">
+          <!-- Left Column: AI Analysis -->
+          <div class="col-span-1 bg-[#252A31] p-6 rounded-xl border border-gray-700">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-gcp-blue">smart_toy</span>
+              <span class="font-bold text-white">Gemini Analysis</span>
+            </div>
+            <p class="text-sm text-gray-300 mb-6">Based on your historical usage patterns, migrating to GFE Enterprise will provide an immediate 10% Total cost reduction savings.</p>
+            
+            <div class="bg-gcp-blue/10 p-4 rounded-lg border border-gcp-blue/30 mb-6">
+              <p class="text-sm text-white font-medium">Projected Savings</p>
+              <p class="text-2xl font-bold text-gcp-blue">10% Total Cost Reduction</p>
+            </div>
+
+            <div class="text-xs text-gray-500">
+              Powered by GCA Memory and usage analysis.
+            </div>
+          </div>
+
+          <!-- Right Column: Comparison -->
+          <div class="col-span-2 space-y-6">
+            <!-- Comparison Card -->
+            <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700">
+              <h3 class="text-lg font-bold text-white mb-4">SKU Comparison</h3>
+              
+              <div class="grid grid-cols-2 gap-6">
+                <!-- Current State -->
+                <div>
+                  <h4 class="text-sm font-bold text-gray-400 mb-3">À La Carte (9 Standalone SKUs)</h4>
+                  <ul class="text-xs text-gray-500 space-y-2">
+                    <li>• External HTTP(S) Load Balancer</li>
+                    <li>• Cloud CDN Cache Fill</li>
+                    <li>• Cloud CDN Cache Outbound</li>
+                    <li>• Cloud Armor Policy Rules</li>
+                    <li>• Cloud Armor Requests</li>
+                    <li>• SSL Certificate Manager</li>
+                    <li>• Cloud DNS Queries</li>
+                    <li>• Inter-region Data Transfer</li>
+                    <li>• Edge Security Policies</li>
+                  </ul>
+                </div>
+                
+                <!-- Proposed State -->
+                <div>
+                  <h4 class="text-sm font-bold text-gcp-blue mb-3">GFE Enterprise SKU</h4>
+                  <ul class="text-xs text-white space-y-2">
+                    <li>• GFE Enterprise Instance</li>
+                    <li>• GFE Requests</li>
+                    <li>• GFE Data Processing</li>
+                  </ul>
+                  <div class="mt-4 bg-gcp-green/20 text-gcp-green p-2 rounded text-xs font-bold text-center">
+                    Simplified Billing & Lower Cost
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 flex justify-end">
+                <button id="begin-enrollment-btn" class="bg-gcp-blue text-black px-6 py-3 rounded-lg font-bold hover:bg-gcp-blue-hover transition-colors flex items-center gap-2">
+                  <span class="material-symbols-outlined">bolt</span>
+                  Begin Enrollment
+                </button>
+              </div>
+            </div>
+
+            <!-- Success Banner (Hidden by default) -->
+            <div id="enrollment-success" class="hidden bg-gcp-green/10 p-4 rounded-lg border border-gcp-green/30 flex items-center gap-3">
+              <span class="material-symbols-outlined text-gcp-green">check_circle</span>
+              <div>
+                <p class="text-sm text-white font-medium">Enrollment initiated successfully!</p>
+                <p class="text-xs text-gray-400">Automatically transitioning all compatible new and existing load balancer, CDN, Cloud Armor, Service Extension resources into the new GFE billing bundle. Check the migrations in the Sessions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cost Detail View -->
+      <div id="cost-detail-view" class="hidden w-full max-w-5xl bg-[#3C444E] rounded-2xl border border-gray-800 p-8 fade-in">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+          <a href="#" id="back-to-inbox-btn" class="flex items-center gap-2 text-gray-400 hover:text-white text-sm font-medium">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Back to inbox
+          </a>
+          <div class="flex items-center gap-2 text-gray-500">
+            <span class="material-symbols-outlined cursor-pointer hover:text-white">chevron_left</span>
+            <span class="material-symbols-outlined cursor-pointer hover:text-white">chevron_right</span>
+          </div>
+        </div>
+
+        <h1 class="text-2xl font-bold text-white mb-6">Detect 10% Potential Savings on Application Delivery SKUs</h1>
+
+        <!-- Card -->
+        <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700">
+          <div class="grid grid-cols-2 gap-6 mb-6">
+            <!-- Left Info -->
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs font-bold text-gray-500 uppercase">Status</p>
+                <span class="bg-[#FBBC04]/10 text-[#FBBC04] px-2 py-0.5 rounded text-xs font-bold">Need Input</span>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-gray-500 uppercase">Time</p>
+                <p class="text-sm text-white">Just now</p>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-gray-500 uppercase">Description</p>
+                <p class="text-sm text-gray-300">Analyzing standalone networking services to reduce operational overhead and costs.</p>
+              </div>
+            </div>
+            <!-- Right Info -->
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs font-bold text-gray-500 uppercase">Agent</p>
+                <p class="text-sm text-gcp-blue flex items-center gap-1">
+                  CostOptimizer
+                  <span class="material-symbols-outlined text-xs">open_in_new</span>
+                </p>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-gray-500 uppercase">Origin</p>
+                <p class="text-sm text-gray-300 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">cloud</span>
+                  Google Cloud Assist
+                  <span class="material-symbols-outlined text-xs">open_in_new</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Logs -->
+          <div class="mb-6">
+            <p class="text-xs font-bold text-gray-500 uppercase mb-2">Action Logs</p>
+            <div class="bg-[#14161A] p-4 rounded-lg text-xs font-mono text-gray-400 space-y-2">
+              <p><span class="text-gray-600">[2026-04-15 23:25:00]</span> Session initialized.</p>
+              <p><span class="text-gray-600">[2026-04-15 23:25:10]</span> Detected 9 standalone à la carte SKUs running in project.</p>
+              <p><span class="text-gray-600">[2026-04-15 23:25:20]</span> Analyzing historical usage patterns...</p>
+              <p><span class="text-gray-600">[2026-04-15 23:25:30]</span> Projecting TCO for GFE Enterprise model.</p>
+              <p><span class="text-gray-600">[2026-04-15 23:25:40]</span> Identified 10% potential savings by migrating to consolidated billing.</p>
+              <div class="bg-[#252A31] p-2 rounded mt-2 flex justify-between items-center">
+                <span class="text-gray-500">-- Agent Thinking Process</span>
+                <span class="material-symbols-outlined text-gray-500">expand_more</span>
+              </div>
+              <p class="mt-2"><span class="text-gray-600">[2026-04-15 23:26:00]</span> <span class="text-gcp-yellow font-bold">Proposed Action: Begin Enrollment to GFE Enterprise.</span></p>
+            </div>
+          </div>
+
+          <!-- Rationale & Context -->
+          <div class="bg-[#14161A] p-4 rounded-lg space-y-4 mb-6">
+            <div>
+              <p class="text-xs font-bold text-gray-500 uppercase">Rationale:</p>
+              <p class="text-sm text-gray-300">The project is running multiple standalone networking services which can be consolidated into the 3-meter GFE Enterprise model (Instance, Requests, and Data Processing) for simplified billing and lower cost.</p>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-gray-500 uppercase">Context:</p>
+              <p class="text-sm text-gray-300">e-commerce application migrating from AWS, currently using equivalent of CloudFront/WAF in standalone mode.</p>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-gray-500 uppercase">Potential Impact:</p>
+              <p class="text-sm text-gray-300">Immediate 10% TCO savings and reduced operational overhead.</p>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex justify-between items-center">
+            <div class="flex gap-3">
+              <button id="approve-cost-btn" class="bg-gcp-blue text-black px-4 py-2 rounded-lg font-bold hover:bg-gcp-blue-hover transition-colors">Approve</button>
+              <button class="bg-[#14161A] border border-gray-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-colors">Reject</button>
+            </div>
+            <div class="flex-1 max-w-md relative ml-4">
+              <input type="text" placeholder="Type a response..." class="w-full bg-[#14161A] border border-gray-700 rounded-lg p-2 pr-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gcp-blue" />
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer hover:text-white">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const homeLink = document.getElementById('home-link');
+      const inboxLink = document.getElementById('inbox-link');
+      const landingContent = document.getElementById('landing-content');
+      const inboxContent = document.getElementById('inbox-content');
+
+      // Removed click listeners to allow standard file navigation
+
+      const geminiInput = document.getElementById('gemini-input');
+      const chatContent = document.getElementById('chat-content');
+      const goToCanvasBtn = document.getElementById('go-to-canvas-btn');
+      const canvasContent = document.getElementById('canvas-content');
+      const canvasInput = document.getElementById('canvas-input');
+      const canvasSendBtn = document.getElementById('canvas-send-btn');
+      const successBanner = document.querySelector('.bg-gcp-green\\/10');
+      const costSavingsCardAll = document.getElementById('cost-savings-card-all');
+      const costSavingsCardCost = document.getElementById('cost-savings-card-cost');
+      const costDetailView = document.getElementById('cost-detail-view');
+      const backToInboxBtn = document.getElementById('back-to-inbox-btn');
+      const approveCostBtn = document.getElementById('approve-cost-btn');
+      const costCanvasContent = document.getElementById('cost-canvas-content');
+      const beginEnrollmentBtn = document.getElementById('begin-enrollment-btn');
+      const enrollmentSuccess = document.getElementById('enrollment-success');
+      const closeCostCanvasBtn = document.getElementById('close-cost-canvas-btn');
+
+      const openCostDetail = () => {
+        landingContent.classList.add('hidden');
+        inboxContent.classList.add('hidden');
+        costDetailView.classList.remove('hidden');
+      };
+
+      if (costSavingsCardAll) {
+        costSavingsCardAll.addEventListener('click', openCostDetail);
+      }
+
+      if (costSavingsCardCost) {
+        costSavingsCardCost.addEventListener('click', openCostDetail);
+      }
+
+      if (backToInboxBtn) {
+        backToInboxBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          costDetailView.classList.add('hidden');
+          inboxContent.classList.remove('hidden');
+        });
+      }
+
+      if (approveCostBtn) {
+        approveCostBtn.addEventListener('click', () => {
+          costDetailView.classList.add('hidden');
+          costCanvasContent.classList.remove('hidden');
+          
+          // Automatically enroll when approved
+          enrollmentSuccess.classList.remove('hidden');
+          beginEnrollmentBtn.innerHTML = `<span class="material-symbols-outlined">close</span> Unenroll`;
+          beginEnrollmentBtn.classList.remove('bg-gcp-blue', 'text-black', 'hover:bg-gcp-blue-hover');
+          beginEnrollmentBtn.classList.add('bg-gray-600', 'text-white', 'hover:bg-gray-700');
+        });
+      }
+
+      if (beginEnrollmentBtn) {
+        beginEnrollmentBtn.addEventListener('click', () => {
+          const isEnrolled = !enrollmentSuccess.classList.contains('hidden');
+          if (isEnrolled) {
+            enrollmentSuccess.classList.add('hidden');
+            beginEnrollmentBtn.innerHTML = `<span class="material-symbols-outlined">bolt</span> Begin Enrollment`;
+            beginEnrollmentBtn.classList.remove('bg-gray-600', 'text-white', 'hover:bg-gray-700');
+            beginEnrollmentBtn.classList.add('bg-gcp-blue', 'text-black', 'hover:bg-gcp-blue-hover');
+          } else {
+            enrollmentSuccess.classList.remove('hidden');
+            beginEnrollmentBtn.innerHTML = `<span class="material-symbols-outlined">close</span> Unenroll`;
+            beginEnrollmentBtn.classList.remove('bg-gcp-blue', 'text-black', 'hover:bg-gcp-blue-hover');
+            beginEnrollmentBtn.classList.add('bg-gray-600', 'text-white', 'hover:bg-gray-700');
+          }
+        });
+      }
+
+      if (closeCostCanvasBtn) {
+        closeCostCanvasBtn.addEventListener('click', () => {
+          costCanvasContent.classList.add('hidden');
+          landingContent.classList.remove('hidden');
+        });
+      }
+
+      geminiInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
+          e.preventDefault();
+          landingContent.classList.add('hidden');
+          inboxContent.classList.add('hidden');
+          chatContent.classList.remove('hidden');
+          geminiInput.value = '';
+        }
+      });
+
+      goToCanvasBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        chatContent.classList.add('hidden');
+        canvasContent.classList.remove('hidden');
+      });
+
+      canvasSendBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        simulateGeneration();
+      });
+
+      canvasInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && canvasInput.value.trim() !== '') {
+          e.preventDefault();
+          simulateGeneration();
+        }
+      });
+
+      function simulateGeneration() {
+        canvasInput.value = '';
+        setTimeout(() => {
+          successBanner.classList.remove('hidden');
+          successBanner.classList.add('fade-in');
+        }, 1500);
+      }
+
+      const tabAll = document.getElementById('tab-all');
+      const tabCost = document.getElementById('tab-cost');
+      const viewAll = document.getElementById('inbox-view-all');
+      const viewCost = document.getElementById('inbox-view-cost');
+
+      tabAll.addEventListener('click', (e) => {
+        e.preventDefault();
+        viewAll.classList.remove('hidden');
+        viewCost.classList.add('hidden');
+        
+        tabAll.classList.add('text-white', 'border-b-2', 'border-gcp-blue');
+        tabAll.classList.remove('text-gray-500');
+        tabAll.querySelector('span').classList.add('text-gray-400');
+        tabAll.querySelector('span').classList.remove('text-gray-500');
+
+        tabCost.classList.remove('text-white', 'border-b-2', 'border-gcp-blue');
+        tabCost.classList.add('text-gray-500');
+        tabCost.querySelector('span').classList.add('text-gray-500');
+        tabCost.querySelector('span').classList.remove('text-gray-400');
+      });
+
+      tabCost.addEventListener('click', (e) => {
+        e.preventDefault();
+        viewAll.classList.add('hidden');
+        viewCost.classList.remove('hidden');
+        
+        tabCost.classList.add('text-white', 'border-b-2', 'border-gcp-blue');
+        tabCost.classList.remove('text-gray-500');
+        tabCost.querySelector('span').classList.add('text-gray-400');
+        tabCost.querySelector('span').classList.remove('text-gray-500');
+
+        tabAll.classList.remove('text-white', 'border-b-2', 'border-gcp-blue');
+        tabAll.classList.add('text-gray-500');
+        tabAll.querySelector('span').classList.add('text-gray-500');
+        tabAll.querySelector('span').classList.remove('text-gray-400');
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud | Sessions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#1A1D21',
+              sidebar: '#1E2227',
+              header: '#1E2227',
+              card: '#2D3238',
+              active: '#383661',
+              nav: '#1E2227',
+              'nav-selected': '#383661',
+              'nav-text-selected': '#D3DBFF',
+            },
+            gcp: {
+              blue: '#8AB4F8',
+              red: '#F28B82',
+              yellow: '#FDD663',
+              green: '#81C995',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background-color: #1A1D21;
+      color: #E8EAED;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+  <!-- Top Bar -->
+  <header class="h-14 bg-dark-header flex items-center justify-between px-4 border-b border-gray-800 flex-shrink-0">
+    <div class="flex items-center gap-4">
+      <button class="text-gray-400 hover:text-white">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="text-lg font-medium text-white">Google Cloud</span>
+      <div class="ml-4 flex items-center bg-[#2D3238] px-3 py-1.5 rounded-lg border border-gray-700 cursor-pointer">
+        <span class="text-sm text-gray-300">Acme Corp / Production / Payments Platform</span>
+        <span class="material-symbols-outlined text-gray-400 text-sm ml-2">expand_more</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 bg-[#8AB4F8] rounded-full flex items-center justify-center text-dark-bg font-bold text-sm text-black">
+        TK
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Header / Stats Bar -->
+  <div class="bg-[#1E2227] border-b border-gray-800 px-6 py-2 flex items-center gap-6 text-xs text-gray-400 flex-shrink-0">
+    <div class="flex items-center gap-1">
+      <span class="h-2 w-2 rounded-full bg-gcp-green"></span>
+      <span class="text-white font-medium">System Status: Healthy</span>
+    </div>
+    <div>Missions: <span class="text-white font-medium">20/36 on-track</span></div>
+    <div>Agents: <span class="text-white font-medium">14/18 active</span></div>
+    <div>Decisions: <span class="text-white font-medium">32 pending</span></div>
+    <div class="ml-auto">Approved today: <span class="text-white font-medium">10</span></div>
+  </div>
+
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-dark-sidebar flex flex-col border-r border-gray-800 flex-shrink-0">
+      <div class="p-4">
+        <div class="flex items-center gap-2 text-white mb-6">
+          <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-1)"/>
+          </svg>
+          <span class="font-bold text-lg">My Cloud</span>
+        </div>
+        
+        <nav class="space-y-1">
+          <a href="landing_page.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">cloud</span>
+            <span>Home</span>
+          </a>
+          <a href="inbox.html?v=1" class="flex items-center justify-between px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined">inbox</span>
+              <span>Inbox</span>
+            </div>
+            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">11</span>
+          </a>
+          <a href="sessions.html" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-blue-300">chat</span>
+              <span class="font-bold">Sessions</span>
+            </div>
+          </a>
+          <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">article</span>
+            <span>Artifacts</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Recent & Pinned Sessions -->
+      <div class="mt-4 flex-1 overflow-y-auto px-4 custom-scrollbar">
+        <h3 class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Recent & Pinned Sessions</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
+          <li class="hover:text-white cursor-pointer truncate">Security Boundary Enforcement</li>
+          <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally - Insta...</li>
+          <li class="hover:text-white cursor-pointer truncate">Migrate billing pipeline to Stripe v3 - Instanc...</li>
+          <li class="hover:text-white cursor-pointer truncate">Enforce SOC 2 security posture - Instance 3</li>
+          <li class="hover:text-white cursor-pointer truncate">Launch EMEA compliance reporting - Instan...</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Header Row -->
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-3xl font-bold text-white mb-2">Sessions</h1>
+            <div class="flex items-center gap-4 text-sm text-gray-400">
+              <span><span class="text-white font-medium">33</span> active</span>
+              <span><span class="text-gcp-red font-medium">12</span> blocked</span>
+              <span><span class="text-gcp-green font-medium">20</span> on track</span>
+              <span><span class="text-white font-medium">15</span> persistent</span>
+              <span><span class="text-white font-medium">16</span> tasks</span>
+            </div>
+          </div>
+          <button class="bg-[#8AB4F8] text-black px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-opacity-90 transition">
+            <span class="material-symbols-outlined">add</span>
+            <span>Create task</span>
+          </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex items-center gap-6 border-b border-gray-800 mb-6">
+          <button class="text-white border-b-2 border-[#8AB4F8] pb-3 px-1 font-medium text-sm">Active (33)</button>
+          <button class="text-gray-500 pb-3 px-1 font-medium text-sm hover:text-gray-300 transition">Archive (3)</button>
+        </div>
+
+        <!-- Filters Bar -->
+        <div class="flex items-center gap-3 mb-6 flex-wrap">
+          <div class="flex-1 min-w-[300px] relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">search</span>
+            <input type="text" placeholder="Search sessions..." class="w-full bg-[#2D3238] border border-gray-700 rounded-lg p-2 pl-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gcp-blue" />
+          </div>
+          
+          <div class="flex items-center bg-[#2D3238] px-3 py-2 rounded-lg border border-gray-700 cursor-pointer text-sm text-white">
+            <span>All States</span>
+            <span class="material-symbols-outlined text-gray-500 ml-2">expand_more</span>
+          </div>
+          
+          <div class="flex items-center bg-[#2D3238] px-3 py-2 rounded-lg border border-gray-700 cursor-pointer text-sm text-white">
+            <span>All Initiation</span>
+            <span class="material-symbols-outlined text-gray-500 ml-2">expand_more</span>
+          </div>
+
+          <div class="flex items-center bg-[#2D3238] px-3 py-2 rounded-lg border border-gray-700 cursor-pointer text-sm text-white">
+            <span>All Intents</span>
+            <span class="material-symbols-outlined text-gray-500 ml-2">expand_more</span>
+          </div>
+
+          <div class="flex items-center bg-[#2D3238] px-3 py-2 rounded-lg border border-gray-700 cursor-pointer text-sm text-white">
+            <span>All Types</span>
+            <span class="material-symbols-outlined text-gray-500 ml-2">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-[#2D3238] rounded-lg overflow-hidden border border-gray-700">
+          <table class="w-full text-sm text-left text-gray-400">
+            <thead class="text-xs text-gray-500 uppercase bg-[#1E2227] border-b border-gray-700">
+              <tr>
+                <th scope="col" class="px-6 py-3 font-medium">Session Title</th>
+                <th scope="col" class="px-6 py-3 font-medium">Initiated By</th>
+                <th scope="col" class="px-6 py-3 font-medium">Intent</th>
+                <th scope="col" class="px-6 py-3 font-medium">State</th>
+                <th scope="col" class="px-6 py-3 font-medium">Last Edited</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- New Row (Migrating SKUs) -->
+              <tr class="border-b border-gray-700 bg-[#2D3238]/50 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-[#8AB4F8] mb-0.5 flex items-center gap-2">
+                    <span id="migrating-icon" class="material-symbols-outlined text-sm animate-spin">sync</span>
+                    <span>Migrate your billings to Global Front End Enterprise</span>
+                  </div>
+                  <div class="text-xs text-gray-500">Consolidating 9 standalone networking services (External HTTP(S) Load Balancer Cloud CDN Cache Fill Cloud CDN Cache Outbound, Edge Security Policies Cloud Armor Policy Rules Cloud Armor Requests SSL Certificate Manager) into GFE Enterprise.</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Cost Opt...</td>
+                <td class="px-6 py-4">
+                  <span id="migrating-state" class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">Just now</td>
+              </tr>
+              <!-- Row 1 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Cost Control Emergency Sweep</div>
+                  <div class="text-xs text-gray-500">System-Initiated session to bring spend below £12k threshold.</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-gray-500">--</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-red bg-opacity-20 text-gcp-red px-2 py-0.5 rounded text-xs font-bold uppercase">Blocked</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-09 17:51</td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Security Boundary Enforcement</div>
+                  <div class="text-xs text-gray-500">System-Initiated session to block anomalous traffic.</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-gray-500">--</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-09 15:30</td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Maintain &lt;100ms API latency globally - Instance 1</div>
+                  <div class="text-xs text-gray-500">Continuously monitor and optimise API response times across all regions, auto-scaling and rerouting traffic to meet the sub-100ms SLA</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">person</span>
+                    Human
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Auto-opt...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 10:15</td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Migrate billing pipeline to Stripe v3 - Instance 2</div>
+                  <div class="text-xs text-gray-500">Upgrade payment infrastructure to Stripe v3 API, migrate legacy webhook handlers, and validate revenue reconciliation across all subscription tiers</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Maintain ...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-red bg-opacity-20 text-gcp-red px-2 py-0.5 rounded text-xs font-bold uppercase">Blocked</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 11:15</td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Enforce SOC 2 security posture - Instance 3</div>
+                  <div class="text-xs text-gray-500">Continuously audit and remediate security controls, monitor for policy drift, and maintain evidence for SOC 2 Type II compliance</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Enforce ...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 12:15</td>
+              </tr>
+
+              <!-- Row 6 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Launch EMEA compliance reporting - Instance 4</div>
+                  <div class="text-xs text-gray-500">Automate GDPR and DORA compliance report generation, integrate with regulatory data sources, and schedule quarterly submissions</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">person</span>
+                    Human
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Steer clo...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 13:15</td>
+              </tr>
+
+              <!-- Row 7 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Steer cloud spend below £12k/month - Instance 5</div>
+                  <div class="text-xs text-gray-500">Monitor resource utilisation and spending across all projects, automatically right-size instances and apply cost optimisations</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">person</span>
+                    Human
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Health m...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 14:15</td>
+              </tr>
+
+              <!-- Row 8 -->
+              <tr class="border-b border-gray-700 hover:bg-[#353B43] transition">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-white mb-0.5">Re-train churn prediction model - Instance 6</div>
+                  <div class="text-xs text-gray-500">Retrain the customer churn model on Q4 behavioural data, evaluate against holdout set, and deploy...</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">person</span>
+                    Human
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Idle Reso...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">On track</span>
+                </td>
+                <td class="px-6 py-4 text-xs">2026-04-08 15:15</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating Gemini Bar (Fixed at bottom) -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
+    <!-- Colored Sparkle Icon -->
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4B4B"/>
+          <stop offset="30%" stop-color="#FFD54F"/>
+          <stop offset="60%" stop-color="#4285F4"/>
+          <stop offset="100%" stop-color="#1A73E8"/>
+        </linearGradient>
+      </defs>
+      <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
+    </svg>
+    
+    <!-- Focus/Scan Icon -->
+    <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
+    
+    <!-- Input -->
+    <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
+    
+    <!-- Right Icons -->
+    <div class="flex items-center gap-4 text-gray-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      const icon = document.getElementById('migrating-icon');
+      const state = document.getElementById('migrating-state');
+      
+      if (icon) {
+        icon.classList.remove('animate-spin');
+        icon.textContent = 'check_circle';
+      }
+      
+      if (state) {
+        state.textContent = 'Completed';
+        state.classList.remove('bg-gcp-green', 'text-gcp-green');
+        state.classList.add('bg-[#8AB4F8]', 'bg-opacity-20', 'text-[#8AB4F8]');
+      }
+    }, 6000);
+  </script>
+</body>
+</html>

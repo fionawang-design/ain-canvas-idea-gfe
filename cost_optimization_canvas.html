@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud | Cost Optimization Canvas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#353B43',
+              sidebar: '#282C32',
+              header: '#282C32',
+              card: '#3C444E',
+              'card-bg': '#3C444E',
+              active: '#383661',
+              purple: '#3D3A68',
+              nav: '#282C32',
+              'nav-selected': '#383661',
+              'nav-text-selected': '#D3DBFF',
+            },
+            gcp: {
+              blue: '#95ADE2',
+              'blue-hover': '#7090c8',
+              'blue-light': '#95ADE220',
+              red: '#ea4335',
+              yellow: '#fbbc04',
+              green: '#34a853',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background-color: #353B43;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+  <!-- Top Bar -->
+  <header class="h-14 bg-dark-header flex items-center justify-between px-4 border-b border-gray-800 flex-shrink-0">
+    <div class="flex items-center gap-4">
+      <button class="text-gray-400 hover:text-white">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="text-lg font-medium text-white">Google Cloud</span>
+      <div class="ml-4 flex items-center bg-[#2D3139] px-3 py-1.5 rounded-lg border border-gray-700 cursor-pointer">
+        <span class="text-sm text-gray-300">Acme Corp / Production / Payments Platform</span>
+        <span class="material-symbols-outlined text-gray-400 text-sm ml-2">expand_more</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 bg-[#8AB4F8] rounded-full flex items-center justify-center text-dark-bg font-bold text-sm">
+        TK
+      </div>
+    </div>
+  </header>
+
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-dark-sidebar flex flex-col border-r border-gray-800 flex-shrink-0">
+      <div class="p-4">
+        <div class="flex items-center gap-2 text-white mb-6">
+          <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-1)"/>
+          </svg>
+          <span class="font-bold text-lg">My Cloud</span>
+        </div>
+        
+        <nav class="space-y-1">
+          <a href="landing_page.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">cloud</span>
+            <span>Home</span>
+          </a>
+          <a href="inbox.html?v=1" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-blue-300">inbox</span>
+              <span class="font-bold">Inbox</span>
+            </div>
+            <span class="bg-gcp-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">3</span>
+          </a>
+          <a href="sessions.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">chat</span>
+            <span>Sessions</span>
+          </a>
+
+          <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+            <span class="material-symbols-outlined">article</span>
+            <span>Artifacts</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Recent & Pinned Sessions -->
+      <div class="mt-4 flex-1 overflow-y-auto px-4">
+        <h3 class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Recent & Pinned Sessions</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li class="text-[#95ADE2] cursor-pointer truncate flex items-center gap-1" title="CostOptimize Agent is migrating your SKUs to Global Front End Billing SKU">
+            <span id="sidebar-migrating-icon" class="material-symbols-outlined text-sm animate-spin">sync</span>
+            <span>CostOptimize Agent is migrating your SKUs to Global Front End Billing SKU</span>
+          </li>
+          <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
+          <li class="hover:text-white cursor-pointer truncate">Security Boundary Enforcement</li>
+          <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-[#1E2227] p-8">
+      <div class="max-w-6xl mx-auto bg-[#1C1F24] rounded-xl border border-gray-800 p-8 relative">
+        
+        <!-- Close Button -->
+        <button onclick="window.location.href='session_detail_cost.html'" class="absolute top-6 right-6 text-gray-500 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <!-- Header -->
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-white mb-2">Cost Optimization Canvas</h1>
+          <p class="text-gray-400 text-sm">Consolidate SKUs and reduce TCO</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+          
+          <!-- Gemini Analysis Card (2 cols) -->
+          <div class="lg:col-span-2 bg-[#20252B] rounded-xl p-6 flex flex-col justify-between border border-transparent hover:border-gray-700 transition">
+            <div>
+              <div class="flex items-center gap-2 text-white mb-4">
+                <span class="material-symbols-outlined text-[#95ADE2]">psychology</span>
+                <h2 class="font-bold">Gemini Analysis</h2>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                Based on your historical usage patterns, migrating to GFE Enterprise will provide an immediate 10% Total cost reduction savings.
+              </p>
+            </div>
+            
+            <div>
+              <div class="bg-[#2D3540] rounded-lg p-6 text-center mb-4">
+                <div class="text-gray-400 text-sm mb-1">Projected Savings</div>
+                <div class="text-3xl font-bold text-[#95ADE2]">10% Total Cost Reduction</div>
+              </div>
+              <div class="text-xs text-gray-600 text-center">
+                Powered by GCA Memory and usage analysis.
+              </div>
+            </div>
+          </div>
+
+          <!-- SKU Comparison Card (3 cols) -->
+          <div class="lg:col-span-3 bg-[#20252B] rounded-xl p-6 border border-transparent hover:border-gray-700 transition flex flex-col justify-between">
+            <div>
+              <h2 class="text-white font-bold mb-6">SKU Comparison</h2>
+              
+              <div class="grid grid-cols-2 gap-8">
+                <!-- À La Carte -->
+                <div>
+                  <h3 class="text-sm font-bold text-gray-400 mb-3">À La Carte (9 Standalone SKUs)</h3>
+                  <ul class="text-xs text-gray-500 space-y-2">
+                    <li class="flex items-center gap-1"><span>•</span> External HTTP(S) Load Balancer</li>
+                    <li class="flex items-center gap-1"><span>•</span> Cloud CDN Cache Fill</li>
+                    <li class="flex items-center gap-1"><span>•</span> Cloud CDN Cache Outbound</li>
+                    <li class="flex items-center gap-1"><span>•</span> Cloud Armor Policy Rules</li>
+                    <li class="flex items-center gap-1"><span>•</span> Cloud Armor Requests</li>
+                    <li class="flex items-center gap-1"><span>•</span> SSL Certificate Manager</li>
+                    <li class="flex items-center gap-1"><span>•</span> Cloud DNS Queries</li>
+                    <li class="flex items-center gap-1"><span>•</span> Inter-region Data Transfer</li>
+                    <li class="flex items-center gap-1"><span>•</span> Edge Security Policies</li>
+                  </ul>
+                </div>
+                
+                <!-- GFE Enterprise -->
+                <div>
+                  <h3 class="text-sm font-bold text-[#95ADE2] mb-1">GFE Enterprise SKU</h3>
+                  <div class="text-[#81C995] text-xs mb-3">
+                    Simplified Billing & Lower Cost
+                  </div>
+                  <ul class="text-xs text-white space-y-2 mb-4">
+                    <li class="flex items-center gap-1"><span>•</span> GFE Enterprise Instance</li>
+                    <li class="flex items-center gap-1"><span>•</span> GFE Requests</li>
+                    <li class="flex items-center gap-1"><span>•</span> GFE Data Processing</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unenroll Button -->
+            <div class="flex justify-end mt-6">
+              <button id="btn-enrollment" class="bg-[#2D3139] text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-[#383C45] transition border border-gray-700">
+                <span id="text-enrollment">Unenroll</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Alert -->
+        <div id="success-message" class="bg-[#134A26]/30 border border-[#134A26] rounded-xl p-4 flex items-center justify-between gap-3">
+          <div class="flex gap-3">
+            <span class="material-symbols-outlined text-[#81C995] flex-shrink-0">check_circle</span>
+            <div>
+              <div class="text-[#81C995] font-bold text-sm mb-1">Enrollment initiated successfully!</div>
+              <p class="text-gray-300 text-xs leading-relaxed">
+                Automatically transitioning all compatible new and existing load balancer, CDN, Cloud Armor, Service Extension resources into the new GFE billing bundle. Check the migrations in the Sessions
+              </p>
+            </div>
+          </div>
+          <button onclick="window.location.href='sessions.html'" class="bg-[#81C995] text-[#134A26] font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-[#a3d9b3] transition flex-shrink-0">
+            View in sessions
+          </button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const btnEnrollment = document.getElementById('btn-enrollment');
+    const textEnrollment = document.getElementById('text-enrollment');
+    const successMessage = document.getElementById('success-message');
+
+    btnEnrollment.addEventListener('click', () => {
+      if (textEnrollment.textContent === 'Unenroll') {
+        textEnrollment.textContent = 'Enroll now';
+        btnEnrollment.classList.remove('bg-[#2D3139]', 'text-white', 'border-gray-700');
+        btnEnrollment.classList.add('bg-[#134A26]', 'text-[#81C995]', 'border-[#134A26]');
+        successMessage.classList.add('hidden');
+      } else {
+        textEnrollment.textContent = 'Unenroll';
+        btnEnrollment.classList.remove('bg-[#134A26]', 'text-[#81C995]', 'border-[#134A26]');
+        btnEnrollment.classList.add('bg-[#2D3139]', 'text-white', 'border-gray-700');
+        successMessage.classList.remove('hidden');
+      }
+    });
+
+    setTimeout(() => {
+      const icon = document.getElementById('sidebar-migrating-icon');
+      if (icon) {
+        icon.classList.remove('animate-spin');
+        icon.textContent = 'check_circle';
+      }
+    }, 6000);
+  </script>
+  <!-- Floating Gemini Bar (Fixed at bottom) -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
+    <!-- Colored Sparkle Icon -->
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4B4B"/>
+          <stop offset="30%" stop-color="#FFD54F"/>
+          <stop offset="60%" stop-color="#4285F4"/>
+          <stop offset="100%" stop-color="#1A73E8"/>
+        </linearGradient>
+      </defs>
+      <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
+    </svg>
+    
+    <!-- Focus/Scan Icon -->
+    <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
+    
+    <!-- Input -->
+    <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
+    
+    <!-- Right Icons -->
+    <div class="flex items-center gap-4 text-gray-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
+    </div>
+  </div>
+
+</body>
+</html>
