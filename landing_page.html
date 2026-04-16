@@ -742,6 +742,17 @@
                     Download Terraform
                   </button>
                 </div>
+
+                <!-- Status Indicator -->
+                <div id="deploy-status" class="text-xs text-gray-400 mb-6 hidden bg-[#1E293B] p-3 rounded-lg border border-gray-700">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-sm text-gcp-green animate-spin" id="status-icon">sync</span>
+                    <span id="status-text" class="text-white">Deploying GFE Solution...</span>
+                  </div>
+                  <div class="w-full bg-gray-700 h-1 rounded-full overflow-hidden">
+                    <div id="status-bar" class="bg-gcp-green h-full w-0 transition-all duration-500"></div>
+                  </div>
+                </div>
                 
                 <!-- Basic & origin server -->
                 <div class="mb-6">
@@ -1385,12 +1396,41 @@
           goToCanvasBtn.disabled = true;
           goToCanvasBtn.classList.add('opacity-75', 'cursor-not-allowed');
           
-          // Simulate completion after 3 seconds
+          const deployStatus = document.getElementById('deploy-status');
+          const statusText = document.getElementById('status-text');
+          const statusBar = document.getElementById('status-bar');
+          const statusIcon = document.getElementById('status-icon');
+
+          if (deployStatus) deployStatus.classList.remove('hidden');
+          
+          setTimeout(() => {
+            if (statusText) statusText.textContent = 'Creating Global Load Balancer...';
+            if (statusBar) statusBar.style.width = '30%';
+          }, 1000);
+
+          setTimeout(() => {
+            if (statusText) statusText.textContent = 'Configuring Cloud CDN...';
+            if (statusBar) statusBar.style.width = '60%';
+          }, 2000);
+
+          setTimeout(() => {
+            if (statusText) statusText.textContent = 'Applying Cloud Armor Security Policies...';
+            if (statusBar) statusBar.style.width = '90%';
+          }, 3000);
+
+          // Simulate completion after 4 seconds
           setTimeout(() => {
             goToCanvasBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Deployed';
             goToCanvasBtn.classList.remove('bg-gcp-green', 'hover:bg-green-500');
             goToCanvasBtn.classList.add('bg-gray-600');
-          }, 3000);
+            
+            if (statusText) statusText.textContent = 'GFE Solution Deployed Successfully!';
+            if (statusBar) statusBar.style.width = '100%';
+            if (statusIcon) {
+              statusIcon.textContent = 'check_circle';
+              statusIcon.classList.remove('animate-spin');
+            }
+          }, 4000);
         });
       }
 
