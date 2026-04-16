@@ -214,6 +214,27 @@
               </tr>
             </thead>
             <tbody>
+              <!-- New Row (GFE Deployed) -->
+              <tr id="deployed-row" class="border-b border-gray-700 bg-[#2D3238]/50 hover:bg-[#353B43] transition hidden">
+                <td class="px-6 py-4">
+                  <div class="font-medium text-gcp-green mb-0.5 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                    <span>GFE Solution (my-gfe-instance) deployed</span>
+                  </div>
+                  <div class="text-xs text-gray-500">Global Front End solution has been successfully provisioned via Intent-Based blueprint.</div>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1 bg-[#1E2227] px-2 py-0.5 rounded text-xs font-medium text-white border border-gray-600">
+                    <span class="material-symbols-outlined text-xs">smart_toy</span>
+                    Agent
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-white font-medium">Intent-...</td>
+                <td class="px-6 py-4">
+                  <span class="bg-gcp-green bg-opacity-20 text-gcp-green px-2 py-0.5 rounded text-xs font-bold uppercase">Completed</span>
+                </td>
+                <td class="px-6 py-4 text-xs">Just now</td>
+              </tr>
               <!-- New Row (Migrating SKUs) -->
               <tr class="border-b border-gray-700 bg-[#2D3238]/50 hover:bg-[#353B43] transition">
                 <td class="px-6 py-4">
@@ -423,6 +444,13 @@
   </div>
 
   <script>
+    // Check for deployed parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('deployed') === 'true') {
+      const deployedRow = document.getElementById('deployed-row');
+      if (deployedRow) deployedRow.classList.remove('hidden');
+    }
+
     setTimeout(() => {
       const icon = document.getElementById('migrating-icon');
       const state = document.getElementById('migrating-state');
