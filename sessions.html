@@ -446,12 +446,9 @@
   <script>
     // Check for deployed parameter
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('deployed') === 'true') {
-      const deployedRow = document.getElementById('deployed-row');
-      if (deployedRow) deployedRow.classList.remove('hidden');
-    }
+    const isDeployed = urlParams.get('deployed') === 'true';
 
-    setTimeout(() => {
+    const applyCompletedState = () => {
       const icon = document.getElementById('migrating-icon');
       const state = document.getElementById('migrating-state');
       const title = document.getElementById('migrating-title');
@@ -471,7 +468,16 @@
         title.classList.remove('text-white');
         title.classList.add('text-[#8AB4F8]');
       }
-    }, 6000);
+    };
+
+    if (isDeployed) {
+      const deployedRow = document.getElementById('deployed-row');
+      if (deployedRow) deployedRow.classList.remove('hidden');
+      applyCompletedState();
+    } else {
+      // Run the simulation if not coming from deployment
+      setTimeout(applyCompletedState, 6000);
+    }
   </script>
 </body>
 </html>
