@@ -806,15 +806,15 @@
                   <h5 class="text-white font-bold mb-2 text-sm">Caching</h5>
                   <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
                     <div>Caching policy name:</div>
-                    <div class="text-white">demo-acme-com-default-caching-001</div>
+                    <div class="text-white" id="cfg-caching-policy-name">demo-acme-com-default-caching-001</div>
                     <div>CDN enforcement:</div>
                     <div class="text-white">On</div>
                     <div>Cache mode:</div>
-                    <div class="text-white">Cache static content</div>
+                    <div class="text-white" id="cfg-cache-mode">Cache static content</div>
                     <div>Client TTL:</div>
-                    <div class="text-white">1 day</div>
+                    <div class="text-white" id="cfg-client-ttl">1 day</div>
                     <div>Default TTL:</div>
-                    <div class="text-white">30 days</div>
+                    <div class="text-white" id="cfg-default-ttl">30 days</div>
                     <div>MAX TTL:</div>
                     <div class="text-white">1 year</div>
                     <div>Cache key:</div>
@@ -827,11 +827,13 @@
                   <h5 class="text-white font-bold mb-2 text-sm">Security</h5>
                   <div class="grid grid-cols-[200px_1fr] text-xs text-gray-300 gap-y-1">
                     <div>Security policy name:</div>
-                    <div class="text-white">demo-acme-com-default-security-policy-001</div>
+                    <div class="text-white" id="cfg-security-policy-name">demo-acme-com-default-security-policy-001</div>
                     <div>Cloud Armor Service Tier:</div>
-                    <div class="text-white">Standard</div>
+                    <div class="text-white" id="cfg-policy-type">Standard</div>
                     <div>Rate limiting:</div>
-                    <div class="text-white">100 requests per 1 minute (Enforce on Source IP)</div>
+                    <div class="text-white" id="cfg-rate-limiting">100 requests per 1 minute (Enforce on Source IP)</div>
+                    <div class="hidden" id="cfg-waf-rules-label">Pre-configured Rules:</div>
+                    <div class="text-white hidden" id="cfg-waf-rules-value">SQLi, XSS mitigation</div>
                   </div>
                 </div>
                 
@@ -1320,6 +1322,59 @@
           landingContent.classList.remove('hidden');
         });
       }
+
+      // Handle preset selection changes
+      const option1 = document.getElementById('option1');
+      const option2 = document.getElementById('option2');
+      const option3 = document.getElementById('option3');
+
+      const cfgCachingPolicyName = document.getElementById('cfg-caching-policy-name');
+      const cfgCacheMode = document.getElementById('cfg-cache-mode');
+      const cfgClientTtl = document.getElementById('cfg-client-ttl');
+      const cfgDefaultTtl = document.getElementById('cfg-default-ttl');
+      const cfgSecurityPolicyName = document.getElementById('cfg-security-policy-name');
+      const cfgPolicyType = document.getElementById('cfg-policy-type');
+      const cfgRateLimiting = document.getElementById('cfg-rate-limiting');
+      const cfgWafRulesLabel = document.getElementById('cfg-waf-rules-label');
+      const cfgWafRulesValue = document.getElementById('cfg-waf-rules-value');
+
+      function updateConfig(preset) {
+        if (preset === 'option1') { // Balanced
+          if (cfgCachingPolicyName) cfgCachingPolicyName.textContent = 'demo-acme-com-default-caching-001';
+          if (cfgCacheMode) cfgCacheMode.textContent = 'Cache static content';
+          if (cfgClientTtl) cfgClientTtl.textContent = '1 day';
+          if (cfgDefaultTtl) cfgDefaultTtl.textContent = '30 days';
+          if (cfgSecurityPolicyName) cfgSecurityPolicyName.textContent = 'demo-acme-com-default-security-policy-001';
+          if (cfgPolicyType) cfgPolicyType.textContent = 'Standard';
+          if (cfgRateLimiting) cfgRateLimiting.textContent = '100 requests per 1 minute (Enforce on Source IP)';
+          if (cfgWafRulesLabel) cfgWafRulesLabel.classList.add('hidden');
+          if (cfgWafRulesValue) cfgWafRulesValue.classList.add('hidden');
+        } else if (preset === 'option2') { // Max Security
+          if (cfgCachingPolicyName) cfgCachingPolicyName.textContent = 'demo-acme-com-default-caching-001';
+          if (cfgCacheMode) cfgCacheMode.textContent = 'Cache static content';
+          if (cfgClientTtl) cfgClientTtl.textContent = '1 day';
+          if (cfgDefaultTtl) cfgDefaultTtl.textContent = '30 days';
+          if (cfgSecurityPolicyName) cfgSecurityPolicyName.textContent = 'demo-acme-com-max-security-policy-001';
+          if (cfgPolicyType) cfgPolicyType.textContent = 'Enterprise';
+          if (cfgRateLimiting) cfgRateLimiting.textContent = '50 requests per 1 minute (Enforce on Source IP)';
+          if (cfgWafRulesLabel) cfgWafRulesLabel.classList.remove('hidden');
+          if (cfgWafRulesValue) cfgWafRulesValue.classList.remove('hidden');
+        } else if (preset === 'option3') { // Global Performance
+          if (cfgCachingPolicyName) cfgCachingPolicyName.textContent = 'demo-acme-com-performance-caching-001';
+          if (cfgCacheMode) cfgCacheMode.textContent = 'Force cache all content';
+          if (cfgClientTtl) cfgClientTtl.textContent = '7 days';
+          if (cfgDefaultTtl) cfgDefaultTtl.textContent = '90 days';
+          if (cfgSecurityPolicyName) cfgSecurityPolicyName.textContent = 'demo-acme-com-default-security-policy-001';
+          if (cfgPolicyType) cfgPolicyType.textContent = 'Standard';
+          if (cfgRateLimiting) cfgRateLimiting.textContent = '100 requests per 1 minute (Enforce on Source IP)';
+          if (cfgWafRulesLabel) cfgWafRulesLabel.classList.add('hidden');
+          if (cfgWafRulesValue) cfgWafRulesValue.classList.add('hidden');
+        }
+      }
+
+      if (option1) option1.addEventListener('change', () => updateConfig('option1'));
+      if (option2) option2.addEventListener('change', () => updateConfig('option2'));
+      if (option3) option3.addEventListener('change', () => updateConfig('option3'));
 
       geminiInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
