@@ -1420,6 +1420,10 @@
           
           // 2. Show canvas page
           if (canvasContent) canvasContent.classList.remove('hidden');
+
+          // Auto close right panel chat box
+          const geminiPanel = document.getElementById('gemini-panel');
+          if (geminiPanel) geminiPanel.classList.add('hidden');
           
           // 3. Hide default grid in canvas
           const canvasDefaultGrid = document.getElementById('canvas-default-grid');
