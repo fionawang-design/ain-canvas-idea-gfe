@@ -1188,8 +1188,17 @@
       geminiInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
           e.preventDefault();
+          const inputValue = geminiInput.value.trim();
           const geminiPanel = document.getElementById('gemini-panel');
           const floatingBar = document.getElementById('floating-chat-bar');
+
+          const targetPrompt = "I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?";
+
+          if (inputValue === targetPrompt) {
+            landingContent.classList.add('hidden');
+            chatContent.classList.remove('hidden');
+          }
+
           if (geminiPanel) {
             geminiPanel.classList.remove('hidden');
           }
