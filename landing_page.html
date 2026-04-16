@@ -43,6 +43,20 @@
       background-color: #353B43;
       color: #FFFFFF;
     }
+    
+    /* Custom Scrollbar for main content */
+    main::-webkit-scrollbar {
+      width: 12px;
+      background-color: #0B0E14;
+    }
+    main::-webkit-scrollbar-thumb {
+      background-color: #4A5568;
+      border-radius: 6px;
+      border: 3px solid #0B0E14;
+    }
+    main::-webkit-scrollbar-thumb:hover {
+      background-color: #718096;
+    }
     .glow-border {
       position: relative;
       border-radius: 0.75rem;
@@ -247,9 +261,9 @@
                     <defs>
                       <linearGradient id="gemini-grad-inline" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#FF4B4B"/>
-                        <stop offset="30%" stop-color="#FFC107"/>
-                        <stop offset="70%" stop-color="#00C853"/>
-                        <stop offset="100%" stop-color="#2979FF"/>
+                        <stop offset="30%" stop-color="#FFD54F"/>
+                        <stop offset="60%" stop-color="#4285F4"/>
+                        <stop offset="100%" stop-color="#1A73E8"/>
                       </linearGradient>
                     </defs>
                     <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-inline)"/>
@@ -326,8 +340,22 @@
           </div>
         </div>
 
+        <!-- Critical Action Card -->
+        <div class="bg-[#252A31] p-6 rounded-xl border border-gray-700 mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <div class="flex items-center gap-2">
+              <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full uppercase font-bold">critical</span>
+              <span class="text-sm text-gray-400">Session: <span class="text-white">Infrastructure Optimization</span></span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-white">Approve GPU Cluster Deployment Budget</h3>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">Review</button>
+          </div>
+        </div>
+
         <!-- Floating Gemini Bar (Fixed at bottom) -->
-        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
+        <div id="floating-chat-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
           <!-- Colored Sparkle Icon -->
           <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -992,6 +1020,84 @@
         </div>
       </div>
     </main>
+    <!-- Gemini Cloud Assist Panel -->
+    <div id="gemini-panel" class="w-[400px] bg-[#0B0E14] border-l border-gray-800 flex flex-col hidden">
+      <!-- Header -->
+      <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <h2 class="text-lg font-bold text-white">Gemini Cloud Assist</h2>
+        </div>
+        <button id="close-panel" class="text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Chat Content -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-6">
+        <!-- Active Pill -->
+        <div class="inline-flex items-center bg-[#1E293B] text-white text-sm px-3 py-1.5 rounded-full gap-2">
+          <span class="material-symbols-outlined text-sm">chat</span>
+          <span>"I want to deploy a sec...</span>
+          <span class="material-symbols-outlined text-sm cursor-pointer">close</span>
+        </div>
+
+        <!-- User Message -->
+        <div class="bg-[#1E293B] p-4 rounded-xl text-white text-sm ml-auto max-w-[85%]">
+          "I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?"
+        </div>
+
+        <!-- Gemini Response -->
+        <div class="text-white text-sm max-w-[85%]">
+          I can help with that. Try navigating to the relevant view or ask me something more specific.
+        </div>
+
+        <!-- Chips -->
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+            <span class="material-symbols-outlined text-sm">assessment</span>
+            Fleet summary
+          </button>
+          <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+            <span class="material-symbols-outlined text-sm text-red-500">warning</span>
+            Critical items
+          </button>
+          <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+            <span class="material-symbols-outlined text-sm">show_chart</span>
+            Performance trends
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer / Input -->
+      <div class="p-6 border-t border-gray-800 space-y-4">
+        <!-- Context -->
+        <div class="bg-[#1E293B] p-2 rounded-lg flex items-center justify-between text-xs text-gray-400">
+          <div class="flex items-center gap-2">
+            <span>Context:</span>
+            <span class="text-white">"I want to deplo...</span>
+          </div>
+          <span class="material-symbols-outlined text-sm cursor-pointer">close</span>
+        </div>
+
+        <!-- Input Box -->
+        <div class="bg-[#1E293B] rounded-xl p-3 flex items-center gap-3">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-panel" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-panel)"/>
+          </svg>
+          <input type="text" placeholder="Enter a prompt for Gemini (: ⌘G)" class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder-gray-500">
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">fullscreen</span>
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">mic</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1082,12 +1188,31 @@
       geminiInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
           e.preventDefault();
-          landingContent.classList.add('hidden');
-          inboxContent.classList.add('hidden');
-          chatContent.classList.remove('hidden');
+          const geminiPanel = document.getElementById('gemini-panel');
+          const floatingBar = document.getElementById('floating-chat-bar');
+          if (geminiPanel) {
+            geminiPanel.classList.remove('hidden');
+          }
+          if (floatingBar) {
+            floatingBar.classList.add('hidden');
+          }
           geminiInput.value = '';
         }
       });
+
+      const closePanelBtn = document.getElementById('close-panel');
+      if (closePanelBtn) {
+        closePanelBtn.addEventListener('click', () => {
+          const geminiPanel = document.getElementById('gemini-panel');
+          const floatingBar = document.getElementById('floating-chat-bar');
+          if (geminiPanel) {
+            geminiPanel.classList.add('hidden');
+          }
+          if (floatingBar) {
+            floatingBar.classList.remove('hidden');
+          }
+        });
+      }
 
       goToCanvasBtn.addEventListener('click', (e) => {
         e.preventDefault();
