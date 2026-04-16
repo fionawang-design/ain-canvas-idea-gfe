@@ -737,7 +737,7 @@
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     Deploy GFE Solution
                   </button>
-                  <button class="border border-gray-600 text-white px-3 py-1 rounded-lg font-medium hover:bg-gray-700 transition-colors flex items-center gap-2 text-xs">
+                  <button id="download-tf-btn" class="border border-gray-600 text-white px-3 py-1 rounded-lg font-medium hover:bg-gray-700 transition-colors flex items-center gap-2 text-xs">
                     <span class="material-symbols-outlined text-sm">download</span>
                     Download Terraform
                   </button>
@@ -1375,6 +1375,43 @@
       if (option1) option1.addEventListener('change', () => updateConfig('option1'));
       if (option2) option2.addEventListener('change', () => updateConfig('option2'));
       if (option3) option3.addEventListener('change', () => updateConfig('option3'));
+
+      // Handle button interactions
+      const downloadTfBtn = document.getElementById('download-tf-btn');
+
+      if (goToCanvasBtn) {
+        goToCanvasBtn.addEventListener('click', () => {
+          goToCanvasBtn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">sync</span> Deploying...';
+          goToCanvasBtn.disabled = true;
+          goToCanvasBtn.classList.add('opacity-75', 'cursor-not-allowed');
+          
+          // Simulate completion after 3 seconds
+          setTimeout(() => {
+            goToCanvasBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Deployed';
+            goToCanvasBtn.classList.remove('bg-gcp-green', 'hover:bg-green-500');
+            goToCanvasBtn.classList.add('bg-gray-600');
+          }, 3000);
+        });
+      }
+
+      if (downloadTfBtn) {
+        downloadTfBtn.addEventListener('click', () => {
+          const originalContent = downloadTfBtn.innerHTML;
+          downloadTfBtn.innerHTML = '<span class="material-symbols-outlined text-sm">download</span> Downloading...';
+          downloadTfBtn.disabled = true;
+          
+          // Simulate download completion after 2 seconds
+          setTimeout(() => {
+            downloadTfBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Downloaded';
+            
+            // Reset after another 2 seconds
+            setTimeout(() => {
+              downloadTfBtn.innerHTML = originalContent;
+              downloadTfBtn.disabled = false;
+            }, 2000);
+          }, 2000);
+        });
+      }
 
       geminiInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
