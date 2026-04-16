@@ -881,6 +881,14 @@
           </div>
           
           <div class="text-xs text-gray-500" id="canvas-status-step">Step 1: Creating Global Load Balancer...</div>
+          
+          <!-- View in Sessions Button -->
+          <div class="flex justify-center mt-4 hidden" id="canvas-view-sessions-btn-container">
+            <button class="bg-gcp-green text-white px-4 py-2 rounded-lg font-bold hover:bg-green-500 transition-colors flex items-center gap-2 text-sm">
+              <span class="material-symbols-outlined text-sm">grid_view</span>
+              View in sessions
+            </button>
+          </div>
         </div>
 
         <div id="canvas-default-grid" class="grid grid-cols-3 gap-8">
@@ -1453,6 +1461,9 @@
               canvasStatusIcon.textContent = 'check_circle';
               canvasStatusIcon.classList.remove('animate-spin');
             }
+            
+            const viewSessionsBtnContainer = document.getElementById('canvas-view-sessions-btn-container');
+            if (viewSessionsBtnContainer) viewSessionsBtnContainer.classList.remove('hidden');
           }, 4000);
         });
       }
