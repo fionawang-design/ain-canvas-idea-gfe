@@ -1194,7 +1194,11 @@
 
           const targetPrompt = "I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?";
 
-          if (inputValue === targetPrompt) {
+          const normalizedInput = inputValue.toLowerCase();
+          const normalizedTarget = targetPrompt.toLowerCase();
+          
+          if (normalizedInput === normalizedTarget || 
+              (normalizedInput.includes("cloudfront") && normalizedInput.includes("waf"))) {
             landingContent.classList.add('hidden');
             chatContent.classList.remove('hidden');
           }
