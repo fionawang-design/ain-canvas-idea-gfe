@@ -868,7 +868,22 @@
         </div>
 
         <!-- Canvas Body -->
-        <div class="grid grid-cols-3 gap-8">
+        <!-- Canvas Deploy Status -->
+        <div id="canvas-deploy-status" class="hidden bg-[#252A31] p-8 rounded-xl border border-gray-700 text-center space-y-6 mb-8">
+          <div class="flex justify-center">
+            <span class="material-symbols-outlined text-5xl text-gcp-green animate-spin" id="canvas-status-icon">sync</span>
+          </div>
+          <h2 class="text-2xl font-bold text-white" id="canvas-status-title">Deploying GFE Solution...</h2>
+          <p class="text-gray-400 text-sm max-w-md mx-auto" id="canvas-status-desc">Gemini is provisioning your Intent-Based blueprint. This will take a few moments.</p>
+          
+          <div class="w-full max-w-md mx-auto bg-gray-700 h-2 rounded-full overflow-hidden">
+            <div id="canvas-status-bar" class="bg-gcp-green h-full w-0 transition-all duration-500"></div>
+          </div>
+          
+          <div class="text-xs text-gray-500" id="canvas-status-step">Step 1: Creating Global Load Balancer...</div>
+        </div>
+
+        <div id="canvas-default-grid" class="grid grid-cols-3 gap-8">
           <!-- Left Column: AI Assistant -->
           <div class="col-span-1 bg-[#252A31] p-6 rounded-xl border border-gray-700">
             <div class="flex items-center gap-2 mb-4">
@@ -1392,43 +1407,51 @@
 
       if (goToCanvasBtn) {
         goToCanvasBtn.addEventListener('click', () => {
-          goToCanvasBtn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">sync</span> Deploying...';
-          goToCanvasBtn.disabled = true;
-          goToCanvasBtn.classList.add('opacity-75', 'cursor-not-allowed');
+          // 1. Hide recommendation page
+          if (chatContent) chatContent.classList.add('hidden');
           
-          const deployStatus = document.getElementById('deploy-status');
-          const statusText = document.getElementById('status-text');
-          const statusBar = document.getElementById('status-bar');
-          const statusIcon = document.getElementById('status-icon');
+          // 2. Show canvas page
+          if (canvasContent) canvasContent.classList.remove('hidden');
+          
+          // 3. Hide default grid in canvas
+          const canvasDefaultGrid = document.getElementById('canvas-default-grid');
+          if (canvasDefaultGrid) canvasDefaultGrid.classList.add('hidden');
+          
+          // 4. Show deploy status in canvas
+          const canvasDeployStatus = document.getElementById('canvas-deploy-status');
+          if (canvasDeployStatus) canvasDeployStatus.classList.remove('hidden');
+          
+          // 5. Run stepped status updates on Canvas elements
+          const canvasStatusTitle = document.getElementById('canvas-status-title');
+          const canvasStatusDesc = document.getElementById('canvas-status-desc');
+          const canvasStatusBar = document.getElementById('canvas-status-bar');
+          const canvasStatusIcon = document.getElementById('canvas-status-icon');
+          const canvasStatusStep = document.getElementById('canvas-status-step');
 
-          if (deployStatus) deployStatus.classList.remove('hidden');
-          
           setTimeout(() => {
-            if (statusText) statusText.textContent = 'Creating Global Load Balancer...';
-            if (statusBar) statusBar.style.width = '30%';
+            if (canvasStatusStep) canvasStatusStep.textContent = 'Step 2: Configuring Cloud CDN...';
+            if (canvasStatusBar) canvasStatusBar.style.width = '30%';
           }, 1000);
 
           setTimeout(() => {
-            if (statusText) statusText.textContent = 'Configuring Cloud CDN...';
-            if (statusBar) statusBar.style.width = '60%';
+            if (canvasStatusStep) canvasStatusStep.textContent = 'Step 3: Applying Cloud Armor Security Policies...';
+            if (canvasStatusBar) canvasStatusBar.style.width = '60%';
           }, 2000);
 
           setTimeout(() => {
-            if (statusText) statusText.textContent = 'Applying Cloud Armor Security Policies...';
-            if (statusBar) statusBar.style.width = '90%';
+            if (canvasStatusStep) canvasStatusStep.textContent = 'Step 4: Finalizing deployment...';
+            if (canvasStatusBar) canvasStatusBar.style.width = '90%';
           }, 3000);
 
           // Simulate completion after 4 seconds
           setTimeout(() => {
-            goToCanvasBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Deployed';
-            goToCanvasBtn.classList.remove('bg-gcp-green', 'hover:bg-green-500');
-            goToCanvasBtn.classList.add('bg-gray-600');
-            
-            if (statusText) statusText.textContent = 'GFE Solution Deployed Successfully!';
-            if (statusBar) statusBar.style.width = '100%';
-            if (statusIcon) {
-              statusIcon.textContent = 'check_circle';
-              statusIcon.classList.remove('animate-spin');
+            if (canvasStatusTitle) canvasStatusTitle.textContent = 'GFE Solution Deployed Successfully!';
+            if (canvasStatusDesc) canvasStatusDesc.textContent = 'Your Intent-Based blueprint has been provisioned and is now active.';
+            if (canvasStatusStep) canvasStatusStep.textContent = 'Deployment complete.';
+            if (canvasStatusBar) canvasStatusBar.style.width = '100%';
+            if (canvasStatusIcon) {
+              canvasStatusIcon.textContent = 'check_circle';
+              canvasStatusIcon.classList.remove('animate-spin');
             }
           }, 4000);
         });
