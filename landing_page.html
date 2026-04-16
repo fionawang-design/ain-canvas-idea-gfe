@@ -1491,37 +1491,45 @@
         });
       }
 
+      const submitPrompt = () => {
+        const inputValue = geminiInput.value.trim();
+        if (inputValue === '') return;
+
+        const geminiPanel = document.getElementById('gemini-panel');
+        const floatingBar = document.getElementById('floating-chat-bar');
+
+        const targetPrompt = "I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?";
+
+        const normalizedInput = inputValue.toLowerCase();
+        const normalizedTarget = targetPrompt.toLowerCase();
+        
+        if (normalizedInput === normalizedTarget || 
+            (normalizedInput.includes("cloudfront") && normalizedInput.includes("waf"))) {
+          landingContent.classList.add('hidden');
+          chatContent.classList.remove('hidden');
+        }
+
+        if (geminiPanel) {
+          geminiPanel.classList.remove('hidden');
+        }
+        if (floatingBar) {
+          floatingBar.classList.add('hidden');
+        }
+        geminiInput.value = '';
+        
+        // Reset icon back to mic after submit
+        const micIcon = document.getElementById('mic-icon');
+        if (micIcon) {
+          micIcon.textContent = 'mic';
+          micIcon.classList.remove('text-[#8AB4F8]');
+          micIcon.classList.add('hover:text-white');
+        }
+      };
+
       geminiInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && geminiInput.value.trim() !== '') {
+        if (e.key === 'Enter') {
           e.preventDefault();
-          const inputValue = geminiInput.value.trim();
-          const geminiPanel = document.getElementById('gemini-panel');
-          const floatingBar = document.getElementById('floating-chat-bar');
-
-          const targetPrompt = "I want to deploy a secure web app. I'm used to AWS CloudFront and AWS WAF. What is the equivalent here and how do I set it up?";
-
-          const normalizedInput = inputValue.toLowerCase();
-          const normalizedTarget = targetPrompt.toLowerCase();
-          
-          if (normalizedInput === normalizedTarget || 
-              (normalizedInput.includes("cloudfront") && normalizedInput.includes("waf"))) {
-            landingContent.classList.add('hidden');
-            chatContent.classList.remove('hidden');
-          }
-
-          if (geminiPanel) {
-            geminiPanel.classList.remove('hidden');
-          }
-          if (floatingBar) {
-            floatingBar.classList.add('hidden');
-          }
-          geminiInput.value = '';
-          
-          // Reset icon back to mic after submit
-          const micIcon = document.getElementById('mic-icon');
-          if (micIcon) {
-            micIcon.textContent = 'mic';
-          }
+          submitPrompt();
         }
       });
 
@@ -1530,11 +1538,24 @@
         if (micIcon) {
           if (geminiInput.value.trim() !== '') {
             micIcon.textContent = 'send';
+            micIcon.classList.add('text-[#8AB4F8]');
+            micIcon.classList.remove('hover:text-white');
           } else {
             micIcon.textContent = 'mic';
+            micIcon.classList.remove('text-[#8AB4F8]');
+            micIcon.classList.add('hover:text-white');
           }
         }
       });
+
+      const micIconEl = document.getElementById('mic-icon');
+      if (micIconEl) {
+        micIconEl.addEventListener('click', () => {
+          if (geminiInput.value.trim() !== '') {
+            submitPrompt();
+          }
+        });
+      }
 
       const closePanelBtn = document.getElementById('close-panel');
       if (closePanelBtn) {
