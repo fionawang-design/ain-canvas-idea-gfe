@@ -43,6 +43,21 @@
       background-color: #353B43;
       color: #FFFFFF;
     }
+  
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
   </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden">
@@ -86,11 +101,11 @@
         </div>
         
         <nav class="space-y-1">
-          <a href="landing_page.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
+          <a href="./" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <span class="material-symbols-outlined">cloud</span>
             <span>Home</span>
           </a>
-          <a href="inbox.html?v=1" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
+          <a href="inbox.html" class="flex items-center justify-between px-3 py-2 bg-dark-active text-white rounded-lg">
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-blue-300">inbox</span>
               <span class="font-bold">Inbox</span>
@@ -110,7 +125,7 @@
       </div>
 
       <!-- Recent & Pinned Sessions -->
-      <div class="mt-4 flex-1 overflow-y-auto px-4">
+      <div class="mt-4 flex-1 overflow-y-auto px-4 custom-scrollbar">
         <h3 class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Recent & Pinned Sessions</h3>
         <ul class="space-y-3 text-sm text-gray-400">
           <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
@@ -122,7 +137,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto bg-[#1E2227]">
+    <main class="flex-1 overflow-y-auto bg-[#1E2227] custom-scrollbar">
       <!-- Stats Bar -->
       <div class="bg-[#16181D] text-xs py-3 px-6 flex items-center gap-6 border-b border-gray-800">
         <div class="flex items-center gap-2">
@@ -135,7 +150,7 @@
         <div class="ml-auto text-gray-500">Approved today: <span class="text-white font-medium">10</span></div>
       </div>
 
-      <div class="p-8 max-w-6xl mx-auto">
+      <div id="inbox-content" class="p-8 max-w-6xl mx-auto">
         <div class="flex items-center justify-between mb-6">
           <h1 class="text-3xl font-bold text-white">Session Inbox</h1>
           <div class="text-sm text-gray-400">Approved today: 10</div>
@@ -359,7 +374,172 @@
           </div>
         </div>
       </div>
+      <!-- Logs Content -->
+      <div id="logs-content" class="hidden w-full max-w-6xl fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-white">Logs for frontend-prod</h1>
+          <button onclick="hideAllContent(); (document.getElementById('inbox-content') || document.getElementById('sessions-content') || document.getElementById('artifacts-content')).classList.remove('hidden');" class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="bg-[#121417] rounded-lg p-4 font-mono text-xs text-gray-400 leading-relaxed h-96 overflow-y-auto">
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:00:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+            <span class="flex-1">Initialized investigation for IP 10.20.30.40.</span>
+          </div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:01:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+            <span class="flex-1">Querying historical asset inventory for Last Tuesday...</span>
+          </div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:02:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+            <span class="flex-1">Synthesizing data from VPC flow logs and Cloud Asset API.</span>
+          </div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:03:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Match</span>
+            <span class="flex-1">IP 10.20.30.40 was bound to forwarding rule 'frontend-prod-lb' on Last Tuesday.</span>
+          </div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:04:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+            <span class="flex-1">Maps 'frontend-prod-lb' to service <span class="text-[#8AB4F8] font-bold">'frontend-prod'</span>.</span>
+          </div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:05:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+            <span class="flex-1">AI-Native resolution complete. Answer generated for user.</span>
+          </div>
+          <div class="border-t border-gray-800 my-4"></div>
+          <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed">
+            <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:06:00]</span>
+            <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Note</span>
+            <span class="flex-1">This replaces manual correlation of BigQuery billing data and legacy asset spreadsheets.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Firewall Rules Content -->
+      <div id="firewall-content" class="hidden w-full max-w-6xl fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-white">Firewall Rules for 10.20.30.40</h1>
+          <button onclick="hideAllContent(); (document.getElementById('inbox-content') || document.getElementById('sessions-content') || document.getElementById('artifacts-content')).classList.remove('hidden');" class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="bg-[#121417] rounded-lg p-4 font-mono text-xs text-gray-400 leading-relaxed overflow-y-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-600 border-b border-gray-800">
+                <th class="pb-2">Priority</th>
+                <th class="pb-2">Direction</th>
+                <th class="pb-2">Action</th>
+                <th class="pb-2">Protocol/Port</th>
+                <th class="pb-2">Source/Dest</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-2">1000</td>
+                <td class="py-2">INGRESS</td>
+                <td class="py-2 text-[#34A853]">ALLOW</td>
+                <td class="py-2">TCP:443</td>
+                <td class="py-2">0.0.0.0/0</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-2">1001</td>
+                <td class="py-2">INGRESS</td>
+                <td class="py-2 text-[#34A853]">ALLOW</td>
+                <td class="py-2">TCP:80</td>
+                <td class="py-2">0.0.0.0/0</td>
+              </tr>
+              <tr>
+                <td class="py-2">65535</td>
+                <td class="py-2">INGRESS</td>
+                <td class="py-2 text-[#EA4335]">DENY</td>
+                <td class="py-2">All</td>
+                <td class="py-2">0.0.0.0/0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Service Details Content -->
+      <div id="service-details-content" class="hidden w-full max-w-6xl fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-white">Service Details: <span class="text-[#8AB4F8] font-bold">'frontend-prod'</span></h1>
+          <button onclick="hideAllContent(); (document.getElementById('inbox-content') || document.getElementById('sessions-content') || document.getElementById('artifacts-content')).classList.remove('hidden');" class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="bg-[#121417] rounded-lg p-6 text-sm text-gray-300 space-y-4">
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Type</span>
+            <span class="col-span-2 text-white">External Application Load Balancer</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Backend</span>
+            <span class="col-span-2 text-white">GKE Instance Group (us-central1)</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">IP Address</span>
+            <span class="col-span-2 text-white">10.20.30.40</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Status</span>
+            <span class="col-span-2 text-[#34A853] font-bold">HEALTHY</span>
+          </div>
+          <div class="grid grid-cols-3">
+            <span class="text-gray-500">Last Updated</span>
+            <span class="col-span-2 text-white">2 minutes ago</span>
+          </div>
+        </div>
+      </div>
     </main>
+    <!-- Gemini Cloud Assist Panel -->
+    <div id="gemini-panel" class="w-[400px] bg-[#0B0E14] border-l border-gray-800 flex flex-col hidden">
+      <!-- Header -->
+      <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-[#95ADE2]">psychology</span>
+          <span>Gemini Investigation</span>
+        </h2>
+        <button id="close-panel" class="text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Chat Content -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+        <div id="gemini-messages-container" class="space-y-6">
+        </div>
+      </div>
+
+      <!-- Footer / Input -->
+      <div class="p-6 border-t border-gray-800 space-y-4">
+        <!-- Input Box -->
+        <div class="bg-[#1E293B] rounded-xl p-3 flex items-center gap-3">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-panel" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-panel)"/>
+          </svg>
+          <input type="text" placeholder="Enter a prompt for Gemini (: ⌘G)" class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder-gray-500">
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">fullscreen</span>
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">mic</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Floating Gemini Bar (Fixed at bottom) -->
@@ -455,37 +635,163 @@
 
   </script>
   
-  <!-- Gemini Monoblock Response (Use Case 1) -->
-  <div id="gemini-response" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#1C1F24] border border-[#2F3542] rounded-lg p-4 shadow-2xl max-w-md text-sm text-white flex flex-col gap-2 z-50">
-    <div class="flex items-center gap-2 text-xs text-gray-500">
-      <span class="material-symbols-outlined text-sm">smart_toy</span>
-      <span>Gemini</span>
+
+  </div>
+
+    <!-- Gemini Cloud Assist Panel -->
+    <div id="gemini-panel" class="w-[400px] bg-[#0B0E14] border-l border-gray-800 flex flex-col hidden">
+      <!-- Header -->
+      <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-[#95ADE2]">psychology</span>
+          <span>Gemini Investigation</span>
+        </h2>
+        <button id="close-panel" class="text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Chat Content -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+        <div id="gemini-messages-container" class="space-y-6">
+        </div>
+      </div>
+
+      <!-- Footer / Input -->
+      <div class="p-6 border-t border-gray-800 space-y-4">
+        <!-- Input Box -->
+        <div class="bg-[#1E293B] rounded-xl p-3 flex items-center gap-3">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gemini-grad-panel" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF4B4B"/>
+                <stop offset="30%" stop-color="#FFD54F"/>
+                <stop offset="60%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#1A73E8"/>
+              </linearGradient>
+            </defs>
+            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-panel)"/>
+          </svg>
+          <input type="text" placeholder="Enter a prompt for Gemini (: ⌘G)" class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder-gray-500">
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">fullscreen</span>
+          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">mic</span>
+        </div>
+      </div>
     </div>
-    <div id="response-text"></div>
-  </div>
+<script>
+      window.showLogs = function() {
+        hideAllContent();
+        const logsContent = document.getElementById('logs-content');
+        if (logsContent) logsContent.classList.remove('hidden');
+      };
 
-  <script>
-    const geminiInput = document.getElementById('gemini-input');
-    const geminiResponse = document.getElementById('gemini-response');
-    const responseText = document.getElementById('response-text');
+      window.showFirewall = function() {
+        hideAllContent();
+        const firewallContent = document.getElementById('firewall-content');
+        if (firewallContent) firewallContent.classList.remove('hidden');
+      };
 
-    if (geminiInput) {
-      geminiInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const query = geminiInput.value.trim();
-          if (query === "Which service used 10.20.30.40 last Tuesday?") {
-            responseText.textContent = "Last Tuesday, that IP was assigned to the 'frontend-prod' service.";
-            geminiResponse.classList.remove('hidden');
-            geminiInput.value = '';
-            setTimeout(() => {
-               geminiResponse.classList.add('hidden');
-            }, 5000); // Hide after 5 seconds
+      window.showServiceDetails = function() {
+        hideAllContent();
+        const serviceDetailsContent = document.getElementById('service-details-content');
+        if (serviceDetailsContent) serviceDetailsContent.classList.remove('hidden');
+      };
+
+      function hideAllContent() {
+        const allContents = [
+          document.getElementById('landing-content'), 
+          document.getElementById('inbox-content'), 
+          document.getElementById('sessions-content'), 
+          document.getElementById('artifacts-content'),
+          document.getElementById('logs-content'),
+          document.getElementById('firewall-content'),
+          document.getElementById('service-details-content')
+        ];
+        allContents.forEach(c => { if (c) c.classList.add('hidden'); });
+      }
+
+      const geminiInput = document.getElementById('gemini-input');
+      const geminiPanel = document.getElementById('gemini-panel');
+      
+      if (geminiInput) {
+        geminiInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            const inputValue = geminiInput.value.trim();
+            if (inputValue === '') return;
+            
+            const ipRegex = /\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b/;
+            const ipMatch = inputValue.match(ipRegex);
+            
+            if (ipMatch) {
+              const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'yesterday', 'today'];
+              let day = 'Last Tuesday'; // default
+              
+              const lowerInput = inputValue.toLowerCase();
+              for (const d of days) {
+                if (lowerInput.includes(d)) {
+                  day = d.charAt(0).toUpperCase() + d.slice(1);
+                  if (lowerInput.includes("last " + d)) {
+                    day = "Last " + day;
+                  } else if (lowerInput.includes("on " + d)) {
+                    day = "On " + day;
+                  }
+                  break;
+                }
+              }
+              
+              const messagesContainer = document.getElementById('gemini-messages-container');
+              if (messagesContainer) {
+                messagesContainer.innerHTML = `
+                  <div class="flex flex-col gap-4">
+                    <!-- User Query -->
+                    <div class="bg-[#20252B] rounded-lg p-4 border border-gray-700">
+                      <div class="text-xs text-gray-500 mb-1">User Query</div>
+                      <div class="text-white text-sm">"${inputValue}"</div>
+                    </div>
+                    
+                    <!-- Gemini Response -->
+                    <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
+                      <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
+                      <div class="text-white text-sm">${day}, that IP was assigned to the <span class="font-bold">'frontend-prod'</span> service.</div>
+                    </div>
+
+                    <!-- Guiding Chips -->
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <button onclick="showLogs()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                        <span class="material-symbols-outlined text-sm text-[#8AB4F8]">list_alt</span>
+                        View logs for frontend-prod
+                      </button>
+                      <button onclick="showFirewall()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                        <span class="material-symbols-outlined text-sm text-[#81C995]">security</span>
+                        Check firewall rules
+                      </button>
+                      <button onclick="showServiceDetails()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                        <span class="material-symbols-outlined text-sm text-[#FBBC04]">info</span>
+                        Service details
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }
+              
+              if (geminiPanel) {
+                geminiPanel.classList.remove('hidden');
+              }
+              geminiInput.value = '';
+            }
           }
-        }
-      });
-    }
-  </script>
-  </div>
-
+        });
+      }
+      
+      const closePanelBtn = document.getElementById('close-panel');
+      if (closePanelBtn) {
+        closePanelBtn.addEventListener('click', () => {
+          if (geminiPanel) {
+            geminiPanel.classList.add('hidden');
+          }
+        });
+      }
+</script>
 </body>
 </html>
