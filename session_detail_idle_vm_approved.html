@@ -43,7 +43,6 @@
       background-color: #353B43;
       color: #FFFFFF;
     }
-  
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -58,10 +57,9 @@
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.3);
     }
-
   </style>
 </head>
-<body class="h-screen flex flex-col overflow-hidden">
+<body class="h-screen flex flex-col overflow-hidden bg-[#1E2227]">
 
   <!-- Top Bar -->
   <header class="h-14 bg-dark-header flex items-center justify-between px-4 border-b border-gray-800 flex-shrink-0">
@@ -117,7 +115,6 @@
             <span class="material-symbols-outlined">chat</span>
             <span>Sessions</span>
           </a>
-
           <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <span class="material-symbols-outlined">article</span>
             <span>Artifacts</span>
@@ -131,122 +128,122 @@
         <ul class="space-y-3 text-sm text-gray-400">
           <li class="hover:text-white cursor-pointer truncate">Cost Control Emergency Sweep</li>
           <li class="hover:text-white cursor-pointer truncate">Security Boundary Enforcement</li>
-          <li class="hover:text-white cursor-pointer truncate">Maintain <100ms API latency globally</li>
+          <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally</li>
         </ul>
       </div>
-
     </div>
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto bg-[#1E2227] p-8 custom-scrollbar">
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-6xl mx-auto bg-[#1C1F24] rounded-xl border border-gray-800 p-8 relative">
         
-        <!-- Header -->
-        <div class="flex items-center justify-between mb-6">
-          <h1 class="text-2xl font-bold text-white">Multi-Cloud Performance Failover</h1>
-          <div class="flex items-center gap-2 text-sm text-gray-400">
-            <span>Session ID: </span>
-            <span class="text-white font-medium">sess-rel-003</span>
+        <!-- Close Button -->
+        <button onclick="window.location.href='cost.html'" class="absolute top-6 right-6 text-gray-500 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <!-- Title & Session ID -->
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-2xl font-bold text-white">Resize Idle VM Instances</h1>
+          <div class="text-sm text-gray-500">Session ID: <span class="text-gray-300 font-mono">sess-cost-003</span></div>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div class="grid grid-cols-4 gap-6 mb-8 text-sm border-b border-gray-800 pb-6">
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Status</div>
+            <span class="bg-green-500/10 text-green-500 font-bold px-2 py-0.5 rounded text-xs">Approved</span>
+          </div>
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Agent</div>
+            <div class="text-[#95ADE2] flex items-center gap-1">
+              CostOptimizer
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Time</div>
+            <div class="text-white">2 hours ago</div>
+          </div>
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Origin</div>
+            <div class="text-white flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs text-gray-500">dns</span>
+              <span>Compute Engine</span>
+              <span class="material-symbols-outlined text-xs text-gray-500">open_in_new</span>
+            </div>
           </div>
         </div>
 
-        <!-- Detail Card -->
-        <div class="bg-[#1C1F24] rounded-xl p-6 mb-6 border border-gray-800">
-          
-          <!-- Metadata Grid -->
-          <div class="grid grid-cols-4 gap-6 mb-6 text-sm">
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Status</div>
-              <div>
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded text-xs">Need Input</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Agent</div>
-              <div class="text-[#95ADE2] hover:underline cursor-pointer flex items-center gap-1">
-                <span>NetworkHealthAgent</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Time</div>
-              <div class="text-white">1 hour ago</div>
-            </div>
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Origin</div>
-              <div class="text-[#95ADE2] hover:underline cursor-pointer flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">cloud</span>
-                <span>AI Network Monitoring</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </div>
-            </div>
-          </div>
+        <!-- Problem Section -->
+        <div class="mb-8">
+          <div class="text-gray-500 uppercase text-xs font-bold mb-2">Problem</div>
+          <p class="text-white text-sm">Detected 3 VM instances with &lt;5% CPU utilization for the last 30 days. Downgrade to save $150/mo.</p>
+        </div>
 
-          <!-- Description -->
-          <div class="mb-6">
-            <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Problem</div>
-            <div class="text-gray-300 text-sm">Gradual hardware degradation or regional bottlenecks in fiber paths can breach availability SLOs before a hard failure is detected by standard probers.</div>
+        <!-- Action Logs Section -->
+        <div class="mb-8">
+          <div class="text-gray-500 uppercase text-xs font-bold mb-2">Action Logs</div>
+          <div class="bg-[#121417] rounded-lg p-4 font-mono text-xs text-gray-400 leading-relaxed space-y-2">
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:00:00]</span><span>Session initialized.</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:05:00]</span><span>Scanning project for idle resources...</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:10:00]</span><span class="text-[#FBBC04]">Proactive Alert: Detected patterns consistent with abandoned test instances.</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:15:00]</span><span>Autonomous Action: Calculated cost impact and potential savings.</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:20:00]</span><span>Analyzing usage logs to ensure zero impact on legitimate traffic.</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:25:00]</span><span class="text-[#FBBC04]">Proposed Action: I've identified a new cost saving opportunity and prepared a downgrade plan.</span></div>
+            <div class="flex gap-4"><span class="text-gray-600">[2026-04-27 14:30:00]</span><span class="text-[#81C995]">Action Applied: Resized instances successfully.</span></div>
           </div>
+        </div>
 
-          <!-- Action Logs -->
-          <div class="mb-6">
-            <div class="text-gray-500 mb-2 text-xs uppercase font-bold tracking-wider">Action Logs</div>
-            <div class="bg-[#121417] rounded-lg p-4 font-mono text-xs text-gray-400 leading-relaxed">
-              <div class="flex gap-2"><span class="text-gray-600">[2026-04-27 14:00:00]</span><span>Monitoring IPAM growth metrics for paths...</span></div>
-              <div class="flex gap-2"><span class="text-gray-600">[2026-04-27 14:05:00]</span><span>Using AI-powered Network Health Monitoring to detect statistically significant latency variations over 2 weeks of time-series data.</span></div>
-              <div class="flex gap-2"><span class="text-gray-600">[2026-04-27 14:10:00]</span><span class="text-[#fbbc04]">Proactive Alert: Detected 40% performance degradation on path us-east1 to on-prem. Transitioning traffic to secure secondary lanes to maintain 99.9% uptime intent.</span></div>
-              <div class="flex gap-2"><span class="text-gray-600">[2026-04-27 14:15:00]</span><span>Self-Healing Moment: The cloud autonomously initiates a failover to a healthy region or low-latency lane.</span></div>
-              <div class="flex gap-2 mt-2"><span class="text-gray-600">[2026-04-27 14:20:00]</span><span class="text-[#34a853] font-bold">Success: Failover completed. Narrative Summary provided in the dashboard.</span></div>
-            </div>
+        <!-- Behavioral Details -->
+        <div class="space-y-4 mb-8">
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Autonomous Behavior:</div>
+            <p class="text-white text-sm">CostOptimizer utilizes AI to learn typical behavioral contexts of users and detect anomalous patterns of resource usage.</p>
           </div>
-
-          <!-- Rationale, Context, Impact -->
-          <div class="space-y-4 text-sm">
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Autonomous Behavior:</div>
-              <p class="text-gray-300">The system uses AI-powered Network Health Monitoring to detect statistically significant latency variations over 2 weeks of time-series data.</p>
-            </div>
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Context:</div>
-              <p class="text-gray-300">Path: `us-east1` to on-prem | Intent: Maintain 99.9% uptime.</p>
-            </div>
-            <div>
-              <div class="text-gray-500 mb-1 text-xs uppercase font-bold tracking-wider">Self-Healing Moment:</div>
-              <p class="text-gray-300 font-bold text-[#34a853]">The cloud autonomously initiates a failover to a healthy region or low-latency lane, providing a Narrative Summary of the change in the dashboard.</p>
-            </div>
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Proactive Alert:</div>
+            <p class="text-white text-sm">The agent detects patterns consistent with abandoned test instances that haven't hit standard alarm thresholds yet.</p>
           </div>
-
+          <div>
+            <div class="text-gray-500 uppercase text-xs font-bold mb-1">Autonomous Action:</div>
+            <p class="text-white text-sm font-bold">Generated a custom resize plan in Preview Mode, verified zero impact on legitimate traffic, and prepared a block rule for enforcement.</p>
+          </div>
         </div>
 
         <!-- Success Banner -->
-        <div id="success-banner" class="hidden bg-[#1E3A2B] border border-[#34A853] rounded-xl p-4 mb-6 flex items-center justify-between">
+        <div class="bg-[#134A26]/30 border border-[#134A26] rounded-lg p-4 flex justify-between items-center mb-8">
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[#34A853]">check_circle</span>
+            <span class="material-symbols-outlined text-[#81C995]">check_circle</span>
             <div>
-              <div class="text-white font-bold">Multi-Cloud failover initiated successfully!</div>
-              <div class="text-sm text-gray-400">Traffic has been transitioned to secure secondary lanes.</div>
+              <div class="text-white font-bold text-sm">VM instances resized successfully!</div>
+              <div class="text-gray-400 text-xs">The instances have been downgraded to save $150/mo.</div>
             </div>
           </div>
-          <button onclick="window.location.href='sessions.html'" class="bg-[#34A853] text-white font-bold px-4 py-1.5 rounded-lg hover:bg-[#2E9648] transition text-sm">View in sessions</button>
+          <button onclick="window.location.href='sessions.html'" class="bg-[#34A853] text-white font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#2d8b47] transition">
+            View in sessions
+          </button>
         </div>
 
         <!-- Footer Actions -->
-        <div class="flex items-center justify-between gap-4">
-          <div id="action-buttons" class="flex items-center gap-3">
-            <button id="approve-btn" class="bg-[#8AB4F8] text-[#1C1F24] font-bold px-6 py-2 rounded-lg hover:bg-[#7BA3E3] transition">Approve</button>
-            <button class="bg-[#2D3139] text-white font-bold px-6 py-2 rounded-lg border border-gray-700 hover:bg-[#383C45] transition">Reject</button>
-          </div>
-          <div class="flex-1 max-w-md relative">
-            <input type="text" placeholder="Type a response..." class="w-full bg-[#1C1F24] border border-gray-700 rounded-lg py-2 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#8AB4F8]">
-            <button class="absolute right-2 top-2 text-gray-600 hover:text-white">
-              <span class="material-symbols-outlined">arrow_forward</span>
+        <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-800">
+          <div class="flex gap-4">
+            <button class="bg-[#252A31] text-gray-500 font-bold text-sm px-6 py-2 rounded-lg cursor-not-allowed" disabled>
+              Approved
             </button>
+          </div>
+          
+          <!-- Response Input -->
+          <div class="bg-[#20252B] rounded-lg p-2 flex items-center gap-3 w-[300px] border border-gray-700">
+            <input type="text" placeholder="Type a response..." class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder-gray-500">
+            <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">arrow_forward</span>
           </div>
         </div>
 
       </div>
     </main>
   </div>
+
   <!-- Floating Gemini Bar (Fixed at bottom) -->
   <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
     <!-- Colored Sparkle Icon -->
@@ -274,23 +271,6 @@
       <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
     </div>
   </div>
-  <script>
-    const approveBtn = document.getElementById('approve-btn');
-    const successBanner = document.getElementById('success-banner');
-    const actionButtons = document.getElementById('action-buttons');
 
-    if (approveBtn) {
-      approveBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (successBanner) {
-          successBanner.classList.remove('hidden');
-          // Disable buttons and change text
-          if (actionButtons) {
-            actionButtons.innerHTML = `<button class="bg-gray-600 text-gray-400 font-bold px-6 py-2 rounded-lg cursor-not-allowed" disabled>Approved</button>`;
-          }
-        }
-      });
-    }
-  </script>
 </body>
 </html>

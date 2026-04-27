@@ -41,6 +41,7 @@
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
+      height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.05);
@@ -477,7 +478,8 @@
                 <th class="pb-2">Direction</th>
                 <th class="pb-2">Action</th>
                 <th class="pb-2">Protocol/Port</th>
-                <th class="pb-2">Source/Dest</th>
+                <th class="pb-2">Source</th>
+                <th class="pb-2">Description</th>
               </tr>
             </thead>
             <tbody>
@@ -487,6 +489,7 @@
                 <td class="py-2 text-[#34A853]">ALLOW</td>
                 <td class="py-2">TCP:443</td>
                 <td class="py-2">0.0.0.0/0</td>
+                <td class="py-2">Allow HTTPS traffic from anywhere</td>
               </tr>
               <tr class="border-b border-gray-800/50">
                 <td class="py-2">1001</td>
@@ -494,6 +497,23 @@
                 <td class="py-2 text-[#34A853]">ALLOW</td>
                 <td class="py-2">TCP:80</td>
                 <td class="py-2">0.0.0.0/0</td>
+                <td class="py-2">Allow HTTP traffic from anywhere</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-2">1002</td>
+                <td class="py-2">INGRESS</td>
+                <td class="py-2 text-[#34A853]">ALLOW</td>
+                <td class="py-2">TCP:22</td>
+                <td class="py-2">35.235.240.0/20</td>
+                <td class="py-2">Allow SSH via Identity-Aware Proxy</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-2">1003</td>
+                <td class="py-2">INGRESS</td>
+                <td class="py-2 text-[#34A853]">ALLOW</td>
+                <td class="py-2">ICMP</td>
+                <td class="py-2">10.128.0.0/20</td>
+                <td class="py-2">Allow health checks from monitoring</td>
               </tr>
               <tr>
                 <td class="py-2">65535</td>
@@ -501,6 +521,7 @@
                 <td class="py-2 text-[#EA4335]">DENY</td>
                 <td class="py-2">All</td>
                 <td class="py-2">0.0.0.0/0</td>
+                <td class="py-2">Default deny all ingress</td>
               </tr>
             </tbody>
           </table>
@@ -521,12 +542,32 @@
             <span class="col-span-2 text-white">External Application Load Balancer</span>
           </div>
           <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Project</span>
+            <span class="col-span-2 text-white">e-commerce-prod</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Network</span>
+            <span class="col-span-2 text-white">prod-vpc</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
             <span class="text-gray-500">Backend</span>
             <span class="col-span-2 text-white">GKE Instance Group (us-central1)</span>
           </div>
           <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
             <span class="text-gray-500">IP Address</span>
-            <span class="col-span-2 text-white">10.20.30.40</span>
+            <span id="service-details-ip" class="col-span-2 text-white">10.20.30.40</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">SSL Certificate</span>
+            <span class="col-span-2 text-white">demo-acme-com-cert</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">Cloud Armor Policy</span>
+            <span class="col-span-2 text-white">waf-policy-1</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
+            <span class="text-gray-500">CDN Status</span>
+            <span class="col-span-2 text-gcp-green font-bold">ENABLED</span>
           </div>
           <div class="grid grid-cols-3 border-b border-gray-800 pb-2">
             <span class="text-gray-500">Status</span>
@@ -538,7 +579,156 @@
           </div>
         </div>
       </div>
-    </main>
+    
+      
+      <!-- Troubleshooting Canvas Content -->
+      <div id="troubleshooting-canvas-content" class="hidden w-full max-w-4xl mx-auto fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-white">Troubleshooting Canvas</h1>
+          <button onclick="hideAllContent(); (document.getElementById('landing-content') || document.getElementById('inbox-content') || document.getElementById('sessions-content') || document.getElementById('artifacts-content')).classList.remove('hidden');" class="text-gray-500 hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        
+        <div class="flex flex-col gap-6">
+          
+          <!-- 1. Summary of Root Cause -->
+          <div class="bg-[#134A26]/30 border border-[#134A26] rounded-lg p-4">
+            <div class="text-[#81C995] font-bold text-sm mb-1">Root Cause Summary</div>
+            <p class="text-white text-sm">The 400% egress spike on subnet <code>frontend-europe-b</code> is due to a new retail promotional campaign that launched earlier than scheduled.</p>
+          </div>
+
+          <!-- 2. Traffic Breakdown & Timeline Charts -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Donut Chart -->
+            <div class="bg-[#20252B] rounded-lg p-6 border border-gray-700">
+              <div class="flex items-center gap-2 text-white mb-4">
+                <span class="material-symbols-outlined text-[#8AB4F8]">donut_large</span>
+                <h2 class="font-bold">Traffic Breakdown</h2>
+              </div>
+              <div class="flex flex-col items-center">
+                <!-- Mock Donut Chart (SVG) -->
+                <div class="h-40 w-40 bg-[#14161A] rounded-lg p-2 flex items-center justify-center relative">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8AB4F8"/>
+                        <stop offset="100%" stop-color="#1A73E8"/>
+                      </linearGradient>
+                      <linearGradient id="orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FBBC04"/>
+                        <stop offset="100%" stop-color="#E37400"/>
+                      </linearGradient>
+                    </defs>
+                    
+                    <!-- Background Circle -->
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#252A31" stroke-width="10"/>
+                    
+                    <!-- Campaign Segment (80%) -->
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="url(#blue-grad)" stroke-width="10"
+                            stroke-dasharray="201.06 251.32" stroke-dashoffset="0"
+                            transform="rotate(-90 50 50)"/>
+                    
+                    <!-- Anomalies Segment (20%) -->
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="url(#orange-grad)" stroke-width="10"
+                            stroke-dasharray="50.26 251.32" stroke-dashoffset="-201.06"
+                            transform="rotate(-90 50 50)"/>
+                    
+                    <!-- Center Text -->
+                    <text x="50" y="47" text-anchor="middle" fill="#FFF" font-size="12" font-weight="bold">80%</text>
+                    <text x="50" y="57" text-anchor="middle" fill="#8AB4F8" font-size="6" font-weight="bold">PROMO</text>
+                  </svg>
+                </div>
+                
+                <!-- Legend -->
+                <div class="flex justify-center gap-4 mt-4 text-xs text-gray-400">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-[#8AB4F8] rounded-full"></span>
+                    <span>Campaign</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-[#FBBC04] rounded-full"></span>
+                    <span>Anomalies</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Line Chart -->
+            <div class="bg-[#20252B] rounded-lg p-6 border border-gray-700">
+              <div class="flex items-center gap-2 text-white mb-4">
+                <span class="material-symbols-outlined text-[#8AB4F8]">show_chart</span>
+                <h2 class="font-bold">Traffic Timeline</h2>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="h-40 w-full bg-[#14161A] rounded-lg p-2 relative">
+                  <svg class="w-full h-full" viewBox="0 0 200 100">
+                    <!-- Grid lines -->
+                    <line x1="20" y1="80" x2="190" y2="80" stroke="#252A31" stroke-width="1"/>
+                    <line x1="20" y1="50" x2="190" y2="50" stroke="#252A31" stroke-width="1" stroke-dasharray="2 2"/>
+                    
+                    <!-- Line Chart Path -->
+                    <path d="M 20 70 L 50 72 L 80 70 L 100 20 L 130 30 L 160 25 L 190 20" 
+                          fill="none" stroke="#8AB4F8" stroke-width="2"/>
+                    
+                    <!-- Spike Highlight -->
+                    <circle cx="100" cy="20" r="4" fill="#FBBC04"/>
+                    
+                    <!-- Labels -->
+                    <text x="20" y="95" fill="#555" font-size="6">15:00</text>
+                    <text x="80" y="95" fill="#555" font-size="6">15:30</text>
+                    <text x="140" y="95" fill="#555" font-size="6">16:00</text>
+                    
+                    <text x="105" y="15" fill="#FBBC04" font-size="6" font-weight="bold">400% Spike</text>
+                  </svg>
+                </div>
+                
+                <!-- Legend -->
+                <div class="flex justify-center gap-4 mt-4 text-xs text-gray-400">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-[#8AB4F8] rounded-full"></span>
+                    <span>Egress Traffic</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-[#FBBC04] rounded-full"></span>
+                    <span>Spike Event</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Projected 24-hour Cost Impact -->
+          <div class="bg-[#2D3540] rounded-lg p-6 border border-gray-700">
+            <div class="flex items-center gap-2 text-white mb-2">
+              <span class="material-symbols-outlined text-[#FBBC04]">attach_money</span>
+              <h2 class="font-bold">Projected 24-Hour Cost Impact</h2>
+            </div>
+            <div class="text-3xl font-bold text-[#FBBC04] mb-1">$1,240.00</div>
+            <div class="text-sm text-[#81C995]">Potential Savings: $868.00/day (with 30% sampling)</div>
+          </div>
+
+          <!-- 4. Deployment Markers & Logs -->
+          <div class="bg-[#20252B] rounded-lg p-6 border border-gray-700">
+            <div class="flex items-center gap-2 text-white mb-4">
+              <span class="material-symbols-outlined text-[#8AB4F8]">list_alt</span>
+              <h2 class="font-bold">Deployment Markers & Logs</h2>
+            </div>
+            
+            <div class="bg-[#121417] rounded-lg p-4 font-mono text-xs text-gray-400 leading-relaxed space-y-2">
+              <div class="flex gap-4"><span class="text-gray-600 w-[150px] flex-shrink-0">[2026-04-27 15:30:00]</span><span class="text-[#8AB4F8] w-[80px] flex-shrink-0">System</span><span class="flex-1">Traffic surge detected on subnet <code>frontend-europe-b</code>.</span></div>
+              <div class="flex gap-4"><span class="text-gray-600 w-[150px] flex-shrink-0">[2026-04-27 15:32:00]</span><span class="text-[#8AB4F8] w-[80px] flex-shrink-0">System</span><span class="flex-1">Correlating with GKE pod logs...</span></div>
+              <div class="flex gap-4"><span class="text-gray-600 w-[150px] flex-shrink-0">[2026-04-27 15:35:00]</span><span class="text-[#34A853] w-[80px] flex-shrink-0">Match</span><span class="flex-1">Pods with tag <code>global_spring_retail_v2</code> driving traffic.</span></div>
+              <div class="flex gap-4"><span class="text-gray-600 w-[150px] flex-shrink-0">[2026-04-27 15:40:00]</span><span class="text-[#FBBC04] w-[80px] flex-shrink-0">Insight</span><span class="flex-1">Legitimate HTTPS requests from Europe & NA. Not a DDoS.</span></div>
+              <div class="border-t border-gray-800 my-2"></div>
+              <div class="flex gap-4"><span class="text-gray-600 w-[150px] flex-shrink-0">[2026-04-27 15:45:00]</span><span class="text-[#34A853] w-[80px] flex-shrink-0">Cause</span><span class="flex-1">Retail promotional campaign launched earlier than scheduled.</span></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+</main>
     <!-- Gemini Cloud Assist Panel -->
     <div id="gemini-panel" class="w-[400px] bg-[#0B0E14] border-l border-gray-800 flex flex-col hidden">
       <!-- Header -->
@@ -604,7 +794,7 @@
     
     <!-- Right Icons -->
     <div class="flex items-center gap-4 text-gray-400">
-      <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
+      <span id="mic-icon" class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
       <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
     </div>
   </div>
@@ -645,47 +835,7 @@
       setTimeout(applyCompletedState, 6000);
     }
   </script>
-    <!-- Gemini Cloud Assist Panel -->
-    <div id="gemini-panel" class="w-[400px] bg-[#0B0E14] border-l border-gray-800 flex flex-col hidden">
-      <!-- Header -->
-      <div class="p-6 border-b border-gray-800 flex justify-between items-center">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="material-symbols-outlined text-[#95ADE2]">psychology</span>
-          <span>Gemini Investigation</span>
-        </h2>
-        <button id="close-panel" class="text-gray-400 hover:text-white">
-          <span class="material-symbols-outlined">close</span>
-        </button>
-      </div>
-
-      <!-- Chat Content -->
-      <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-        <div id="gemini-messages-container" class="space-y-6">
-        </div>
-      </div>
-
-      <!-- Footer / Input -->
-      <div class="p-6 border-t border-gray-800 space-y-4">
-        <!-- Input Box -->
-        <div class="bg-[#1E293B] rounded-xl p-3 flex items-center gap-3">
-          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="gemini-grad-panel" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FF4B4B"/>
-                <stop offset="30%" stop-color="#FFD54F"/>
-                <stop offset="60%" stop-color="#4285F4"/>
-                <stop offset="100%" stop-color="#1A73E8"/>
-              </linearGradient>
-            </defs>
-            <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-panel)"/>
-          </svg>
-          <input type="text" placeholder="Enter a prompt for Gemini (: ⌘G)" class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder-gray-500">
-          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">fullscreen</span>
-          <span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white">mic</span>
-        </div>
-      </div>
-    </div>
-<script>
+    <script>
       window.showLogs = function() {
         hideAllContent();
         const logsContent = document.getElementById('logs-content');
@@ -712,7 +862,8 @@
           document.getElementById('artifacts-content'),
           document.getElementById('logs-content'),
           document.getElementById('firewall-content'),
-          document.getElementById('service-details-content')
+          document.getElementById('service-details-content'),
+          document.getElementById('troubleshooting-canvas-content')
         ];
         allContents.forEach(c => { if (c) c.classList.add('hidden'); });
       }
@@ -720,33 +871,23 @@
       const geminiInput = document.getElementById('gemini-input');
       const geminiPanel = document.getElementById('gemini-panel');
       
-      if (geminiInput) {
-        geminiInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            const inputValue = geminiInput.value.trim();
-            if (inputValue === '') return;
-            
-            const ipRegex = /\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b/;
-            const ipMatch = inputValue.match(ipRegex);
-            
-            if (ipMatch) {
-              const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'yesterday', 'today'];
-              let day = 'Last Tuesday'; // default
-              
-              const lowerInput = inputValue.toLowerCase();
-              for (const d of days) {
-                if (lowerInput.includes(d)) {
-                  day = d.charAt(0).toUpperCase() + d.slice(1);
-                  if (lowerInput.includes("last " + d)) {
-                    day = "Last " + day;
-                  } else if (lowerInput.includes("on " + d)) {
-                    day = "On " + day;
-                  }
-                  break;
-                }
-              }
-              
+      const submitPrompt = () => {
+        try {
+          const geminiInput = document.getElementById('gemini-input');
+          const geminiPanel = document.getElementById('gemini-panel');
+          
+          if (!geminiInput) {
+            alert('Element gemini-input not found!');
+            return;
+          }
+          
+          const inputValue = geminiInput.value.trim();
+          if (inputValue === '') return;
+          
+          const ipRegex = /\\b(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})\\b/;
+          const ipMatch = inputValue.match(ipRegex);
+          
+          if (inputValue.toLowerCase().includes("what was that subnet last used for")) {
               const messagesContainer = document.getElementById('gemini-messages-container');
               if (messagesContainer) {
                 messagesContainer.innerHTML = `
@@ -760,22 +901,21 @@
                     <!-- Gemini Response -->
                     <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
                       <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
-                      <div class="text-white text-sm">${day}, that IP was assigned to the <span class="font-bold">'frontend-prod'</span> service.</div>
+                      <div class="text-white text-xs space-y-2">
+                        <p>Searching records... It was last used by the project <code>q1-marketing-promo-test</code>, which was shut down on March 5th, 2025.</p>
+                        <p>The primary contact was <code>ex-demo-org@demo-org.com</code>.</p>
+                      </div>
                     </div>
 
                     <!-- Guiding Chips -->
                     <div class="flex flex-wrap gap-2 mt-2">
-                      <button onclick="showLogs()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
-                        <span class="material-symbols-outlined text-sm text-[#8AB4F8]">list_alt</span>
-                        View logs for frontend-prod
+                      <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                        <span class="material-symbols-outlined text-sm text-[#81C995]">check</span>
+                        Approve Deletion
                       </button>
-                      <button onclick="showFirewall()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
-                        <span class="material-symbols-outlined text-sm text-[#81C995]">security</span>
-                        Check firewall rules
-                      </button>
-                      <button onclick="showServiceDetails()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
-                        <span class="material-symbols-outlined text-sm text-[#FBBC04]">info</span>
-                        Service details
+                      <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                        <span class="material-symbols-outlined text-sm text-[#FBBC04]">close</span>
+                        Keep Subnet
                       </button>
                     </div>
                   </div>
@@ -786,10 +926,275 @@
                 geminiPanel.classList.remove('hidden');
               }
               geminiInput.value = '';
+            } else if (inputValue.toLowerCase().includes("analyze the egress spike on subnet frontend-europe-b")) {
+            const messagesContainer = document.getElementById('gemini-messages-container');
+            if (messagesContainer) {
+              messagesContainer.innerHTML = `
+                <div class="flex flex-col gap-4">
+                  <!-- User Query -->
+                  <div class="bg-[#20252B] rounded-lg p-4 border border-gray-700">
+                    <div class="text-xs text-gray-500 mb-1">User Query</div>
+                    <div class="text-white text-sm">"${inputValue}"</div>
+                  </div>
+                  
+                  <!-- Gemini Response -->
+                  <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
+                    <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
+                    <div class="text-white text-xs space-y-2">
+                      <p>I have analyzed the egress spike on subnet <code>frontend-europe-b</code>. The 400% surge is due to an early launch of a retail campaign.</p>
+                      
+                      <p>I have spawned a <strong>Troubleshooting Canvas</strong> with:</p>
+                      <p>• <strong class="text-[#8AB4F8]">Root Cause:</strong> Legitimate traffic from early campaign launch.</p>
+                      <p>• <strong class="text-[#8AB4F8]">Cost Impact:</strong> Projected $1,240.00/day.</p>
+                      <p>• <strong class="text-[#8AB4F8]">Recommendation:</strong> Increase sampling by 30% to save $868.00/day.</p>
+                      
+                      <p class="mt-2">Would you like me to apply this 30% sampling rate now, or review the simulation first?</p>
+                    </div>
+                  </div>
+
+                  <!-- Guiding Chips -->
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#81C995]">play_arrow</span>
+                      Apply 30% Sampling
+                    </button>
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#8AB4F8]">visibility</span>
+                      Review Dry-Run
+                    </button>
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#FBBC04]">close</span>
+                      Ignore
+                    </button>
+                  </div>
+                </div>
+              `;
+            }
+            
+            // Show canvas in central panel
+            hideAllContent();
+            const canvasContent = document.getElementById('troubleshooting-canvas-content');
+            if (canvasContent) canvasContent.classList.remove('hidden');
+            
+            if (geminiPanel) {
+              geminiPanel.classList.remove('hidden');
+            }
+            geminiInput.value = '';
+            
+            // Reset mic icon
+            const micIcon = document.getElementById('mic-icon');
+            if (micIcon) {
+              micIcon.textContent = 'mic';
+              micIcon.classList.remove('text-[#8AB4F8]');
+              micIcon.classList.add('hover:text-white');
+            }
+          } else if (inputValue.toLowerCase().includes("what was the cause of this sudden spike")) {
+            const messagesContainer = document.getElementById('gemini-messages-container');
+            if (messagesContainer) {
+              messagesContainer.innerHTML = `
+                <div class="flex flex-col gap-4">
+                  <!-- User Query -->
+                  <div class="bg-[#20252B] rounded-lg p-4 border border-gray-700">
+                    <div class="text-xs text-gray-500 mb-1">User Query</div>
+                    <div class="text-white text-sm">"${inputValue}"</div>
+                  </div>
+                  
+                  <!-- Gemini Response -->
+                  <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
+                    <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
+                    <div class="text-white text-sm">The spike is due to a new retail promotional campaign that launched early in Europe and North America.</div>
+                  </div>
+
+                  <!-- Guiding Chips -->
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#81C995]">play_arrow</span>
+                      Apply 30% Sampling
+                    </button>
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#8AB4F8]">visibility</span>
+                      Review Dry-Run
+                    </button>
+                    <button class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#FBBC04]">close</span>
+                      Ignore
+                    </button>
+                  </div>
+                </div>
+              `;
+            }
+            
+            if (geminiPanel) {
+              geminiPanel.classList.remove('hidden');
+            }
+            geminiInput.value = '';
+            
+            // Reset mic icon
+            const micIcon = document.getElementById('mic-icon');
+            if (micIcon) {
+              micIcon.textContent = 'mic';
+              micIcon.classList.remove('text-[#8AB4F8]');
+              micIcon.classList.add('hover:text-white');
+            }
+          } else if (ipMatch) {
+            const ip = ipMatch[1];
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'yesterday', 'today'];
+            let day = 'Last Tuesday'; // default
+            
+            const lowerInput = inputValue.toLowerCase();
+            for (const d of days) {
+              if (lowerInput.includes(d)) {
+                day = d.charAt(0).toUpperCase() + d.slice(1);
+                if (lowerInput.includes("last " + d)) {
+                  day = "Last " + day;
+                } else if (lowerInput.includes("on " + d)) {
+                  day = "On " + day;
+                }
+                break;
+              }
+            }
+            
+            // Update dynamic content in central panel
+            const logsTitle = document.querySelector('#logs-content h1');
+            if (logsTitle) logsTitle.textContent = `Logs for service using ${ip}`;
+            
+            const firewallTitle = document.querySelector('#firewall-content h1');
+            if (firewallTitle) firewallTitle.textContent = `Firewall Rules for ${ip}`;
+            
+            const serviceIpSpan = document.getElementById('service-details-ip');
+            if (serviceIpSpan) serviceIpSpan.textContent = ip;
+            
+            // Update logs content
+            const logsContainer = document.querySelector('#logs-content .bg-\[\#121417\]');
+            if (logsContainer) {
+              logsContainer.innerHTML = `
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:00:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+                  <span class="flex-1">Initialized investigation for IP ${ip}.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:01:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">Querying historical asset inventory for ${day}...</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:02:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">Synthesizing data from VPC flow logs and Cloud Asset API.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:03:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Match</span>
+                  <span class="flex-1">IP ${ip} was bound to forwarding rule 'frontend-prod-lb' on ${day}.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:04:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+                  <span class="flex-1">Maps 'frontend-prod-lb' to service <span class="text-[#8AB4F8] font-bold">'frontend-prod'</span>.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:05:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">AI-Native resolution complete. Answer generated for user.</span>
+                </div>
+                <div class="border-t border-gray-800 my-4"></div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:06:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Note</span>
+                  <span class="flex-1">This replaces manual correlation of BigQuery billing data and legacy asset spreadsheets.</span>
+                </div>
+              `;
+            }
+            
+            // Update chat panel
+            const messagesContainer = document.getElementById('gemini-messages-container');
+            if (messagesContainer) {
+              messagesContainer.innerHTML = `
+                <div class="flex flex-col gap-4">
+                  <!-- User Query -->
+                  <div class="bg-[#20252B] rounded-lg p-4 border border-gray-700">
+                    <div class="text-xs text-gray-500 mb-1">User Query</div>
+                    <div class="text-white text-sm">"${inputValue}"</div>
+                  </div>
+                  
+                  <!-- Gemini Response -->
+                  <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
+                    <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
+                    <div class="text-white text-sm">${day}, that IP was assigned to the <span class="font-bold">'frontend-prod'</span> service.</div>
+                  </div>
+
+                  <!-- Guiding Chips -->
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <button onclick="showLogs()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#8AB4F8]">list_alt</span>
+                      View logs for frontend-prod
+                    </button>
+                    <button onclick="showFirewall()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#81C995]">security</span>
+                      Check firewall rules
+                    </button>
+                    <button onclick="showServiceDetails()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700">
+                      <span class="material-symbols-outlined text-sm text-[#FBBC04]">info</span>
+                      Service details
+                    </button>
+                  </div>
+                </div>
+              `;
+            }
+            
+            if (geminiPanel) {
+              geminiPanel.classList.remove('hidden');
+            }
+            geminiInput.value = '';
+            
+            // Reset mic icon
+            const micIcon = document.getElementById('mic-icon');
+            if (micIcon) {
+              micIcon.textContent = 'mic';
+              micIcon.classList.remove('text-[#8AB4F8]');
+              micIcon.classList.add('hover:text-white');
+            }
+          } else {
+            alert('No IP address found in query!');
+          }
+        } catch (e) {
+          alert('Error in submitPrompt: ' + e.message);
+        }
+      };
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.target && e.target.id === 'gemini-input') {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitPrompt();
+          }
+        }
+      });
+
+      document.addEventListener('input', (e) => {
+        if (e.target && e.target.id === 'gemini-input') {
+          const micIcon = document.getElementById('mic-icon');
+          if (micIcon) {
+            if (e.target.value.trim() !== '') {
+              micIcon.textContent = 'send';
+              micIcon.classList.add('text-[#8AB4F8]');
+              micIcon.classList.remove('hover:text-white');
+            } else {
+              micIcon.textContent = 'mic';
+              micIcon.classList.remove('text-[#8AB4F8]');
+              micIcon.classList.add('hover:text-white');
             }
           }
-        });
-      }
+        }
+      });
+      
+      document.addEventListener('click', (e) => {
+        const micIcon = document.getElementById('mic-icon');
+        if (e.target === micIcon || e.target.closest('#mic-icon')) {
+          submitPrompt();
+        }
+      });
       
       const closePanelBtn = document.getElementById('close-panel');
       if (closePanelBtn) {
@@ -799,6 +1204,35 @@
           }
         });
       }
-</script>
-</body>
+
+      document.addEventListener('click', (e) => {
+        // Find if click was on or inside a button with "Apply 30% Sampling"
+        const button = e.target.closest('button');
+        if (button && button.textContent.includes("Apply 30% Sampling")) {
+          const messagesContainer = document.getElementById('gemini-messages-container');
+          if (messagesContainer) {
+            const successMsg = document.createElement('div');
+            successMsg.className = "bg-[#134A26]/30 border border-[#134A26] rounded-lg p-4 flex justify-between items-center mt-4";
+            successMsg.innerHTML = `
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#81C995]">check_circle</span>
+                <div>
+                  <div class="text-white font-bold text-sm">30% Sampling Applied!</div>
+                  <div class="text-gray-400 text-xs">Egress costs reduced on frontend-europe-b.</div>
+                </div>
+              </div>
+            `;
+            
+            // Remove the chips container
+            const chipsContainer = button.closest('.flex-wrap');
+            if (chipsContainer) {
+              chipsContainer.parentNode.insertBefore(successMsg, chipsContainer.nextSibling);
+              chipsContainer.remove();
+            } else {
+              messagesContainer.appendChild(successMsg);
+            }
+          }
+        }
+      });
+</script>\n</body>
 </html>

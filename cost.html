@@ -46,6 +46,7 @@
   
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
+      height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.05);
@@ -215,6 +216,23 @@
             </div>
           </div>
 
+          <!-- Card 4 (New Cost Case) -->
+          <div onclick="window.location.href='session_detail_idle_vm.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span>Agent: <span class="text-white font-medium">CostOptimizer</span></span>
+                <span>Resource: <span class="text-white font-medium">compute-engine</span></span>
+                <span>2 hours ago</span>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Resize Idle VM Instances</h4>
+              <p class="text-xs text-gray-400">Detected 3 VMs with &lt;5% CPU utilization. Downgrade to save $150/mo.</p>
+            </div>
+          </div>
+
           <!-- Card 2 -->
           <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
@@ -249,22 +267,7 @@
             </div>
           </div>
 
-          <!-- Card 4 (New Cost Case) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">CostOptimizer</span></span>
-                <span>Resource: <span class="text-white font-medium">compute-engine</span></span>
-                <span>2 hours ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Resize Idle VM Instances</h4>
-              <p class="text-xs text-gray-400">Detected 3 VMs with &lt;5% CPU utilization. Downgrade to save $150/mo.</p>
-            </div>
-          </div>
+
 
           <!-- Card 5 (New Cost Case) -->
           <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
@@ -286,7 +289,7 @@
         </div>
       </div>
     </main>
-  </div>
+
 
   <!-- Floating Gemini Bar -->
   <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
