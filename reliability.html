@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Cloud | Inbox</title>
+  <title>Google Cloud | Reliability Inbox</title>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -101,7 +101,6 @@
             <span class="material-symbols-outlined">chat</span>
             <span>Sessions</span>
           </a>
-
           <a href="artifacts.html" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:bg-dark-active hover:text-white rounded-lg transition-colors">
             <span class="material-symbols-outlined">article</span>
             <span>Artifacts</span>
@@ -118,7 +117,6 @@
           <li class="hover:text-white cursor-pointer truncate">Maintain &lt;100ms API latency globally</li>
         </ul>
       </div>
-
     </div>
 
     <!-- Main Content -->
@@ -137,13 +135,13 @@
 
       <div class="p-8 max-w-6xl mx-auto">
         <div class="flex items-center justify-between mb-6">
-          <h1 class="text-3xl font-bold text-white">Session Inbox</h1>
+          <h1 class="text-3xl font-bold text-white">Reliability Inbox</h1>
           <div class="text-sm text-gray-400">Approved today: 10</div>
         </div>
 
         <!-- Tabs -->
         <div class="flex items-center gap-8 border-b border-gray-800 mb-6 text-sm">
-          <a href="inbox.html?v=1" class="flex items-center gap-2 py-3 text-[#95ADE2] border-b-2 border-[#95ADE2] -mb-[2px]">
+          <a href="inbox.html?v=1" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>All</span>
             <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">7</span>
           </a>
@@ -151,7 +149,7 @@
             <span>Cost</span>
             <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">1</span>
           </a>
-          <a href="reliability.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
+          <a href="reliability.html" class="flex items-center gap-2 py-3 text-[#95ADE2] border-b-2 border-[#95ADE2] -mb-[2px]">
             <span>Reliability</span>
             <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">3</span>
           </a>
@@ -176,121 +174,9 @@
           </button>
         </div>
 
-        <!-- Session Trends Chart -->
-        <div id="session-trends-chart" class="bg-[#2A2F35] rounded-xl p-6 mb-6">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="text-white font-medium">Session Trends</h3>
-              <p class="text-xs text-gray-400">Sessions by status over the last week</p>
-            </div>
-            <div class="flex items-center gap-4 text-xs">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 bg-yellow-500 rounded-full"></span>
-                <span class="text-gray-300">Waiting</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 bg-blue-400 rounded-full"></span>
-                <span class="text-gray-300">In-progress</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
-                <span class="text-gray-300">Completed</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- SVG Chart -->
-          <div class="h-40 relative">
-            <svg class="w-full h-full" viewBox="0 0 800 160" preserveAspectRatio="none">
-              <!-- X axis grid lines -->
-              <line x1="0" y1="140" x2="800" y2="140" stroke="#404852" stroke-dasharray="4 4" />
-              
-              <!-- Step chart areas/lines -->
-              <!-- Completed (Green) -->
-              <path d="M 0,140 L 100,140 L 100,120 L 200,120 L 200,120 L 300,120 L 300,110 L 400,110 L 400,100 L 500,100 L 500,80 L 600,80 L 600,80 L 700,80 L 700,80 L 800,80 L 800,160 L 0,160 Z" fill="#34a85320" />
-              <path d="M 0,140 L 100,140 L 100,120 L 200,120 L 200,120 L 300,120 L 300,110 L 400,110 L 400,100 L 500,100 L 500,80 L 600,80 L 600,80 L 700,80 L 700,80 L 800,80" stroke="#34a853" stroke-width="2" fill="none" />
-
-              <!-- In-progress (Blue) -->
-              <path d="M 0,120 L 100,120 L 100,100 L 200,100 L 200,100 L 300,100 L 300,90 L 400,90 L 400,70 L 500,70 L 500,60 L 600,60 L 600,60 L 700,60 L 700,60 L 800,60 L 800,160 L 0,160 Z" fill="#4285f420" />
-              <path d="M 0,120 L 100,120 L 100,100 L 200,100 L 200,100 L 300,100 L 300,90 L 400,90 L 400,70 L 500,70 L 500,60 L 600,60 L 600,60 L 700,60 L 700,60 L 800,60" stroke="#4285f4" stroke-width="2" fill="none" />
-
-              <!-- Waiting (Yellow) -->
-              <path d="M 0,90 L 100,90 L 100,80 L 200,80 L 200,80 L 300,80 L 300,60 L 400,60 L 400,50 L 500,50 L 500,40 L 600,40 L 600,40 L 700,40 L 700,40 L 800,40 L 800,160 L 0,160 Z" fill="#fbbc0420" />
-              <path d="M 0,90 L 100,90 L 100,80 L 200,80 L 200,80 L 300,80 L 300,60 L 400,60 L 400,50 L 500,50 L 500,40 L 600,40 L 600,40 L 700,40 L 700,40 L 800,40" stroke="#fbbc04" stroke-width="2" fill="none" />
-            </svg>
-            
-            <!-- Labels -->
-            <div class="absolute bottom-0 left-0 w-full flex justify-between text-xs text-gray-500 px-2">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-              <span>Sun</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- List Header -->
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-bold text-white">Need input</h2>
-          <span class="text-xs text-gray-500">7 sessions</span>
-        </div>
-
         <!-- Cards List -->
         <div class="space-y-4">
-          <!-- Card 1 -->
-          <div onclick="window.location.href='session_detail_cost.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">CostOptimizer</span></span>
-                <span>Resource: <span class="text-white font-medium">application-delivery</span></span>
-                <span>Just now</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Detected 10% potential savings on application delivery SKUs</h4>
-              <p class="text-xs text-gray-400">Project: e-commerce-prod</p>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">LogAnalyzer</span></span>
-                <span>Resource: <span class="text-white font-medium">payments-service</span></span>
-                <span>5 mins ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Investigate Error Spike</h4>
-              <p class="text-xs text-gray-400">Analyzing Cloud Logging for 5xx errors in payments service.</p>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">SecurityAgent</span></span>
-                <span>Resource: <span class="text-white font-medium">prod-lb</span></span>
-                <span>40 mins ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Rotate SSL Certificates</h4>
-              <p class="text-xs text-gray-400">Renewing expiring SSL certificates for load balancer.</p>
-            </div>
-          </div>
-
+          
           <!-- Card 4 (Ch 2 UC 1) -->
           <div onclick="window.location.href='session_detail_reliability.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
@@ -308,20 +194,20 @@
             </div>
           </div>
 
-          <!-- Card 5 (Ch 2 UC 2) -->
+          <!-- Card 2 (Original Card 2) -->
           <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
                 <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">CloudArmorAgent</span></span>
-                <span>Resource: <span class="text-white font-medium">waf-policy-1</span></span>
-                <span>30 mins ago</span>
+                <span>Agent: <span class="text-white font-medium">LogAnalyzer</span></span>
+                <span>Resource: <span class="text-white font-medium">payments-service</span></span>
+                <span>5 mins ago</span>
               </div>
               <span class="material-symbols-outlined text-gray-600">chevron_right</span>
             </div>
             <div>
-              <h4 class="text-white font-bold mb-1">Adaptive Threat Prevention</h4>
-              <p class="text-xs text-gray-400">Detected low-and-slow attack pattern. Zero-impact block rule prepared. Click to enforce.</p>
+              <h4 class="text-white font-bold mb-1">Investigate Error Spike</h4>
+              <p class="text-xs text-gray-400">Analyzing Cloud Logging for 5xx errors in payments service.</p>
             </div>
           </div>
 
@@ -342,30 +228,13 @@
             </div>
           </div>
 
-          <!-- Card 7 (Ch 3 UC 1) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">SentinelAgent</span></span>
-                <span>Resource: <span class="text-white font-medium">vpc-sprawl</span></span>
-                <span>2 hours ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Continuous Compliance Scan</h4>
-              <p class="text-xs text-gray-400">Idle Cloud NAT gateways and unprotected services detected. Posture report and bulk plan ready.</p>
-            </div>
-          </div>
         </div>
       </div>
     </main>
   </div>
 
-  <!-- Floating Gemini Bar (Fixed at bottom) -->
+  <!-- Floating Gemini Bar -->
   <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0E14] px-5 py-[17px] rounded-2xl border border-[#2F3542] shadow-2xl flex items-center justify-center gap-4 w-full max-w-[492px]">
-    <!-- Colored Sparkle Icon -->
     <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gemini-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -377,14 +246,8 @@
       </defs>
       <path d="M47.84,23.91c-3.2,0-6.16-.61-8.98-1.8-2.82-1.23-5.3-2.92-7.38-5-2.08-2.08-3.77-4.57-5-7.38-1.2-2.82-1.8-5.78-1.8-8.98,0-.05-.04-.09-.09-.09s-.09.04-.09.09c0,3.2-.63,6.16-1.86,8.98-1.2,2.82-2.86,5.3-4.94,7.38-2.08,2.08-4.57,3.77-7.38,5-2.82,1.2-5.78,1.8-8.98,1.8-.05,0-.09.04-.09.09s.04.09.09.09c3.2,0,6.16.63,8.98,1.86,2.82,1.2,5.3,2.86,7.38,4.94,2.08,2.08,3.75,4.57,4.94,7.39,1.23,2.82,1.86,5.77,1.86,8.98,0,.05.04.09.09.09s.09-.04.09-.09c0-3.2.61-6.16,1.8-8.98,1.23-2.82,2.92-5.3,5-7.39,2.08-2.08,4.57-3.75,7.38-4.94,2.82-1.23,5.77-1.86,8.98-1.86.05,0,.09-.04.09-.09s-.04-.09-.09-.09Z" fill="url(#gemini-grad-2)"/>
     </svg>
-    
-    <!-- Focus/Scan Icon -->
     <span class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-white">center_focus_weak</span>
-    
-    <!-- Input -->
     <input id="gemini-input" type="text" placeholder="Enter a prompt for Gemini (⌘G) • @m" class="w-[280px] bg-transparent border-none focus:outline-none text-white text-sm placeholder-gray-500" />
-    
-    <!-- Right Icons -->
     <div class="flex items-center gap-4 text-gray-400">
       <span class="material-symbols-outlined cursor-pointer hover:text-white">mic</span>
       <span class="material-symbols-outlined cursor-pointer hover:text-white">dock</span>
@@ -392,30 +255,6 @@
   </div>
 
   <script>
-    const tabAll = document.getElementById('tab-all');
-    const tabCost = document.getElementById('tab-cost');
-    const chart = document.getElementById('session-trends-chart');
-
-    tabAll.addEventListener('click', () => {
-      tabAll.classList.add('text-[#95ADE2]', 'border-[#95ADE2]');
-      tabAll.classList.remove('text-gray-400', 'border-transparent');
-      
-      tabCost.classList.remove('text-[#95ADE2]', 'border-[#95ADE2]');
-      tabCost.classList.add('text-gray-400', 'border-transparent');
-      
-      chart.classList.remove('hidden');
-    });
-
-    tabCost.addEventListener('click', () => {
-      tabCost.classList.add('text-[#95ADE2]', 'border-[#95ADE2]');
-      tabCost.classList.remove('text-gray-400', 'border-transparent');
-      
-      tabAll.classList.remove('text-[#95ADE2]', 'border-[#95ADE2]');
-      tabAll.classList.add('text-gray-400', 'border-transparent');
-      
-      chart.classList.add('hidden');
-    });
-
     // --- Sub-tab Filtering and Status Handling ---
     
     // 1. Add default classes to cards
@@ -466,7 +305,6 @@
         });
         if (listHeaderTitle) listHeaderTitle.textContent = 'Need input';
         
-        // Update tab styles (simple toggle)
         needInputTab.classList.add('text-[#fbbc04]');
         needInputTab.classList.remove('text-gray-500');
         if (completedTab) {
@@ -487,7 +325,6 @@
         });
         if (listHeaderTitle) listHeaderTitle.textContent = 'Completed';
         
-        // Update tab styles
         completedTab.classList.add('text-[#34a853]');
         completedTab.classList.remove('text-gray-500');
         if (needInputTab) {
@@ -497,7 +334,5 @@
       });
     }
   </script>
-  </div>
-
 </body>
 </html>

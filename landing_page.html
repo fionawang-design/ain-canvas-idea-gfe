@@ -1185,40 +1185,79 @@
           
           <p>Choose a focus-based preset to refine your blueprint:</p>
           
-          <div class="bg-[#1E293B] p-4 rounded-xl space-y-4 border border-gray-700">
-            <h6 class="font-bold text-gcp-blue text-sm">Recommended GFE Bundle Presets</h6>
-            
+          <div class="space-y-4">
             <!-- Option 1 -->
-            <div class="flex items-start gap-2">
-              <input type="radio" id="option1" name="gfe-preset" class="mt-1" checked>
-              <label for="option1" class="text-xs">
-                <span class="font-bold text-white">Option 1: Balanced Operational Simplicity</span><br>
-                <span class="text-gray-400"><span class="font-bold">Focus:</span> A minimalist "set and forget" setup using Google-recommended best practices.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Configuration:</span> Uses standard GFE settings to provide 10% TCO savings while reducing decision fatigue.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Best For:</span> General-purpose apps migrating from AWS that need a secure, high-performance front end without complex manual tuning.</span>
-              </label>
+            <div class="bg-[#252A31] p-4 rounded-xl border border-gray-700 flex items-start gap-3 cursor-pointer hover:border-gray-600 transition-colors">
+              <div class="flex items-center h-5">
+                <input type="radio" id="option1" name="gfe-preset" class="w-4 h-4 text-gcp-blue border-gray-600 focus:ring-gcp-blue bg-transparent" checked>
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div class="flex items-center gap-2">
+                    <!-- SVG Lock Icon -->
+                    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 10V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V10" stroke="#4285F4" stroke-width="2" stroke-linecap="round"/>
+                      <rect x="5" y="10" width="14" height="11" rx="2" fill="#FFB300"/>
+                    </svg>
+                    <label for="option1" class="font-bold text-white text-sm cursor-pointer">Option 1: Balanced Operational Simplicity</label>
+                  </div>
+                  <span class="bg-gcp-blue/20 text-gcp-blue px-2 py-0.5 rounded-full text-xs font-bold">Recommended</span>
+                </div>
+                <div class="mt-2 text-xs text-gray-400 space-y-1">
+                  <p><span class="font-bold text-white">Focus:</span> A minimalist "set and forget" setup using Google-recommended best practices.</p>
+                  <p><span class="font-bold text-white">Configuration:</span> Uses standard GFE settings to provide 10% TCO savings while reducing decision fatigue.</p>
+                  <p><span class="font-bold text-white">Best For:</span> General-purpose apps migrating from AWS that need a secure, high-performance front end without complex manual tuning.</p>
+                </div>
+              </div>
             </div>
             
             <!-- Option 2 -->
-            <div class="flex items-start gap-2">
-              <input type="radio" id="option2" name="gfe-preset" class="mt-1">
-              <label for="option2" class="text-xs">
-                <span class="font-bold text-white">Option 2: Maximum Security (Cloud Armor Focused)</span><br>
-                <span class="text-gray-400"><span class="font-bold">Focus:</span> Prioritizes advanced threat protection and compliance.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Configuration:</span> Immediately applies Enterprise-tier Cloud Armor templates with pre-configured SQLi and XSS mitigation.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Best For:</span> Applications requiring strict compliance (like PCI-DSS) or those under active threat, mimicking a full AWS Shield Advanced setup.</span>
-              </label>
+            <div class="bg-[#252A31] p-4 rounded-xl border border-gray-700 flex items-start gap-3 cursor-pointer hover:border-gray-600 transition-colors">
+              <div class="flex items-center h-5">
+                <input type="radio" id="option2" name="gfe-preset" class="w-4 h-4 text-gcp-blue border-gray-600 focus:ring-gcp-blue bg-transparent">
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div class="flex items-center gap-2">
+                    <!-- SVG Shield Icon -->
+                    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2L4 5V11C4 16.55 7.42 21.74 12 23C16.58 21.74 20 16.55 20 11V5L12 2Z" fill="#FFB300"/>
+                      <path d="M12 2L4 5V11C4 16.55 7.42 21.74 12 23C16.58 21.74 20 16.55 20 11V5L12 2Z" stroke="#4285F4" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    <label for="option2" class="font-bold text-white text-sm cursor-pointer">Option 2: Maximum Security (Cloud Armor Focused)</label>
+                  </div>
+                </div>
+                <div class="mt-2 text-xs text-gray-400 space-y-1">
+                  <p><span class="font-bold text-white">Focus:</span> Prioritizes advanced threat protection and compliance.</p>
+                  <p><span class="font-bold text-white">Configuration:</span> Immediately applies Enterprise-tier Cloud Armor templates with pre-configured SQLi and XSS mitigation.</p>
+                  <p><span class="font-bold text-white">Best For:</span> Applications requiring strict compliance (like PCI-DSS) or those under active threat, mimicking a full AWS Shield Advanced setup.</p>
+                </div>
+              </div>
             </div>
             
             <!-- Option 3 -->
-            <div class="flex items-start gap-2">
-              <input type="radio" id="option3" name="gfe-preset" class="mt-1">
-              <label for="option3" class="text-xs">
-                <span class="font-bold text-white">Option 3: Global Performance (CDN Optimized)</span><br>
-                <span class="text-gray-400"><span class="font-bold">Focus:</span> Prioritizes static and dynamic content offloading to reduce global latency.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Configuration:</span> Automatically leverages Cloud CDN with aggressive edge caching and compression.</span><br>
-                <span class="text-gray-400"><span class="font-bold">Best For:</span> Media-heavy sites or global APIs where delivery speed is the primary driver.</span>
-              </label>
+            <div class="bg-[#252A31] p-4 rounded-xl border border-gray-700 flex items-start gap-3 cursor-pointer hover:border-gray-600 transition-colors">
+              <div class="flex items-center h-5">
+                <input type="radio" id="option3" name="gfe-preset" class="w-4 h-4 text-gcp-blue border-gray-600 focus:ring-gcp-blue bg-transparent">
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div class="flex items-center gap-2">
+                    <!-- SVG Globe Icon -->
+                    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" fill="#4285F4"/>
+                      <path d="M12 2V22M2 12H22" stroke="#FFB300" stroke-width="1.5"/>
+                      <path d="M12 2C14.5 5 16 8.5 16 12C16 15.5 14.5 19 12 22C9.5 19 8 15.5 8 12C8 8.5 9.5 5 12 2Z" stroke="#FFB300" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    <label for="option3" class="font-bold text-white text-sm cursor-pointer">Option 3: Global Performance (CDN Optimized)</label>
+                  </div>
+                </div>
+                <div class="mt-2 text-xs text-gray-400 space-y-1">
+                  <p><span class="font-bold text-white">Focus:</span> Prioritizes static and dynamic content offloading to reduce global latency.</p>
+                  <p><span class="font-bold text-white">Configuration:</span> Automatically leverages Cloud CDN with aggressive edge caching and compression.</p>
+                  <p><span class="font-bold text-white">Best For:</span> Media-heavy sites or global APIs where delivery speed is the primary driver.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
