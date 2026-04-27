@@ -168,7 +168,6 @@
             <button class="text-[#95ADE2]">In-progress</button>
             <button class="text-gray-300">Not started</button>
             <button class="text-gray-600">Terminated</button>
-            <button class="text-[#34a853]">Completed</button>
           </div>
           <button class="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
             <span class="material-symbols-outlined text-lg">filter_list</span>
@@ -258,7 +257,7 @@
           </div>
 
           <!-- Card 2 -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='troubleshooting_canvas.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
                 <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
@@ -309,7 +308,7 @@
           </div>
 
           <!-- Card 5 (Ch 2 UC 2) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='session_detail_security.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
                 <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
@@ -326,10 +325,10 @@
           </div>
 
           <!-- Card 6 (Ch 2 UC 3) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='session_detail_failover.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
-                <span class="bg-blue-500/10 text-blue-500 font-bold px-2 py-0.5 rounded">Info</span>
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
                 <span>Agent: <span class="text-white font-medium">NetworkHealthAgent</span></span>
                 <span>Resource: <span class="text-white font-medium">us-east1-path</span></span>
                 <span>1 hour ago</span>
@@ -343,7 +342,7 @@
           </div>
 
           <!-- Card 7 (Ch 3 UC 1) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='session_detail_compliance.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
                 <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
@@ -432,25 +431,7 @@
       if (tab.textContent.trim() === 'Completed') completedTab = tab;
     });
 
-    // 3. Check for IPAM approval
-    const ipamApproved = localStorage.getItem('ipam_approved') === 'true';
-    
-    if (ipamApproved) {
-      const ipamStatus = document.getElementById('ipam-status');
-      if (ipamStatus) {
-        ipamStatus.textContent = 'Completed';
-        ipamStatus.classList.remove('bg-yellow-500/10', 'text-yellow-500');
-        ipamStatus.classList.add('bg-gcp-green/10', 'text-gcp-green');
-        
-        // Find the IPAM card container
-        const ipamCard = ipamStatus.closest('div.cursor-pointer');
-        if (ipamCard) {
-          ipamCard.classList.remove('status-need-input');
-          ipamCard.classList.add('status-completed');
-          ipamCard.classList.add('hidden'); // Hide by default in "Need input" view
-        }
-      }
-    }
+    // 3. Check for IPAM approval (disabled)
 
     // 4. Add click handlers for sub-tabs
     const listHeaderTitle = document.querySelector('h2.text-lg.font-bold.text-white');
@@ -469,30 +450,37 @@
         // Update tab styles (simple toggle)
         needInputTab.classList.add('text-[#fbbc04]');
         needInputTab.classList.remove('text-gray-500');
-        if (completedTab) {
-          completedTab.classList.remove('text-[#34a853]');
-          completedTab.classList.add('text-gray-500');
-        }
       });
     }
 
-    if (completedTab) {
-      completedTab.addEventListener('click', () => {
-        cards.forEach(card => {
-          if (card.classList.contains('status-completed')) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
+  </script>
+  
+  <!-- Gemini Monoblock Response (Use Case 1) -->
+  <div id="gemini-response" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#1C1F24] border border-[#2F3542] rounded-lg p-4 shadow-2xl max-w-md text-sm text-white flex flex-col gap-2 z-50">
+    <div class="flex items-center gap-2 text-xs text-gray-500">
+      <span class="material-symbols-outlined text-sm">smart_toy</span>
+      <span>Gemini</span>
+    </div>
+    <div id="response-text"></div>
+  </div>
+
+  <script>
+    const geminiInput = document.getElementById('gemini-input');
+    const geminiResponse = document.getElementById('gemini-response');
+    const responseText = document.getElementById('response-text');
+
+    if (geminiInput) {
+      geminiInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const query = geminiInput.value.trim();
+          if (query === "Which service used 10.20.30.40 last Tuesday?") {
+            responseText.textContent = "Last Tuesday, that IP was assigned to the 'frontend-prod' service.";
+            geminiResponse.classList.remove('hidden');
+            geminiInput.value = '';
+            setTimeout(() => {
+               geminiResponse.classList.add('hidden');
+            }, 5000); // Hide after 5 seconds
           }
-        });
-        if (listHeaderTitle) listHeaderTitle.textContent = 'Completed';
-        
-        // Update tab styles
-        completedTab.classList.add('text-[#34a853]');
-        completedTab.classList.remove('text-gray-500');
-        if (needInputTab) {
-          needInputTab.classList.remove('text-[#fbbc04]');
-          needInputTab.classList.add('text-gray-500');
         }
       });
     }

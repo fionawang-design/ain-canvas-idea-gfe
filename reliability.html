@@ -195,7 +195,7 @@
           </div>
 
           <!-- Card 2 (Original Card 2) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='troubleshooting_canvas.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
                 <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
@@ -212,10 +212,10 @@
           </div>
 
           <!-- Card 6 (Ch 2 UC 3) -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+          <div onclick="window.location.href='session_detail_failover.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
-                <span class="bg-blue-500/10 text-blue-500 font-bold px-2 py-0.5 rounded">Info</span>
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
                 <span>Agent: <span class="text-white font-medium">NetworkHealthAgent</span></span>
                 <span>Resource: <span class="text-white font-medium">us-east1-path</span></span>
                 <span>1 hour ago</span>
@@ -271,25 +271,7 @@
       if (tab.textContent.trim() === 'Completed') completedTab = tab;
     });
 
-    // 3. Check for IPAM approval
-    const ipamApproved = localStorage.getItem('ipam_approved') === 'true';
-    
-    if (ipamApproved) {
-      const ipamStatus = document.getElementById('ipam-status');
-      if (ipamStatus) {
-        ipamStatus.textContent = 'Completed';
-        ipamStatus.classList.remove('bg-yellow-500/10', 'text-yellow-500');
-        ipamStatus.classList.add('bg-gcp-green/10', 'text-gcp-green');
-        
-        // Find the IPAM card container
-        const ipamCard = ipamStatus.closest('div.cursor-pointer');
-        if (ipamCard) {
-          ipamCard.classList.remove('status-need-input');
-          ipamCard.classList.add('status-completed');
-          ipamCard.classList.add('hidden'); // Hide by default in "Need input" view
-        }
-      }
-    }
+    // 3. Check for IPAM approval (disabled)
 
     // 4. Add click handlers for sub-tabs
     const listHeaderTitle = document.querySelector('h2.text-lg.font-bold.text-white');
