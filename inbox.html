@@ -416,6 +416,7 @@
             </div>
           </div>
         </div>
+      </div>
       <!-- Logs Content -->
       <div id="logs-content" class="hidden w-full max-w-6xl fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
         <div class="flex justify-between items-center mb-6">
@@ -917,8 +918,106 @@
           
           const inputValue = geminiInput.value.trim();
           if (inputValue === '') return;
+
+          const specificQueryRegex = /which service used (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) last tuesday/i;
+          const specificMatch = inputValue.match(specificQueryRegex);
           
-          const ipRegex = /\\b(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})\\b/;
+          if (specificMatch) {
+            const ip = specificMatch[1];
+            
+            // Update content dynamically
+            const logsTitle = document.querySelector('#logs-content h1');
+            if (logsTitle) logsTitle.textContent = `Logs for service using ${ip}`;
+            
+            const firewallTitle = document.querySelector('#firewall-content h1');
+            if (firewallTitle) firewallTitle.textContent = `Firewall Rules for ${ip}`;
+            
+            const serviceIpSpan = document.getElementById('service-details-ip');
+            if (serviceIpSpan) serviceIpSpan.textContent = ip;
+            
+            const logsContainer = document.querySelector('#logs-content .bg-\\[\\#121417\\]');
+            if (logsContainer) {
+              logsContainer.innerHTML = `
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:00:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+                  <span class="flex-1">Initialized investigation for IP ${ip}.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:01:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">Querying historical asset inventory for Last Tuesday...</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:02:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">Synthesizing data from VPC flow logs and Cloud Asset API.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:03:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Match</span>
+                  <span class="flex-1">IP ${ip} was bound to forwarding rule 'frontend-prod-lb' on Last Tuesday.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:04:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">IPAM Agent</span>
+                  <span class="flex-1">Maps 'frontend-prod-lb' to service <span class="text-[#8AB4F8] font-bold">'frontend-prod'</span>.</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:05:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0">System</span>
+                  <span class="flex-1">AI-Native resolution complete. Answer generated for user.</span>
+                </div>
+                <div class="border-t border-gray-800 my-4"></div>
+                <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed">
+                  <span class="text-gray-600 w-[180px] flex-shrink-0">[2026-04-27 16:06:00]</span>
+                  <span class="text-gray-400 w-[100px] flex-shrink-0 font-bold">Note</span>
+                  <span class="flex-1">This replaces manual correlation of BigQuery billing data and legacy asset spreadsheets.</span>
+                </div>
+              `;
+            }
+
+            if (geminiPanel) geminiPanel.classList.remove('hidden');
+            
+            const messagesContainer = document.getElementById('gemini-messages-container');
+            if (messagesContainer) {
+              messagesContainer.innerHTML = `
+                <div class="flex flex-col gap-4">
+                  <!-- User Query -->
+                  <div class="bg-[#20252B] rounded-lg p-4 border border-gray-700">
+                    <div class="text-xs text-gray-500 mb-1">User Query</div>
+                    <div class="text-white text-sm">"${inputValue}"</div>
+                  </div>
+                  
+                  <!-- Gemini Response -->
+                  <div class="bg-[#134A26]/30 rounded-lg p-4 border border-[#134A26]">
+                    <div class="text-xs text-[#81C995] mb-1">Gemini Response</div>
+                    <div class="text-white text-sm">Last Tuesday, that IP was assigned to the <span class="font-bold">'frontend-prod'</span> service.</div>
+                  </div>
+
+                  <!-- Guiding Chips -->
+                  <div class="flex flex-col gap-2 mt-2">
+                    <button onclick="showLogs()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700 w-fit">
+                      <span class="material-symbols-outlined text-sm text-[#8AB4F8]">list_alt</span>
+                      View logs for frontend-prod
+                    </button>
+                    <button onclick="showFirewall()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700 w-fit">
+                      <span class="material-symbols-outlined text-sm text-[#81C995]">security</span>
+                      Check firewall rules
+                    </button>
+                    <button onclick="showServiceDetails()" class="bg-[#252A31] border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-gray-700 w-fit">
+                      <span class="material-symbols-outlined text-sm text-[#FBBC04]">info</span>
+                      Service details
+                    </button>
+                  </div>
+                </div>
+              `;
+            }
+            geminiInput.value = '';
+            return;
+          }
+          
+          const ipRegex = /\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b/;
           const ipMatch = inputValue.match(ipRegex);
           
           if (inputValue.toLowerCase().includes("what was that subnet last used for")) {
@@ -1099,7 +1198,7 @@
             if (serviceIpSpan) serviceIpSpan.textContent = ip;
             
             // Update logs content
-            const logsContainer = document.querySelector('#logs-content .bg-\[\#121417\]');
+            const logsContainer = document.querySelector('#logs-content .bg-\\[\\#121417\\]');
             if (logsContainer) {
               logsContainer.innerHTML = `
                 <div class="flex gap-4 text-xs font-mono text-gray-400 leading-relaxed mb-2">
