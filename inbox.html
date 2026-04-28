@@ -161,11 +161,11 @@
         <div class="flex items-center gap-8 border-b border-gray-800 mb-6 text-sm">
           <a href="inbox.html?v=1" class="flex items-center gap-2 py-3 text-[#95ADE2] border-b-2 border-[#95ADE2] -mb-[2px]">
             <span>All</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">7</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">10</span>
           </a>
           <a href="cost.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>Cost</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">1</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">4</span>
           </a>
           <a href="reliability.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>Reliability</span>
@@ -250,16 +250,16 @@
         <!-- List Header -->
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-lg font-bold text-white">Need input</h2>
-          <span class="text-xs text-gray-500">7 sessions</span>
+          <span class="text-xs text-gray-500">10 sessions</span>
         </div>
 
         <!-- Cards List -->
         <div class="space-y-4">
-          <!-- Card 0: IP Waste Auditing -->
-          <div id="card-waste-auditing" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-[#FBBC04]/50 hover:border-gray-700">
+          <!-- Card 0: IP Waste Auditing (Cost) -->
+          <div id="card-waste-auditing" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
-                <span class="bg-[#FBBC04]/10 text-[#FBBC04] font-bold px-2 py-0.5 rounded">High Priority</span>
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
                 <span>Agent: <span class="text-white font-medium">IPAM Agent</span></span>
                 <span>Resource: <span class="text-white font-medium">subnet-q1-dev-test</span></span>
                 <span>Just now</span>
@@ -271,8 +271,7 @@
               <p class="text-xs text-gray-400">Reclaiming this range would free up 254 IP addresses and save ~$1,828.80/mo.</p>
             </div>
           </div>
-
-          <!-- Card 1 -->
+          <!-- Card 1 (Cost) -->
           <div onclick="window.location.href='session_detail_cost.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -288,8 +287,7 @@
               <p class="text-xs text-gray-400">Project: e-commerce-prod</p>
             </div>
           </div>
-
-          <!-- Card 2 -->
+          <!-- Card 2 (Reliability) -->
           <div onclick="window.location.href='troubleshooting_canvas.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -305,8 +303,7 @@
               <p class="text-xs text-gray-400">Analyzing Cloud Logging for 5xx errors in payments service.</p>
             </div>
           </div>
-
-          <!-- Card 3 -->
+          <!-- Card 3 (Security) -->
           <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -322,12 +319,11 @@
               <p class="text-xs text-gray-400">Renewing expiring SSL certificates for load balancer.</p>
             </div>
           </div>
-
-          <!-- Card 4 (Ch 2 UC 1) -->
+          <!-- Card 4 (Reliability) -->
           <div onclick="window.location.href='session_detail_reliability.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
-                <span id="ipam-status" class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
                 <span>Agent: <span class="text-white font-medium">IPAMAgent</span></span>
                 <span>Resource: <span class="text-white font-medium">gke-subnet-1</span></span>
                 <span>5 mins ago</span>
@@ -339,8 +335,7 @@
               <p class="text-xs text-gray-400">Subnetwork at risk of IP exhaustion in 48h. Approve range expansion to prevent downtime.</p>
             </div>
           </div>
-
-          <!-- Card 5 (Ch 2 UC 2) -->
+          <!-- Card 5 (Security) -->
           <div onclick="window.location.href='session_detail_security.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -356,8 +351,7 @@
               <p class="text-xs text-gray-400">Detected low-and-slow attack pattern. Zero-impact block rule prepared. Click to enforce.</p>
             </div>
           </div>
-
-          <!-- Card 6 (Ch 2 UC 3) -->
+          <!-- Card 6 (Reliability) -->
           <div onclick="window.location.href='session_detail_failover.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -373,8 +367,7 @@
               <p class="text-xs text-gray-400">Detected 40% degradation. Traffic transitioned to secure secondary lanes to maintain SLO.</p>
             </div>
           </div>
-
-          <!-- Card 7 (Ch 3 UC 1) -->
+          <!-- Card 7 (Security) -->
           <div onclick="window.location.href='session_detail_compliance.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -390,8 +383,39 @@
               <p class="text-xs text-gray-400">Idle Cloud NAT gateways and unprotected services detected. Posture report and bulk plan ready.</p>
             </div>
           </div>
+          <!-- Card 8 (Cost) -->
+          <div onclick="window.location.href='session_detail_idle_vm.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span>Agent: <span class="text-white font-medium">CostOptimizer</span></span>
+                <span>Resource: <span class="text-white font-medium">compute-engine</span></span>
+                <span>2 hours ago</span>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Resize Idle VM Instances</h4>
+              <p class="text-xs text-gray-400">Detected 3 VMs with &lt;5% CPU utilization. Downgrade to save $150/mo.</p>
+            </div>
+          </div>
+          <!-- Card 9 (Cost) -->
+          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span>Agent: <span class="text-white font-medium">CostOptimizer</span></span>
+                <span>Resource: <span class="text-white font-medium">persistent-disks</span></span>
+                <span>4 hours ago</span>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Delete Unused Persistent Disks</h4>
+              <p class="text-xs text-gray-400">Found 5 detached disks idle for over 30 days. Suggesting snapshot and delete.</p>
+            </div>
+          </div>
         </div>
-      </div>
       <!-- Logs Content -->
       <div id="logs-content" class="hidden w-full max-w-6xl fade-in bg-[#1C1F24] rounded-xl p-8 border border-gray-800">
         <div class="flex justify-between items-center mb-6">

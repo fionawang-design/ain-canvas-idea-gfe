@@ -160,19 +160,19 @@
         <div class="flex items-center gap-8 border-b border-gray-800 mb-6 text-sm">
           <a href="inbox.html?v=1" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>All</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">6</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">10</span>
           </a>
           <a href="cost.html" class="flex items-center gap-2 py-3 text-[#95ADE2] border-b-2 border-[#95ADE2] -mb-[2px]">
             <span>Cost</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">3</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">4</span>
           </a>
           <a href="reliability.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>Reliability</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">2</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">3</span>
           </a>
           <a href="security.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>Security</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">1</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">3</span>
           </a>
         </div>
 
@@ -194,12 +194,28 @@
         <!-- List Header -->
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-lg font-bold text-white">Need input</h2>
-          <span class="text-xs text-gray-500">7 sessions</span>
+          <span class="text-xs text-gray-500">4 sessions</span>
         </div>
 
         <!-- Cards List -->
         <div class="space-y-4">
-          <!-- Card 1 -->
+          <!-- Card 0: IP Waste Auditing (Cost) -->
+          <div id="card-waste-auditing" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span>Agent: <span class="text-white font-medium">IPAM Agent</span></span>
+                <span>Resource: <span class="text-white font-medium">subnet-q1-dev-test</span></span>
+                <span>Just now</span>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Subnet appears abandoned (No resources for 187 days)</h4>
+              <p class="text-xs text-gray-400">Reclaiming this range would free up 254 IP addresses and save ~$1,828.80/mo.</p>
+            </div>
+          </div>
+          <!-- Card 1 (Cost) -->
           <div onclick="window.location.href='session_detail_cost.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -215,8 +231,7 @@
               <p class="text-xs text-gray-400">Project: e-commerce-prod</p>
             </div>
           </div>
-
-          <!-- Card 4 (New Cost Case) -->
+          <!-- Card 8 (Cost) -->
           <div onclick="window.location.href='session_detail_idle_vm.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -232,44 +247,7 @@
               <p class="text-xs text-gray-400">Detected 3 VMs with &lt;5% CPU utilization. Downgrade to save $150/mo.</p>
             </div>
           </div>
-
-          <!-- Card 2 -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">LogAnalyzer</span></span>
-                <span>Resource: <span class="text-white font-medium">payments-service</span></span>
-                <span>5 mins ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Investigate Error Spike</h4>
-              <p class="text-xs text-gray-400">Analyzing Cloud Logging for 5xx errors in payments service.</p>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">SecurityAgent</span></span>
-                <span>Resource: <span class="text-white font-medium">prod-lb</span></span>
-                <span>40 mins ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Rotate SSL Certificates</h4>
-              <p class="text-xs text-gray-400">Renewing expiring SSL certificates for load balancer.</p>
-            </div>
-          </div>
-
-
-
-          <!-- Card 5 (New Cost Case) -->
+          <!-- Card 9 (Cost) -->
           <div class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -285,9 +263,7 @@
               <p class="text-xs text-gray-400">Found 5 detached disks idle for over 30 days. Suggesting snapshot and delete.</p>
             </div>
           </div>
-
         </div>
-      </div>
     </main>
 
 

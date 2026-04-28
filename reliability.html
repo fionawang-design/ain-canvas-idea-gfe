@@ -152,7 +152,7 @@
 
       <div class="p-8 max-w-6xl mx-auto">
         <div class="flex items-center justify-between mb-6">
-          <h1 class="text-3xl font-bold text-white">Reliability Inbox</h1>
+          <h1 class="text-3xl font-bold text-white">Session Inbox</h1>
           <div class="text-sm text-gray-400">Approved today: 10</div>
         </div>
 
@@ -160,11 +160,11 @@
         <div class="flex items-center gap-8 border-b border-gray-800 mb-6 text-sm">
           <a href="inbox.html?v=1" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>All</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">7</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">10</span>
           </a>
           <a href="cost.html" class="flex items-center gap-2 py-3 text-gray-400 hover:text-white border-b-2 border-transparent -mb-[2px]">
             <span>Cost</span>
-            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">1</span>
+            <span class="bg-[#2D3139] text-[#fbbc04] text-xs w-5 h-5 flex items-center justify-center rounded-full font-medium">4</span>
           </a>
           <a href="reliability.html" class="flex items-center gap-2 py-3 text-[#95ADE2] border-b-2 border-[#95ADE2] -mb-[2px]">
             <span>Reliability</span>
@@ -193,25 +193,7 @@
 
         <!-- Cards List -->
         <div class="space-y-4">
-          
-          <!-- Card 4 (Ch 2 UC 1) -->
-          <div onclick="window.location.href='session_detail_reliability.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <div class="flex items-center gap-3">
-                <span id="ipam-status" class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
-                <span>Agent: <span class="text-white font-medium">IPAMAgent</span></span>
-                <span>Resource: <span class="text-white font-medium">gke-subnet-1</span></span>
-                <span>5 mins ago</span>
-              </div>
-              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
-            </div>
-            <div>
-              <h4 class="text-white font-bold mb-1">Predictive Capacity Self-Healing</h4>
-              <p class="text-xs text-gray-400">Subnetwork at risk of IP exhaustion in 48h. Approve range expansion to prevent downtime.</p>
-            </div>
-          </div>
-
-          <!-- Card 2 (Original Card 2) -->
+          <!-- Card 2 (Reliability) -->
           <div onclick="window.location.href='troubleshooting_canvas.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -227,8 +209,23 @@
               <p class="text-xs text-gray-400">Analyzing Cloud Logging for 5xx errors in payments service.</p>
             </div>
           </div>
-
-          <!-- Card 6 (Ch 2 UC 3) -->
+          <!-- Card 4 (Reliability) -->
+          <div onclick="window.location.href='session_detail_reliability.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-500 font-bold px-2 py-0.5 rounded">Need input</span>
+                <span>Agent: <span class="text-white font-medium">IPAMAgent</span></span>
+                <span>Resource: <span class="text-white font-medium">gke-subnet-1</span></span>
+                <span>5 mins ago</span>
+              </div>
+              <span class="material-symbols-outlined text-gray-600">chevron_right</span>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Predictive Capacity Self-Healing</h4>
+              <p class="text-xs text-gray-400">Subnetwork at risk of IP exhaustion in 48h. Approve range expansion to prevent downtime.</p>
+            </div>
+          </div>
+          <!-- Card 6 (Reliability) -->
           <div onclick="window.location.href='session_detail_failover.html'" class="bg-[#2A2F35] rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:bg-[#343A42] transition border border-transparent hover:border-gray-700">
             <div class="flex items-center justify-between text-xs text-gray-400">
               <div class="flex items-center gap-3">
@@ -244,9 +241,7 @@
               <p class="text-xs text-gray-400">Detected 40% degradation. Traffic transitioned to secure secondary lanes to maintain SLO.</p>
             </div>
           </div>
-
         </div>
-      </div>
     </main>
   </div>
 
